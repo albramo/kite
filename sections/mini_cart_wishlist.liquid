@@ -1,0 +1,51 @@
+{%- liquid
+  assign results_count  = search.results_count 
+  assign price_varies_style = settings.price_varies_style
+-%}
+
+{%- if results_count > 0 -%}
+     {%- for product in search.results -%}
+     	{%- liquid
+		    assign pr_url = product.url
+		    assign placeholder_img = settings.placeholder_img
+			assign image = product.featured_media | default: placeholder_img
+      assign current_variant = product.first_available_variant | default: product.variants.first
+		 -%}
+      <div class="t4s-mini_cart__item t4s-d-flex t4s-pr t4s-oh" data-wishlist-item data-id="{{ product.id }}">
+        <a href="{{ pr_url }}" class="t4s-mini_cart__img t4s-pr t4s-oh t4s_ratio t4s-bg-11" style="background: url({{ image | image_url: width: 1 }});--aspect-ratioapt: {{ image.aspect_ratio | default: 1 }}">
+          {%- if image != blank -%}
+            <img class="lazyloadt4s" width="120" height="{{ 120 | divided_by: image.aspect_ratio | ceil }}" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ image | image_url: width: 1 }}" data-widths="[120, 240]" data-sizes="auto" alt="{{ image.alt | escape }}">
+          {%- endif -%}
+        </a>
+        <div class="t4s-mini_cart__info">
+          <a href="{{ pr_url }}" class="t4s-mini_cart__title t4s-truncate">{{ product.title }}</a>
+          <div class="t4s-mini_cart__meta">
+            <div class="t4s-cart_meta_price">
+              <div class="t4s-cart_price">
+                {%- if current_variant.compare_at_price > current_variant.price -%}
+                  <del>{{ current_variant.compare_at_price | money }}</del> <ins>{{ current_variant.price | money }}</ins>
+                {%- else -%}
+                  {%- render 'product-price', class_price: '', product: product, price_varies_style: price_varies_style, type: 'card', isGrouped: false -%}
+                {%- endif -%}
+              </div>
+            </div>
+            {%- unless product.has_only_default_variant -%}
+              <div class="t4s-cart_meta_variant"><dt style="display:inline;">{{ product.options.first }}: </dt><dd style="display:inline;"> <span>{{ current_variant.option1 }}</span></dd></div>
+            {%- endunless -%}
+          </div>
+          <div class="t4s-mini_cart__actions" style="justify-content:flex-start;gap:10px;">
+            {%- if product.has_only_default_variant -%}
+              {%- if product.available or current_variant.available or request.design_mode -%}
+                <a href="{{ pr_url }}" class="t4s-btn t4s-btn-base t4s-btn-style-default t4s-btn-color-dark t4s-wis-drawer__atc" data-variant-id="{{ current_variant.id }}" data-qty="1" data-action-atc data-wis-atc rel="nofollow" style="min-height:36px;font-size:11px;padding:0 18px;text-transform:uppercase;font-weight:500;"><span class="t4s-truncate">{{ 'products.product.add_to_cart' | t }}</span><span class="t4s-loading__spinner" style="display:none;margin-inline-start:8px;"><svg width="14" height="14" class="t4s-svg__spinner" focusable="false" role="presentation" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="t4s-path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle></svg></span></a>
+              {%- else -%}
+                <a href="{{ pr_url }}" class="t4s-btn t4s-btn-base t4s-btn-style-outline t4s-btn-color-dark" disabled style="min-height:36px;font-size:11px;padding:0 18px;text-transform:uppercase;font-weight:500;opacity:.6;pointer-events:none;"><span class="t4s-truncate">{{ 'products.product.sold_out' | t }}</span></a>
+              {%- endif -%}
+            {%- else -%}
+              <a href="{{ pr_url }}" data-loading-bar class="t4s-btn t4s-btn-base t4s-btn-style-outline t4s-btn-color-dark" style="min-height:36px;font-size:11px;padding:0 18px;text-transform:uppercase;font-weight:500;"><span class="t4s-truncate">{{ 'products.product_card.select_option' | t }}</span></a>
+            {%- endif -%}
+          </div>
+        </div>
+        <a href="{{ pr_url }}" rel="nofollow" class="t4s-mini_cart__remove" data-remove-wishlist data-id="{{ product.id }}" data-handle="{{ product.handle }}" data-tooltip="top-start" data-t4s-tooltip='{{ 'cart.general.remove_item' | t | escape }}'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></a>
+      </div>
+     {%- endfor -%}
+{%- endif -%}

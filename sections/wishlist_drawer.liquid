@@ -1,0 +1,178 @@
+{%- liquid
+  assign wishlist_url = routes.search_url | append: '/?view=wishlist'
+-%}
+{{ 'button-style.css' | asset_url | stylesheet_tag }}
+<link href="{{ 'mini-cart.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="{{ 'custom-effect.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'">
+<style>
+#t4s-wishlist-drawer .t4s-drawer__main .t4s-mini_cart__items{padding:0 15px;background-color:var(--t4s-light-color);}
+#t4s-wishlist-drawer .t4s-mini_cart__item:first-child{padding-top:0;}
+#t4s-wishlist-drawer .t4s-mini_cart__item:last-child{border-bottom:0;}
+#t4s-wishlist-drawer .t4s-wis-drawer__atc:hover{color:var(--accent-color);}
+</style>
+<div id="t4s-wishlist-drawer" class="t4s-drawer t4s-drawer__right t4s-dn" aria-hidden="true" data-wishlist-drawer>
+  <div class="t4s-drawer__header">
+    <span>{{ 'wishlist_page.drawer_title' | t }} (<span data-count-wishlist>0</span>)</span>
+    <button class="t4s-drawer__close" data-drawer-close aria-label="{{ 'wishlist_page.close' | t }}">
+      <svg class="t4s-iconsvg-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
+  <div class="t4s-drawer__wrap t4s-minicart-tabs-item-wrap" aria-hidden="false">
+    <div class="t4s-drawer__main">
+      <div data-t4s-scroll-me class="t4s-drawer__scroll t4s-current-scrollbar">
+        <div class="t4s-mini_cart__items t4s_ratioadapt t4s_position_8 t4s_cover t4s-wishlist-drawer__content">
+          <div class="t4s-mini_cart__emty t4s-wishlist-drawer__empty t4s-text-center">
+            <svg class="t4s-empty-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px;margin:30px auto 15px;display:block;opacity:.35;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <p>{{ 'wishlist_page.empty' | t }}</p>
+            <a data-loading-bar class="t4s-btn-cart__emty" href="{{ routes.all_products_collection_url }}">{{ 'wishlist_page.empty_html' | t }}</a>
+          </div>
+          <div class="t4s-wishlist-drawer__skeleton" style="display:none;">
+            {%- for i in (1..5) -%}
+              <div class="t4s-row t4s-space-item-inner t4s-widget__pr">
+                <div class="t4s-col-item t4s-col t4s-widget_img_pr"><div class="t4s-skeleton_img"></div></div>
+                <div class="t4s-col-item t4s-col t4s-widget_if_pr t4s-pr">
+                  <div class="t4s-skeleton_txt1"></div><div class="t4s-skeleton_txt2"></div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+          <div class="t4s-wishlist-drawer__items"></div>
+        </div>
+      </div>
+    </div>
+    <div class="t4s-drawer__bottom">
+      <div class="t4s-minicart-group-btns">
+        <a href="{{ wishlist_url }}" data-loading-bar class="t4s-btn__cart t4s-btn t4s-btn-base t4s-btn-style-outline t4s-btn-color-dark t4s-w-100 t4s-justify-content-center"><span class="t4s-truncate">{{ 'wishlist_page.view_wishlist' | t }}</span></a>
+        <button data-drawer-close class="t4s-btn__checkout t4s-btn t4s-btn-base t4s-btn-style-default t4s-btn-color-dark t4s-w-100 t4s-justify-content-center"><span class="t4s-truncate">{{ 'general.continue_shopping' | t }}</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+<style>@media (min-width: 768px) { #t4s-wishlist-drawer { width: 430px; } }</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var drawer = document.getElementById('t4s-wishlist-drawer');
+  if(!drawer) return;
+  var emptyEl = drawer.querySelector('.t4s-wishlist-drawer__empty');
+  var skeletonEl = drawer.querySelector('.t4s-wishlist-drawer__skeleton');
+  var itemsEl = drawer.querySelector('.t4s-wishlist-drawer__items');
+
+  function updateDrawer() {
+    var link = window.T4SThemeSP && T4SThemeSP.linkWishlist ? T4SThemeSP.linkWishlist : '';
+    if(!link || link.indexOf('id:') < 0){
+      try{
+        var wis = localStorage.getItem('t4s_wis');
+        if(wis && wis.length > 2){
+          var q = wis.replace(/,/g,' OR ');
+          link = T4Sroutes.search_url + '/?view=wishlist&type=product&options[unavailable_products]=last&q=' + encodeURI(q);
+        }
+      }catch(e){}
+    }
+    if(!link || link.indexOf('id:') < 0){
+      emptyEl.style.display = '';
+      skeletonEl.style.display = 'none';
+      itemsEl.innerHTML = '';
+      return;
+    }
+    emptyEl.style.display = 'none';
+    skeletonEl.style.display = '';
+    itemsEl.innerHTML = '';
+    var fetchUrl = link.replace('view=wishlist','section_id=mini_cart_wishlist');
+    var fetchFn = (window.T4SThemeSP && T4SThemeSP.getToFetchSection) ? T4SThemeSP.getToFetchSection(null,'text',fetchUrl) : fetch(fetchUrl).then(function(r){return r.text()});
+    Promise.resolve(fetchFn).then(function(html){
+      skeletonEl.style.display = 'none';
+      if(html && html.indexOf('NVT_94') === -1){
+        var tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        var content = tmp.innerHTML.trim();
+        if(!content || content.length < 10){
+          emptyEl.style.display = '';
+        } else {
+          itemsEl.innerHTML = content;
+          if(window.jQuery_T4NT){
+            jQuery_T4NT(document).trigger('currency:update');
+            if(window.T4SThemeSP && T4SThemeSP.Tooltip) T4SThemeSP.Tooltip();
+            if(window.T4SThemeSP && T4SThemeSP.Wishlist) T4SThemeSP.Wishlist.updateAll();
+          }
+        }
+      } else {
+        emptyEl.style.display = '';
+      }
+    }).catch(function(){
+      skeletonEl.style.display = 'none';
+      emptyEl.style.display = '';
+    });
+  }
+
+  if(window.jQuery_T4NT){
+    jQuery_T4NT(document).on('update:mini_cart:wishlist cart:updated wishlist:updated', updateDrawer);
+  }
+  drawer.addEventListener('opendDrawer', updateDrawer);
+  document.addEventListener('click', function(e){
+    var trigger = e.target.closest('[data-drawer-options]');
+    if(trigger && trigger.getAttribute('data-drawer-options') && trigger.getAttribute('data-drawer-options').indexOf('t4s-wishlist-drawer') > -1){
+      setTimeout(updateDrawer, 50);
+    }
+  });
+  // Fallback ATC handler - guarantees add to cart works even if theme handler misses dynamic content
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest('[data-wis-atc][data-variant-id]');
+    if(!btn) return;
+    // If theme already handles it, let it run first - our fetch acts as fallback only if theme didn't preventDefault in time
+    // We always preventDefault here and do our own add, to avoid going to product page
+    e.preventDefault();
+    e.stopPropagation();
+    if(btn.classList.contains('is--loading')) return;
+    btn.classList.add('is--loading');
+    var spinner = btn.querySelector('.t4s-loading__spinner');
+    if(spinner) spinner.style.display = 'inline-block';
+    var variantId = btn.getAttribute('data-variant-id');
+    var qty = parseInt(btn.getAttribute('data-qty') || '1', 10) || 1;
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
+      body: JSON.stringify({ id: variantId, quantity: qty })
+    }).then(function(r){ return r.json(); }).then(function(data){
+      if(data && data.status) {
+        alert(data.description || 'Could not add to cart');
+        return;
+      }
+      // Refresh mini cart + open it like theme does after ATC
+      document.dispatchEvent(new CustomEvent('cart:refresh', {bubbles: true}));
+      document.dispatchEvent(new CustomEvent('cart:refresh:opend', {bubbles: true}));
+      if(window.jQuery_T4NT){
+        jQuery_T4NT(document).trigger('cart:refresh');
+        // Open mini cart drawer after short delay for refresh
+        setTimeout(function(){
+          var cartDrawer = document.getElementById('t4s-mini_cart');
+          // Close wishlist first
+          var closeBtn = drawer.querySelector('[data-drawer-close]');
+          if(closeBtn) closeBtn.click();
+          if(cartDrawer){
+            // Use theme drawer API if available
+            if(window.T4SThemeSP && T4SThemeSP.Drawer && T4SThemeSP.Drawer.opend){
+              T4SThemeSP.Drawer.opend(window.jQuery_T4NT('#t4s-mini_cart'));
+            } else {
+              var cartTrigger = document.querySelector('[data-drawer-options*=\"t4s-mini_cart\"]');
+              if(cartTrigger) cartTrigger.click();
+            }
+          }
+        }, 600);
+      }
+    }).catch(function(err){ console.error('Wishlist ATC error', err); }).finally(function(){
+      btn.classList.remove('is--loading');
+      if(spinner) spinner.style.display = 'none';
+    });
+  }, true);
+  setTimeout(updateDrawer, 800);
+});
+</script>
+
+{% schema %}
+{
+  "name": "Wishlist Drawer",
+  "class": "t4s-section-wishlist-drawer",
+  "settings": []
+}
+{% endschema %}
