@@ -101,11 +101,9 @@ endif
 {%- endif -%}
 
 {{- arrTemp[0] -}}
- 
+<div class="t4s-product-quick-shop" data-product-featured='{"id": "{{ product.id }}", "isQuickShopForm": true, "disableSwatch": {{ isProductDefault }}, "media": {% if media_size > 1 %}true{% else %}false{% endif %},"enableHistoryState": false, "formID": "#product-form-{{ pr_sid }}", "removeSoldout": {{ remove_soldout }}, "changeVariantByImg": {{ settings.use_change_variant_by_img }}, "isNoPick": {{ PR_no_pick }},"hasSoldoutUnavailable": {{ ck_so_un }},"enable_zoom_click_mb": false,"main_click": "none","canMediaGroup": false,"isGrouped": false,"hasIsotope": false,"available": {{ product.available }}, "customBadge": null, "customBadgeHandle": null,"dateStart": {{ product.created_at | date: "%s" }}, "compare_at_price": {{ current_variant.compare_at_price | json }},"price": {{ current_variant.price | json }}, "isPreoder": {{ isPreoder }} }'>
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
 {{ 'qs-product.css' | asset_url | stylesheet_tag }}
-
-<div class="t4s-product-quick-shop" data-product-featured='{"id": "{{ product.id }}", "isQuickShopForm": true, "disableSwatch": {{ isProductDefault }}, "media": {% if media_size > 1 %}true{% else %}false{% endif %},"enableHistoryState": false, "formID": "#product-form-{{ pr_sid }}", "removeSoldout": {{ remove_soldout }}, "changeVariantByImg": {{ settings.use_change_variant_by_img }}, "isNoPick": {{ PR_no_pick }},"hasSoldoutUnavailable": {{ ck_so_un }},"enable_zoom_click_mb": false,"main_click": "none","canMediaGroup": false,"isGrouped": false,"hasIsotope": false,"available": {{ product.available }}, "customBadge": null, "customBadgeHandle": null,"dateStart": {{ product.created_at | date: "%s" }}, "compare_at_price": {{ current_variant.compare_at_price | json }},"price": {{ current_variant.price | json }}, "isPreoder": {{ isPreoder }} }'>
     <div class="t4s-product-qs-inner t4s_cover t4s_position_8 t4s_ratioadapt">
 
       {%- for block in seBlocks %}{% assign bk_stts = block.settings -%}

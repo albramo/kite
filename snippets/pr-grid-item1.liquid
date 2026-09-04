@@ -125,7 +125,7 @@ endcapture
           </div>
         {% endif %}
         <div class="t4s-product-btns">
-          <div data-replace-quickview data-tooltip-="top"></div>
+          {%- if settings.enable_quickview %}<a data-id="{{ pid }}" href="{{ pr_url }}" data-tooltip="top" rel="nofollow" class="t4s-pr-item-btn t4s-pr-quickview" data-action-quickview><span class="t4s-svg-pr-icon"><svg viewBox="0 0 24 24"><use xlink:href="#t4s-icon-qv"></use></svg></span><span class="t4s-text-pr">{{ 'products.product_card.quick_view' | t }}</span></a>{% endif %}
           <div data-replace-atc data-tooltip-="top"></div>
         </div>
       <div class="t4s-product-btns2">

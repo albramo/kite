@@ -250,14 +250,12 @@ assign use_link_vendor = settings.use_link_vendor
 {%- endif -%}
 
 {{- arrTemp[0] -}}
-
+<div data-t4s-scroll-me class="t4s-container- t4s-product-quick-view t4s-product-media__{{ media_layout }} t4s-product-thumb-size__{{ se_stts.thumb_lr_size }}">
+  <div data-product-featured='{"id": "{{ product.id }}", "disableSwatch": {{ isProductDefault }}, "media": {% if media_size > 1 %}true{% else %}false{% endif %},"enableHistoryState": {{ enableHistoryState }}, "formID": "#product-form-{{ pr_sid }}", "removeSoldout": {{ remove_soldout }}, "changeVariantByImg": {{ settings.use_change_variant_by_img }}, "isNoPick": {{ PR_no_pick }},"hasSoldoutUnavailable": {{ ck_so_un }},"enable_zoom_click_mb": {{ se_stts.enable_zoom_click_mb | json }},"main_click": "{{ main_click | json }}","canMediaGroup": {{ canMedia_group }},"isGrouped": {{ isGrouped }},"hasIsotope": {{ hasIsotope }},"available": {{ product.available }}, "customBadge": {{ arr_badge | json }}, "customBadgeHandle": {{ arr_badge_handle | json }},"dateStart": {{ product.created_at | date: "%s" }}, "compare_at_price": {{ current_variant.compare_at_price | json }},"price": {{ current_variant.price | json }}, "isPreoder": {{ isPreoder }}, "showFirstMedia": {{ settings.show_first_media }} }' class="t4s-row t4s-row__product is-zoom-type__{{ se_stts.zoom_tp }}" data-t4s-zoom-main{% if main_click == 'zoom' %} data-zoom-options-='{"type": "{{ se_stts.zoom_tp }}", "magnify": 2, "touch": false, "pr_type": "1"}'{% endif %}>
 {{ 'pre_flickityt4s.min.css' | asset_url | stylesheet_tag }}
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
 {{ 'qv-product.css' | asset_url | stylesheet_tag }}
 <style>.t4s-drawer[aria-hidden=false] { z-index: 2000; }</style>
-
-<div data-t4s-scroll-me class="t4s-container- t4s-product-quick-view t4s-product-media__{{ media_layout }} t4s-product-thumb-size__{{ se_stts.thumb_lr_size }}">
-  <div data-product-featured='{"id": "{{ product.id }}", "disableSwatch": {{ isProductDefault }}, "media": {% if media_size > 1 %}true{% else %}false{% endif %},"enableHistoryState": {{ enableHistoryState }}, "formID": "#product-form-{{ pr_sid }}", "removeSoldout": {{ remove_soldout }}, "changeVariantByImg": {{ settings.use_change_variant_by_img }}, "isNoPick": {{ PR_no_pick }},"hasSoldoutUnavailable": {{ ck_so_un }},"enable_zoom_click_mb": {{ se_stts.enable_zoom_click_mb | json }},"main_click": "{{ main_click | json }}","canMediaGroup": {{ canMedia_group }},"isGrouped": {{ isGrouped }},"hasIsotope": {{ hasIsotope }},"available": {{ product.available }}, "customBadge": {{ arr_badge | json }}, "customBadgeHandle": {{ arr_badge_handle | json }},"dateStart": {{ product.created_at | date: "%s" }}, "compare_at_price": {{ current_variant.compare_at_price | json }},"price": {{ current_variant.price | json }}, "isPreoder": {{ isPreoder }}, "showFirstMedia": {{ settings.show_first_media }} }' class="t4s-row t4s-row__product is-zoom-type__{{ se_stts.zoom_tp }}" data-t4s-zoom-main{% if main_click == 'zoom' %} data-zoom-options-='{"type": "{{ se_stts.zoom_tp }}", "magnify": 2, "touch": false, "pr_type": "1"}'{% endif %}>
     <div class="t4s-{{ class_media }} t4s-col-12 t4s-col-item t4s-product__media-wrapper t4s-pr">
       {%- case media_layout -%}
 

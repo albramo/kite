@@ -133,7 +133,7 @@ endcapture
           {%- else -%}
             <div data-replace-wishlist data-tooltip="left"></div>
           {%- endif -%}
-          <div data-replace-quickview data-tooltip="left"></div>
+          {%- if settings.enable_quickview %}<a data-id="{{ pid }}" href="{{ pr_url }}" data-tooltip="left" rel="nofollow" class="t4s-pr-item-btn t4s-pr-quickview" data-action-quickview><span class="t4s-svg-pr-icon"><svg viewBox="0 0 24 24"><use xlink:href="#t4s-icon-qv"></use></svg></span><span class="t4s-text-pr">{{ 'products.product_card.quick_view' | t }}</span></a>{% endif %}
           <div data-replace-compare data-tooltip="left"></div>
         </div>
         {%- if use_pr_countdown %}{%- render 'product-countdown',countdown: countdown %}{% endif -%}
