@@ -1,0 +1,39 @@
+{%- comment -%}
+  Renders a logo block on the footer section
+
+  Accepts:
+  - block: {Object}
+
+  Usage:
+  {% render 'footer-logo', block: block %}
+{%- endcomment -%}
+
+{%- liquid
+  assign footer_logo = block.settings.logo | default: settings.logo
+-%}
+
+{%- if footer_logo or block.settings.show_social or shop.features.follow_on_shop? and block.settings.enable_follow_on_shop -%}
+  <div class="footer__logo flex flex-col gap-10" {{ block.shopify_attributes }}>
+    {%- if footer_logo -%}
+      <p class="leading-none">
+        <a href="{{ routes.root_url }}">
+          <span class="sr-only">{{ shop.name }}</span>
+          {%- capture sizes -%}{{ block.settings.logo_height | times: footer_logo.aspect_ratio }}px{%- endcapture -%}
+          {%- capture widths -%}{{ block.settings.logo_height | times: footer_logo.aspect_ratio }}, {{ block.settings.logo_height | times: footer_logo.aspect_ratio | times: 2 | at_most: footer_logo.width }}{%- endcapture -%}
+          {%- capture style -%}--image-width: {{ block.settings.logo_height | times: footer_logo.aspect_ratio }}px; --image-height: {{ block.settings.logo_height }}px;{%- endcapture -%}
+          {{- footer_logo | image_url: width: footer_logo.width | image_tag: loading: 'lazy', widths: widths, sizes: sizes, style: style, preload: true, is: 'lazy-image' -}}
+        </a>
+      </p>
+    {%- endif -%}
+
+    {%- liquid
+      if block.settings.show_social
+        render 'social-icons', size: 'lg', gap: '7'
+      endif
+
+      if shop.features.follow_on_shop? and block.settings.enable_follow_on_shop
+        echo shop | login_button: action: 'follow'
+      endif
+    -%}
+  </div>
+{%- endif -%}

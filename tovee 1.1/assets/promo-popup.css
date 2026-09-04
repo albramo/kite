@@ -1,0 +1,91 @@
+.promo-modal .drawer__header {
+  border-block-end: 0;
+  padding-block-end: 0;
+}
+
+.promo-modal.drawer .drawer__inner {
+  width: var(--promo-width, 35rem);
+  max-width: calc(100vw - 2rem);
+}
+
+.promo-modal__close {
+  position: absolute !important;
+  z-index: 2;
+  inset-block-start: var(--sp-3) !important;
+  inset-inline-end: var(--sp-3) !important;
+  margin: 0 !important;
+  width: var(--sp-10) !important;
+  height: var(--sp-10) !important;
+}
+
+.promo-modal__image {
+  height: var(--promo-image-height-mobile, 10.625rem);
+}
+
+.promo-modal__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.promo-modal__content {
+  padding: var(--sp-6) var(--sp-5) var(--sp-8);
+}
+
+.promo-modal .text-center .promo-coupon__code {
+  flex: 1;
+  text-align: center;
+}
+
+/*! promo-coupon */
+
+.promo-coupon {
+  border: 1.5px dashed rgb(var(--color-foreground) / 0.35);
+  border-radius: var(--rounded-input);
+  background-color: rgb(var(--color-foreground) / 0.05);
+  padding: var(--sp-2d5) var(--sp-2d5) var(--sp-2d5) var(--sp-5);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.promo-coupon__code {
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.promo-coupon__btn {
+  font-size: var(--text-sm);
+  padding-block: var(--sp-2);
+  padding-inline: var(--sp-4);
+}
+
+.promo-coupon.copied {
+  border-style: solid;
+  border-color: rgb(var(--color-foreground) / 0.6);
+  background-color: rgb(var(--color-foreground) / 0.08);
+}
+
+@media screen and (min-width: 640px) {
+  .promo-modal__image {
+    height: var(--promo-image-height, 15rem);
+  }
+
+  .promo-modal__content {
+    padding: var(--sp-8) var(--sp-8d5) var(--sp-10);
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .js .promo-modal .drawer__inner {
+    height: auto !important;
+    width: var(--promo-width-mobile, 94%) !important;
+    max-width: calc(100vw - 2rem) !important;
+    max-height: calc(100% - 3.75rem) !important;
+    inset-inline-start: 0 !important;
+    inset-inline-end: 0 !important;
+    margin-inline: auto !important;
+  }
+}
