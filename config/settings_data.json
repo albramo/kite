@@ -395,8 +395,8 @@
           "fs_nav": 14,
           "fw_nav": 500,
           "ls_nav": 0,
-          "sp_nav": 17.5,
-          "pd": ",15px,,15px"
+          "sp_nav": 30,
+          "pd": ",60px,,60px"
         }
       },
       "mega-menu": {
