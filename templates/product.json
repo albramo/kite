@@ -47,7 +47,7 @@
           "type": "price",
           "settings": {
             "price": "0",
-            "type_sale": "0",
+            "type_sale": "1",
             "tax_ship": false,
             "size_price_pr": 20,
             "fw_price_pr": 400,
@@ -90,18 +90,9 @@
             "space_tb_mb": 10
           }
         },
-        "1a3a9220-2bb3-4ab1-a2cb-03d0d9bb32c6": {
-          "type": "description",
-          "settings": {
-            "des": "2",
-            "text": "<p>Cenean viverra rhoncus pede. Ut id nisl quis enim dignissim sagittis. Fusce ac felis sitpharetra condimentum...</p>",
-            "length": 30,
-            "readm": false,
-            "readm_txt": "Read more"
-          }
-        },
         "8efd84b3-4647-43eb-8040-d7451a522e7d": {
           "type": "size",
+          "disabled": true,
           "settings": {
             "size_chart": "2",
             "pos_sizeg": "1",
@@ -153,7 +144,7 @@
           "type": "delivery_ask",
           "settings": {
             "delivery": true,
-            "page_dr": "shipping-delivery",
+            "page_dr": "returns-refunds",
             "ask": true,
             "phone": true
           }
@@ -163,7 +154,7 @@
           "settings": {
             "pr_meta_horizontal": true,
             "show_options": false,
-            "show_vendor": false,
+            "show_vendor": true,
             "show_type": false,
             "show_sku": true,
             "show_barcode": false,
@@ -216,7 +207,6 @@
         "tovee-viewing-counter",
         "tovee-delivery-estimate",
         "49fc91c0-8308-4d0f-90f1-cfe6c5d8ea04",
-        "1a3a9220-2bb3-4ab1-a2cb-03d0d9bb32c6",
         "8efd84b3-4647-43eb-8040-d7451a522e7d",
         "8f619784-04a8-4c20-b813-6902f9e3e922",
         "e8f22b12-b4a8-4a95-b4bc-9a0d2c8075c5",

@@ -110,7 +110,25 @@
     </script>
   {%- endif -%}
 
-  {%- if request.design_mode == false -%}
+  {%- if request.design_mode -%}
+    <script>
+      /* Theme editor: make sure no old Service Worker serves stale preview */
+      (function(){
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function(regs){
+            regs.forEach(function(r){ try { r.unregister(); } catch(e){} });
+          });
+        }
+        if (window.caches) {
+          caches.keys().then(function(keys){
+            keys.forEach(function(k){
+              if (k.indexOf('theme-cache-') === 0) { try { caches.delete(k); } catch(e){} }
+            });
+          });
+        }
+      })();
+    </script>
+  {%- else -%}
     <script>
       (function(){
         if (!('serviceWorker' in navigator)) return;

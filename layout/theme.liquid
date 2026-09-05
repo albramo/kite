@@ -136,6 +136,28 @@ t4sp-theme no-js t4s-wrapper__{{ settings.general_layout }} rtl_{{ isRTL }} swat
         openQV(btn.getAttribute('href'));
       }, true);
     })();
+    /* Editor only: re-init components after section reload so unsaved changes show without Save */
+    (function(){
+      function initSection(scope){
+        if (!scope || !window.T4SThemeSP) return;
+        try {
+          var sliders = scope.querySelectorAll('.flickityt4s:not(.flickityt4s-enabled)');
+          sliders.forEach(function(el){ try { el.flickityt4s = new T4SThemeSP.Carousel(el); } catch(e){} });
+        } catch(e) {}
+        try { T4SThemeSP.Countdown && T4SThemeSP.Countdown(); } catch(e) {}
+        try { if (typeof T4SThemeSP.reinitProductGridItem === 'function') T4SThemeSP.reinitProductGridItem(); } catch(e) {}
+        try { T4SThemeSP.PopupMFP && T4SThemeSP.PopupMFP(); } catch(e) {}
+        try { T4SThemeSP.Tooltip && T4SThemeSP.Tooltip(); } catch(e) {}
+        try { T4SThemeSP.Header && T4SThemeSP.Header.stickyInit && T4SThemeSP.Header.stickyInit(); } catch(e) {}
+        try {
+          if (window.jQuery) { jQuery(window).trigger('resize'); }
+          else { window.dispatchEvent(new Event('resize')); }
+        } catch(e) {}
+      }
+      ['shopify:section:load', 'shopify:section:reorder', 'shopify:block:select'].forEach(function(ev){
+        document.addEventListener(ev, function(e){ initSection(e.target); });
+      });
+    })();
     </script>
     {%- endif -%}
   </body>

@@ -1,10 +1,47 @@
 /*
  * Service Worker - Cache Assets for Faster Return Visits
  * Caches: logo, favicon, fonts, CSS, JS, and images
+ *
+ * IMPORTANT: Never cache theme-editor / preview requests, otherwise
+ * unsaved changes in Customize won't show until Save (stale preview).
  */
 
-const CACHE_NAME = 'theme-cache-v1';
+const CACHE_NAME = 'theme-cache-v2';
 const PRECACHE_URLS = [];
+
+// URLs that must ALWAYS hit the network (theme editor live preview).
+function shouldBypass(url, request) {
+  // Only GET is cacheable anyway
+  if (request.method !== 'GET') return true;
+
+  // Navigations / iframe preview in the editor must never be served stale
+  if (request.mode === 'navigate') return true;
+
+  const href = url.href;
+
+  // Shopify theme editor / preview params
+  if (
+    href.includes('preview_theme_id') ||
+    href.includes('preview_script_id') ||
+    href.includes('design_mode') ||
+    href.includes('theme-editor') ||
+    href.includes('__shopify') ||
+    href.includes('_fd=') ||
+    href.includes('sections=') ||
+    href.includes('section_id') ||
+    href.includes('/admin') ||
+    url.pathname.startsWith('/admin') ||
+    // Ajax API / dynamic endpoints
+    href.includes('/cart') ||
+    href.includes('/checkout') ||
+    href.includes('predictive_search') ||
+    href.includes('/search/suggest')
+  ) {
+    return true;
+  }
+
+  return false;
+}
 
 // Install: pre-cache critical assets passed from the page
 self.addEventListener('install', (event) => {
@@ -41,6 +78,10 @@ self.addEventListener('fetch', (event) => {
 
   // Skip non-GET requests and Chrome extensions
   if (!url.protocol.startsWith('http')) return;
+
+  // NEVER intercept theme editor / preview / dynamic requests.
+  // This keeps Customize live preview (unsaved changes) working.
+  if (shouldBypass(url, event.request)) return;
 
   // Cache strategy: Cache First for static assets, Network First for pages
   const isStaticAsset =
@@ -90,25 +131,19 @@ self.addEventListener('fetch', (event) => {
       })
     );
   } else {
-    // Network-first strategy for HTML pages
-    event.respondWith(
-      fetch(event.request).then((networkResponse) => {
-        if (networkResponse && networkResponse.status === 200) {
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, responseToCache);
-          });
-        }
-        return networkResponse;
-      }).catch(() => {
-        return caches.match(event.request);
-      })
-    );
+    // Network-only for HTML pages (never cache pages).
+    // Caching HTML breaks the theme editor preview and shows stale
+    // content until Save + hard reload, so we never store it.
+    event.respondWith(fetch(event.request));
   }
 });
 
-// Listen for messages from the main page to pre-cache specific URLs
+// Listen for messages from the main page
 self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+    return;
+  }
   if (event.data && event.data.type === 'PRECACHE_URLS') {
     const urls = event.data.urls || [];
     caches.open(CACHE_NAME).then((cache) => {
