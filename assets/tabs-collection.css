@@ -73,22 +73,43 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   vertical-align: top; 
-  max-width: 170px;
+  max-width: 280px;
 }
 .t4s-tabs-se .t4s-tabs-ul li a.t4s-active {
   opacity: 1;
   color: var(--pri-active-cl);
 }
+.t4s-tabs-se .t4s-tabs-ul li a .t4s-tab-title-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  white-space: nowrap;
+  line-height: inherit;
+}
 .t4s-tabs-se .t4s-tabs-ul li a .t4s-icon-title {
   font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  margin-inline-end: var(--tab-icon-gap,8px);
+  max-width: none;
 }
-.t4s-tabs-se .t4s-tabs-ul li a .t4s-icon-title,
 .t4s-tabs-se .t4s-tabs-ul li a .t4s-image-title {
   max-width: 45px;
   margin: 0 auto 5px;
   display: block;
+}
+.t4s-tabs-se .t4s-tabs-ul li a .t4s-text-title {
+  display: inline-block;
+  line-height: inherit;
+  white-space: nowrap;
 }
 .t4s-tabs-se .t4s-tabs-ul li a .t4s-image-title {
   opacity: 0.5;
@@ -97,8 +118,8 @@
   opacity: 1;
 }
 .t4s-tabs-border .t4s-tabs-ul li a {
-  padding: 0 20px;
-  border-width: 2px;
+  padding: var(--tab-btn-pd-tb,10px) var(--tab-btn-pd,28px);
+  border-width: var(--tab-btn-bw,2px);
   border-style: var(--border);
   border-color: transparent;
 }
@@ -106,12 +127,12 @@
   border-color: var(--secon-active-cl);
 }
 .t4s-tabs-border-bg .t4s-tabs-ul li a {
-  padding: 0 20px;
+  padding: var(--tab-btn-pd-tb,10px) var(--tab-btn-pd,28px);
   opacity: 1;
   text-align: center;
   background-color: transparent;
   position: relative;
-  border-width: 1px;
+  border-width: var(--tab-btn-bw,2px);
   border-style: var(--border);
   border-color: var(--secon-cl);
 }

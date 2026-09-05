@@ -2,8 +2,8 @@
   assign wishlist_url = routes.search_url | append: '/?view=wishlist'
 -%}
 {{ 'button-style.css' | asset_url | stylesheet_tag }}
-<link href="{{ 'mini-cart.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'">
-<link href="{{ 'custom-effect.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'">
+<link href="{{ 'mini-cart.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'" />
+<link href="{{ 'custom-effect.css' | asset_url }}" rel="stylesheet" media="print" onload="this.media='all'" />
 <style>
 #t4s-wishlist-drawer .t4s-drawer__main .t4s-mini_cart__items{padding:0 15px;background-color:var(--t4s-light-color);}
 #t4s-wishlist-drawer .t4s-mini_cart__item:first-child{padding-top:0;}
@@ -13,8 +13,8 @@
 <div id="t4s-wishlist-drawer" class="t4s-drawer t4s-drawer__right t4s-dn" aria-hidden="true" data-wishlist-drawer>
   <div class="t4s-drawer__header">
     <span>{{ 'wishlist_page.drawer_title' | t }} (<span data-count-wishlist>0</span>)</span>
-    <button class="t4s-drawer__close" data-drawer-close aria-label="{{ 'wishlist_page.close' | t }}">
-      <svg class="t4s-iconsvg-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    <button type="button" class="t4s-drawer__close" data-drawer-close aria-label="{{ 'wishlist_page.close' | t | escape }}">
+      <svg class="t4s-iconsvg-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
     </button>
   </div>
   <div class="t4s-drawer__wrap t4s-minicart-tabs-item-wrap" aria-hidden="false">
@@ -22,7 +22,7 @@
       <div data-t4s-scroll-me class="t4s-drawer__scroll t4s-current-scrollbar">
         <div class="t4s-mini_cart__items t4s_ratioadapt t4s_position_8 t4s_cover t4s-wishlist-drawer__content">
           <div class="t4s-mini_cart__emty t4s-wishlist-drawer__empty t4s-text-center">
-            <svg class="t4s-empty-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px;margin:30px auto 15px;display:block;opacity:.35;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            <svg class="t4s-empty-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:52px;height:52px;margin:30px auto 15px;display:block;opacity:.35;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
             <p>{{ 'wishlist_page.empty' | t }}</p>
             <a data-loading-bar class="t4s-btn-cart__emty" href="{{ routes.all_products_collection_url }}">{{ 'wishlist_page.empty_html' | t }}</a>
           </div>
@@ -43,7 +43,7 @@
     <div class="t4s-drawer__bottom">
       <div class="t4s-minicart-group-btns">
         <a href="{{ wishlist_url }}" data-loading-bar class="t4s-btn__cart t4s-btn t4s-btn-base t4s-btn-style-outline t4s-btn-color-dark t4s-w-100 t4s-justify-content-center"><span class="t4s-truncate">{{ 'wishlist_page.view_wishlist' | t }}</span></a>
-        <button data-drawer-close class="t4s-btn__checkout t4s-btn t4s-btn-base t4s-btn-style-default t4s-btn-color-dark t4s-w-100 t4s-justify-content-center"><span class="t4s-truncate">{{ 'general.continue_shopping' | t }}</span></button>
+        <button type="button" data-drawer-close class="t4s-btn__checkout t4s-btn t4s-btn-base t4s-btn-style-default t4s-btn-color-dark t4s-w-100 t4s-justify-content-center"><span class="t4s-truncate">{{ 'general.continue_shopping' | t }}</span></button>
       </div>
     </div>
   </div>
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if(window.T4SThemeSP && T4SThemeSP.Drawer && T4SThemeSP.Drawer.opend){
               T4SThemeSP.Drawer.opend(window.jQuery_T4NT('#t4s-mini_cart'));
             } else {
-              var cartTrigger = document.querySelector('[data-drawer-options*=\"t4s-mini_cart\"]');
+              var cartTrigger = document.querySelector('[data-drawer-options*="t4s-mini_cart"]');
               if(cartTrigger) cartTrigger.click();
             }
           }

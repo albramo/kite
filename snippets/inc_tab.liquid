@@ -1,6 +1,9 @@
 {%- liquid
 
   assign bk_stts = block.settings  
+  if collection == blank
+    assign collection = collections.all
+  endif
   assign layout_des = bk_stts.layout_des
 
 

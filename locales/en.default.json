@@ -243,7 +243,14 @@
       "product_size_guide": "Size Guide",
       "delivery_return": "Delivery & Return",
       "ask_question": "Ask a Question",
-      "view_details": "View full details"
+      "view_details": "View full details",
+      "viewing_suffix": "people are viewing this now",
+      "order_in_next": "Order in the next",
+      "hours": "hours",
+      "minutes": "minutes",
+      "seconds": "seconds",
+      "to_get_between": "to get it between",
+      "and": "and"
     },
     "product_card": {
       "read_more": "Read more",

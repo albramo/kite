@@ -252,7 +252,7 @@
 {%- endcapture -%}
 <div class="t4s-section-inner t4s_nt_se_{{ sid }} {{ stt_layout }}" {% render 'section_style', se_stts: se_stts, append_style: append_style -%}> 
     {{- html_layout[0] -}} 
-        <div class="t4s-carousel-wrapper t4s-pr t4s-pos-btn-nav__{{ se_stts.pos_btn_nav }} t4s-pos-btn-nav-mb__{{ se_stts.pos_btn_nav_mb }} t4s-btn-nav-width__{{ se_stts.btn_nav_width }}"  style="--carousel-range-primary-color: {{ se_stts.cl_btn_nav }};--button-pause-play-color: {{ se_stts.cl_btn_play_pause }};">
+        <div class="t4s-carousel-wrapper t4s-pr{% if se_stts.image_fit == 'contain' %} t4s_contain{% endif %} t4s-pos-btn-nav__{{ se_stts.pos_btn_nav }} t4s-pos-btn-nav-mb__{{ se_stts.pos_btn_nav_mb }} t4s-btn-nav-width__{{ se_stts.btn_nav_width }}"  style="--carousel-range-primary-color: {{ se_stts.cl_btn_nav }};--button-pause-play-color: {{ se_stts.cl_btn_play_pause }};">
             <div class="t4s-row t4s-g-0 t4s-row-cols-1 t4s-slide-eff-{{ slide_eff }} t4s_ratio_mix {{ se_height }} t4s_ratio_cuspx_mb_{{ se_stts.custom_mb }} t4s_ratio_cuspx_tb_{{ se_stts.custom_tb }} t4s_ratio_cuspx_{{ se_stts.custom_dk }} t4s-carousel-type--range flickityt4s t4s_position_8 t4s_cover" data-flickityt4s-js='{"dotUI": true,"autoPlayT4": {% if autoplay %}{{ se_stts.speed }}000{% else %}0{% endif %},"autoPlay": 0, "pauseAutoPlayOnHover" : false, "checkVisibility": false,"imagesLoaded": 0,"adaptiveHeight": {% if se_height != 't4s_ratio_fh' or se_height != 't4s_ratioadapt_f_mix' %}true{% else %}false{% endif %}, "contain": 1, "groupCells": "100%", "dragThreshold" : 5, "cellAlign": "center","wrapAround": true,"prevNextButtons": false,"percentPosition": 1,"pageDots": false , "t4sid": "{{ sid }}"}'>{{- slideshow_html -}}</div>
             <ul class="t4s-carousel--range btn_group--cells{{ sid }} t4s-row t4s-row-cols-{{ index_dots }}">{{- html_nav_carousel -}}</ul>
             {%- if autoplay and se_stts.button_play -%}
@@ -320,7 +320,7 @@
             "type": "checkbox",
             "id": "custom_dk",
             "label": "Use custom height (Desktop)",
-            "default": true
+            "default": false
         },
         {
             "type": "number",
@@ -332,7 +332,7 @@
             "type": "checkbox",
             "id": "custom_tb",
             "label": "Use custom height (Tablet)",
-            "default": true
+            "default": false
         },
         {
             "type": "number",
@@ -344,13 +344,33 @@
             "type": "checkbox",
             "id": "custom_mb",
             "label": "Use custom height (Mobile)",
-            "default": true
+            "default": false
         },
         {
             "type": "number",
             "id": "height_mb",
             "label": "Section height (Mobile)",
             "default": 250
+        },
+        {
+            "type": "header",
+            "content": "+ Image fit"
+        },
+        {
+            "type": "select",
+            "id": "image_fit",
+            "label": "Image fit",
+            "default": "contain",
+            "options": [
+                {
+                    "value": "cover",
+                    "label": "Cover (fill container)"
+                },
+                {
+                    "value": "contain",
+                    "label": "Contain (show full image)"
+                }
+            ]
         }, 
         {
             "type": "header",
@@ -482,7 +502,7 @@
             "id": "mg",
             "label": "Margin",
             "info": "Margin top, margin right, margin bottom, margin left. If you do not use it please blank.",
-            "default": ",,50px,",
+            "default": ",,,",
             "placeholder": ",,50px,"
         },
         {
@@ -500,7 +520,7 @@
             "type": "text",
             "id": "mg_tb",
             "label": "Margin",
-            "default": ",,50px,",
+            "default": ",,,",
             "placeholder": ",,50px,"
         },
         {
@@ -517,7 +537,7 @@
             "type": "text",
             "id": "mg_mb",
             "label": "Margin",
-            "default": ",,30px,",
+            "default": ",,,",
             "placeholder": ",,50px,"
         },
         {

@@ -48,12 +48,12 @@
 {%- if current_tags contains 'ntt4tag' and current_tags -%}
   {%- assign num_i = current_tags[0] | remove: '_bid' | plus: 0 -%} 
   {%- assign block = section.blocks[num_i] -%}
-  {%- assign collection = collections[block.settings.collection] -%}
+  {%- assign collection = collections[block.settings.collection] | default: collections.all -%}
   {%- render 'inc_tab',ck_q: false,section: section,se_stts: se_stts,sid: sid,collection: collection, block: block,se_stts: se_stts,arrow_icon: arrow_icon, use_link_vendor: use_link_vendor -%}
 {%- else -%}
 <div class="t4s-section-inner nt_se_{{ sid }} {{ stt_layout }}{% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} t4s-has-imgbg lazyloadt4s{% endif %}" {% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto"  data-optimumx="1.5"{% endif %} {% render 'section_style', se_stts: se_stts -%} >
     {%- if stt_layout == 't4s-se-container' -%}<div class="t4s-container-inner{% if stt_image_bg != blank %} t4s-has-imgbg lazyloadt4s{% endif %}" {% if stt_image_bg != blank %} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto"  data-optimumx="1.5"{% endif %}>{% endif -%}
-    <div class=" t4s-tabs-se {% if title_inline %}t4s-tabs-inline{% endif %} t4s-tabs-{{ tabs_des }} t4s-tabs-{{ tabs_pos }} t4s-tabs-list-border-{{ se_stts.tabs_list_border }} {% if head_btn_url != blank and head_btn_label != blank %}t4s-sec-head-btn-on{% endif %} t4s-head-slide-nav-{{ se_stts.head_slide_btn }} t4s-hidden-head-btn-mb-{{ se_stts.hidden_btn_mb }} t4s-item-rounded-{{ se_stts.item_rounded }} t4s-border-{{ se_stts.tabs_border }}" style="--border:{{ se_stts.tabs_border }};--pri-cl:{{ se_stts.pri_cl }};--secon-cl:{{ se_stts.secon_cl }};--pri-active-cl:{{ se_stts.pri_active_cl }};--secon-active-cl:{{ se_stts.secon_active_cl }};--item-fs:{{ se_stts.item_fs }}px;--item-fw:{{ se_stts.item_fw }};--item-lh:{{ se_stts.item_lh }}px;--item-ls:{{ se_stts.item_ls }}px;--space-between:{{ se_stts.space_between }}px;--space-between-tb:{{ se_stts.space_between_tb }}px;--space-between-mb:{{ se_stts.space_between_mb }}px;--tablist-mgb:{{ se_stts.tabslist_mb }}px;">
+    <div class=" t4s-tabs-se {% if title_inline %}t4s-tabs-inline{% endif %} t4s-tabs-{{ tabs_des }} t4s-tabs-{{ tabs_pos }} t4s-tabs-list-border-{{ se_stts.tabs_list_border }} {% if head_btn_url != blank and head_btn_label != blank %}t4s-sec-head-btn-on{% endif %} t4s-head-slide-nav-{{ se_stts.head_slide_btn }} t4s-hidden-head-btn-mb-{{ se_stts.hidden_btn_mb }} t4s-item-rounded-{{ se_stts.item_rounded }} t4s-border-{{ se_stts.tabs_border }}" style="--border:{{ se_stts.tabs_border }};--pri-cl:{{ se_stts.pri_cl }};--secon-cl:{{ se_stts.secon_cl }};--pri-active-cl:{{ se_stts.pri_active_cl }};--secon-active-cl:{{ se_stts.secon_active_cl }};--item-fs:{{ se_stts.item_fs }}px;--item-fw:{{ se_stts.item_fw }};--item-lh:{{ se_stts.item_lh }}px;--item-ls:{{ se_stts.item_ls }}px;--tab-btn-pd:{{ se_stts.tab_btn_pd | default: 28 }}px;--tab-btn-pd-tb:{{ se_stts.tab_btn_pd_tb | default: 10 }}px;--tab-btn-bw:{{ se_stts.tab_btn_bw | default: 2 }}px;--tab-icon-gap:{{ se_stts.tab_icon_gap | default: 8 }}px;--space-between:{{ se_stts.space_between }}px;--space-between-tb:{{ se_stts.space_between_tb }}px;--space-between-mb:{{ se_stts.space_between_mb }}px;--tablist-mgb:{{ se_stts.tabslist_mb }}px;">
       <div class="t4s-tabs t4s-type-tabs2 {% if stt_layout != "t4s-container-fluid" and head_bigger %}t4s-sec-has-head-bigger{% endif %}" data-t4s-tabs2 style="--head-mgb: {{ se_stts.tophead_mb }}px;--head-mgb-tb: {{ se_stts.tophead_mb_tb }}px;--head-mgb-mb: {{ se_stts.tophead_mb_mb }}px;">
         {{-html_head[0]-}}
           <div class="t4s-section-head t4s-tabs-head {% if stt_layout != "t4s-container-fluid" %}t4s-head-bigger-{{ head_bigger }}{% endif %}" data-get-height>
@@ -91,7 +91,7 @@
                       assign icon_title = bk_stts.icon_title -%}
                       <li class="t4s-tab-item t4s-d-inline-flex {%- if image != blank %} t4s-has-img-title {% endif -%}">
                         <a id="b_{{ block.id }}" href="#t4s-{{ blockid }}" rel="nofollow" data-t4s-tab-item data-no-instant {{ block.shopify_attributes }} {% if forloop.first == true %} class="t4s-active" {% endif %} data-dropdown-item data-sortby-item>
-                        <span>
+                        <span class="t4s-tab-title-inner">
                           {% if icon_title != blank %}  
                             <span class="t4s-icon-title"><i class="{{ icon_title }}"></i></span>
                           {% elsif bk_stts.image_title != blank %}
@@ -127,19 +127,19 @@
           <div class="t4s-pr t4s-tab-contents2">
             {%- if request.design_mode -%}
               {%- for block in se_blocks -%}
-                {%- assign collection = collections[block.settings.collection]  -%}
+                {%- assign collection = collections[block.settings.collection] | default: collections.all  -%}
                 <div id="t4s-{{ block.id }}" class="t4s-tab-content2 {% if forloop.first == true %} t4s-active {% endif %}" data-t4s-tab-content data-render-lazy-component >
                   {%- render 'inc_tab',ck_q: true,section: section,se_stts: se_stts,sid: sid,collection: collection, block: block,se_stts: se_stts,arrow_icon: arrow_icon, use_link_vendor: use_link_vendor -%}
                 </div>
               {%- endfor -%}
             {%- else -%}
                 {%- assign block = section.blocks[0] -%}
-                  {%- assign collection = collections[block.settings.collection]  -%}
+                  {%- assign collection = collections[block.settings.collection] | default: collections.all  -%}
                   <div id="t4s-{{ block.id }}" class="t4s-tab-content2 t4s-active" data-t4s-tab-content data-render-lazy-component >
                     {%- render 'inc_tab',ck_q: true,section: section,se_stts: se_stts,sid: sid,collection: collection, block: block,se_stts: se_stts,arrow_icon: arrow_icon, use_link_vendor: use_link_vendor -%}
                   </div>
                 {%- for block in section.blocks offset: 1 -%}
-                  {%- assign collection = collections[block.settings.collection]  -%}
+                  {%- assign collection = collections[block.settings.collection] | default: collections.all  -%}
                   <div id="t4s-{{ block.id }}" class="t4s-tab-content2 lazyloadt4s" data-t4s-tab-content data-render-lazy-component data-rendert4s="{{ collection.url | default: search_url }}/{{ forloop.index }}_bid+ntt4tag" data-set4url='/?section_id={{ sid }}' data-t4splitlz>
                     <div class="lds_bginfinity pr mt__50 mb__100"></div></div>
                 {%- endfor -%}
@@ -393,6 +393,49 @@
         "label": "Tabs item rounded",
         "info": "Only working with design has border and background",
         "default": true
+      },
+      {
+        "type": "range",
+        "id": "tab_btn_pd",
+        "label": "Tab button side padding",
+        "info": "Space left and right of the title. Increase to make the tab button wider",
+        "min": 0,
+        "max": 60,
+        "step": 1,
+        "unit": "px",
+        "default": 28
+      },
+      {
+        "type": "range",
+        "id": "tab_btn_pd_tb",
+        "label": "Tab button top/bottom padding",
+        "info": "Space above and below the title",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "tab_btn_bw",
+        "label": "Tab button border thickness",
+        "info": "Only working with design has border",
+        "min": 0,
+        "max": 5,
+        "step": 1,
+        "unit": "px",
+        "default": 2
+      },
+      {
+        "type": "range",
+        "id": "tab_icon_gap",
+        "label": "Space between icon and title",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 8
       },
       {
         "type": "color",
@@ -715,7 +758,8 @@
           {
               "id": "collection",
               "type": "collection",
-              "label": "Collection"
+              "label": "Collection",
+              "info": "If empty, all products will be shown"
           },
           {
             "type": "select",

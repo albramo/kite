@@ -337,7 +337,7 @@
 {%- endif -%}
 <div class="t4s-section-inner t4s-pr t4s_nt_se_{{ sid }} {{ stt_layout }}" {% render 'section_style', se_stts: se_stts, append_style: append_style -%}>       
     {{- html_layout[0] -}} 
-    <div class="t4s-slideshow t4s-pr t4s-oh"> 
+    <div class="t4s-slideshow t4s-pr t4s-oh{% if se_stts.image_fit == 'contain' %} t4s_contain{% endif %}"> 
         <div class="t4s-row t4s-row-cols-1 t4s-gx-0 t4s-flickity-slider t4s_position_8 t4s-slide-eff-{{ slide_eff }} t4s_cover t4s_ratio_mix {{ se_height }} t4s_ratio_cuspx_mb_{{ se_stts.custom_mb }} t4s_ratio_cuspx_tb_{{ se_stts.custom_tb }} t4s_ratio_cuspx_{{ se_stts.custom_dk }} {% if nav_btn == true %} t4s-slider-btn-icon__{{ nav_btn_icon }} t4s-slider-btn-{{ se_stts.btn_pos }} t4s-slider-btn-style-{{ se_stts.btn_owl }} t4s-slider-btn-{{ se_stts.btn_shape }} t4s-slider-btn-{{ se_stts.btn_size }} t4s-slider-btn-cl-{{ se_stts.btn_cl }} t4s-slider-btn-vi-{{ se_stts.btn_vi }} t4s-slider-btn-hidden-mobile-{{ se_stts.btn_hidden_mobile }} {% endif %}{% if se_stts.nav_dot %} t4s-dots-width-{{ se_stts.dots_width }} t4s-dots-align-{{ se_stts.dots_align }} t4s-dots-design-{{ se_stts.dots_design }} t4s-dots-style-{{ se_stts.dot_owl }} t4s-dots-cl-{{ se_stts.dots_cl }} t4s-dots-round-{{ se_stts.dots_round }} t4s-dots-hidden-mobile-{{ se_stts.dots_hidden_mobile }} {% endif %} flickityt4s" data-flickityt4s-js='{{ data_flickityt4s }}'  style="--space-dots: {{ se_stts.dots_space }}px;--dots-position-vertical: {{ se_stts.dots_pos_vy }}{{ unit_dots_vertical }};{%- if unit_dots_vertical == '%' -%}--dots-transform-vertical: {{ se_stts.dots_pos_vy }}%;{%- endif -%}--dots-pd-lr: {{ se_stts.dots_pd_lr }}px;--slideshow-btn-pos: {{ se_stts.btn_distance }}px;">{{- slideshow_html -}}</div>  
         {%- if nav_btn and nav_btn_icon != "default" -%}
             <div class="t4s-flicky-btn__custom t4s-flickity-slider t4s-slider-btn-{{ se_stts.btn_pos }} t4s-slider-btn-style-{{ se_stts.btn_owl }} t4s-slider-btn-{{ se_stts.btn_shape }} t4s-slider-btn-{{ se_stts.btn_size }} t4s-slider-btn-cl-{{ se_stts.btn_cl }} t4s-slider-btn-vi-{{ se_stts.btn_vi }} t4s-slider-btn-hidden-mobile-{{ se_stts.btn_hidden_mobile }}" style="--slideshow-btn-pos: {{ se_stts.btn_distance }}px;">
@@ -389,7 +389,7 @@
             "type": "checkbox",
             "id": "custom_dk",
             "label": "Use custom height (Desktop)",
-            "default": true
+            "default": false
         },
         {
             "type": "number",
@@ -401,7 +401,7 @@
             "type": "checkbox",
             "id": "custom_tb",
             "label": "Use custom height (Tablet)",
-            "default": true
+            "default": false
         },
         {
             "type": "number",
@@ -413,13 +413,33 @@
             "type": "checkbox",
             "id": "custom_mb",
             "label": "Use custom height (Mobile)",
-            "default": true
+            "default": false
         },
         {
             "type": "number",
             "id": "height_mb",
             "label": "Section height (Mobile)",
             "default": 250
+        },
+        {
+            "type": "header",
+            "content": "+ Image fit"
+        },
+        {
+            "type": "select",
+            "id": "image_fit",
+            "label": "Image fit",
+            "default": "contain",
+            "options": [
+                {
+                    "value": "cover",
+                    "label": "Cover (fill container)"
+                },
+                {
+                    "value": "contain",
+                    "label": "Contain (show full image)"
+                }
+            ]
         },
         {
             "type": "header",
@@ -889,7 +909,7 @@
             "id": "mg",
             "label": "Margin",
             "info": "Margin top, margin right, margin bottom, margin left. If you do not use it please blank.",
-            "default": ",,50px,",
+            "default": ",,,",
             "placeholder": ",,50px,"
         },
         {
@@ -907,7 +927,7 @@
             "type": "text",
             "id": "mg_tb",
             "label": "Margin",
-            "default": ",,50px,",
+            "default": ",,,",
             "placeholder": ",,50px,"
         },
         {
@@ -924,7 +944,7 @@
             "type": "text",
             "id": "mg_mb",
             "label": "Margin",
-            "default": ",,30px,",
+            "default": ",,,",
             "placeholder": ",,50px,"
         },
         {

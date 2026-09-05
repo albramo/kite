@@ -84,5 +84,59 @@ t4sp-theme no-js t4s-wrapper__{{ settings.general_layout }} rtl_{{ isRTL }} swat
         <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       </ul>
     {%- render 'render_bottom' -%}
+    {%- if request.design_mode -%}
+    <script>
+    /* Editor only: reliable quickview preview */
+    (function(){
+      function extractQV(html){
+        try {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          var tpl = doc.querySelector('template');
+          if (tpl && tpl.innerHTML) return tpl.innerHTML;
+        } catch(e) {}
+        return html;
+      }
+      function initQV(){
+        try {
+          var modal = document.querySelector('.t4s-modal');
+          var scope = modal || document;
+          var feat = scope.querySelector('[data-product-featured]');
+          if (feat && window.T4SThemeSP && T4SThemeSP.Product) { new T4SThemeSP.Product(feat); }
+        } catch(e) {}
+        try {
+          var modal2 = document.querySelector('.t4s-modal');
+          var media = (modal2 || document).querySelector('[data-main-media].flickityt4s:not(.flickityt4s-enabled)');
+          if (media && window.T4SThemeSP && T4SThemeSP.Carousel) { media.flickityt4s = new T4SThemeSP.Carousel(media); }
+        } catch(e) {}
+        try { T4SThemeSP.PopupMFP && T4SThemeSP.PopupMFP(); } catch(e) {}
+        try { T4SThemeSP.initGroupsProduct && T4SThemeSP.initGroupsProduct(); } catch(e) {}
+        try { window.Shopify && Shopify.PaymentButton && Shopify.PaymentButton.init(); } catch(e) {}
+        try { T4SThemeSP.Wishlist && T4SThemeSP.Wishlist.updateAll(); } catch(e) {}
+        try { T4SThemeSP.Compare && T4SThemeSP.Compare.updateAll(); } catch(e) {}
+        try { T4SThemeSP.ProductItem && T4SThemeSP.ProductItem.reloadReview && T4SThemeSP.ProductItem.reloadReview(); } catch(e) {}
+        try { T4SThemeSP.Tooltip && T4SThemeSP.Tooltip(); } catch(e) {}
+      }
+      function openQV(href){
+        if (!href || !(window.jQuery && window.T4SThemeSP && T4SThemeSP.NTpopupInline)) return;
+        var url = href + ((href.indexOf('?') > -1 || href.indexOf('&') > -1) ? '&' : '/?') + 'section_id=main-qv';
+        fetch(url).then(function(r){ return r.text(); }).then(function(html){
+          var content = extractQV(html);
+          if (!content) return;
+          T4SThemeSP.NTpopupInline(content, 'main-qv', initQV, 't4s-opening-qv');
+          try { jQuery(document.body).trigger('modalt4s:opened'); } catch(e) {}
+          try { jQuery(document).trigger('modalt4s:opened'); } catch(e) {}
+        }).catch(function(e){ if (window.console) console.log(e); });
+      }
+      document.addEventListener('click', function(e){
+        var t = e.target;
+        var btn = (t && t.closest) ? t.closest('[data-action-quickview]') : null;
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        openQV(btn.getAttribute('href'));
+      }, true);
+    })();
+    </script>
+    {%- endif -%}
   </body>
 </html>

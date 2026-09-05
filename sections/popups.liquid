@@ -163,6 +163,209 @@ assign page_style  = true
 		         </div>
 			   </div>
 		
+		{%- when 'coupon' -%}
+		   	{%- if design_mode %}<div {{ block.shopify_attributes }}></div>{% endif -%}
+		   	{%- liquid
+		   	unless bk_stts[page_type]
+		   	continue
+		   	endunless -%}
+        	{%- style -%}
+				#t4s-popup__coupon {
+				    max-width:520px !important;
+				    background-color: var(--t4s-light-color);
+					margin: 30px auto;
+					padding: 34px 30px 30px;
+					position: relative;
+					text-align: center;
+				}
+				#t4s-popup__coupon .t4s-coupon-close {
+					position: absolute;
+					top: 6px;
+					inset-inline-end: 6px;
+					width: 36px;
+					height: 36px;
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					background: transparent;
+					border: 0;
+					font-size: 28px;
+					line-height: 1;
+					color: var(--text-color);
+					cursor: pointer;
+					z-index: 2;
+				}
+				#t4s-popup__coupon .t4s-coupon-img {
+					margin-bottom: 18px;
+				}
+				#t4s-popup__coupon .t4s-coupon-heading {
+					font-size: 22px;
+					margin: 0 0 10px;
+					color: var(--heading-color);
+				}
+				#t4s-popup__coupon .t4s-coupon-desc {
+					margin: 0 0 18px;
+					color: var(--text-color);
+				}
+				#t4s-popup__coupon .t4s-coupon-box {
+					display: flex;
+					align-items: stretch;
+					margin: 0 auto 12px;
+					max-width: 380px;
+					border: 2px dashed var(--accent-color);
+					border-radius: var(--btn-radius, 6px);
+					overflow: hidden;
+					direction: ltr;
+				}
+				#t4s-popup__coupon .t4s-coupon-code {
+					flex: 1 1 auto;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: 12px 14px;
+					font-size: 20px;
+					font-weight: 700;
+					letter-spacing: 2px;
+					color: var(--heading-color);
+					background: rgba(var(--accent-color-rgb),.08);
+				}
+				#t4s-popup__coupon .t4s-coupon-copy {
+					display: inline-flex;
+					align-items: center;
+					gap: 7px;
+					padding: 0 18px;
+					border: 0;
+					background: var(--accent-color);
+					color: var(--t4s-light-color);
+					font-size: 14px;
+					font-weight: 600;
+					cursor: pointer;
+					white-space: nowrap;
+				}
+				#t4s-popup__coupon .t4s-coupon-copy svg {
+					width: 16px;
+					height: 16px;
+					fill: currentColor;
+				}
+				#t4s-popup__coupon .t4s-coupon-copy.is-copied {
+					background: #16a34a;
+				}
+				#t4s-popup__coupon .t4s-coupon-note {
+					font-size: 12px;
+					margin: 0;
+					color: var(--text-color);
+				}
+        	{%- endstyle -%}
+			   <div id="t4s-popup__coupon" data-block="{{ block.id }}" class="mfp-with-anim mfp-hide t4s-text-center t4s_ratioadapt t4s_position_8 t4s_cover" data-stt='{ "number_pages": {{ bk_stts.number_pages }},"pp_version": {{ bk_stts.version }},"after": "{{ bk_stts.after }}","time_delay": {{ bk_stts.time_delay }},"scroll_delay": {{ bk_stts.scroll_delay }},"day_next": {{ bk_stts.day_next }},"isMobile": {{ bk_stts.mb }} }'>
+			   		<button type="button" class="t4s-coupon-close" data-close-coupon aria-label="{{ 'general.aria.close' | t | escape }}">&times;</button>
+			   		{%- assign image = bk_stts.image -%}
+			   		{% if image != blank %}
+			   		<div class="t4s-coupon-img t4s_ratio" style="--aspect-ratioapt: {{ image.aspect_ratio | default: 1.5 }}">
+			            <img class="lazyloadt4s t4s-lz--fadeIn t4s-obj-eff" data-src="{{ image | image_url: width: 1 }}" data-widths="[100,200,400,600,700,800,900,1000,1200,1400,1600]" data-optimumx="2" data-sizes="auto" src="{%- render 'img_svg',w: image.width,h: image.height -%}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt | escape }}">
+			            <span class="lazyloadt4s-loader is-bg-img" style="background: url({{ image | image_url: width: 1 }});"></span>
+			   		</div>
+			   		{% endif %}
+			   		{% if bk_stts.heading != blank %}<h4 class="t4s-coupon-heading">{{ bk_stts.heading }}</h4>{% endif %}
+			   		{% if bk_stts.description != blank %}<div class="t4s-coupon-desc">{{ bk_stts.description }}</div>{% endif %}
+			   		{% if bk_stts.coupon_code != blank %}
+			   		<div class="t4s-coupon-box">
+			   			<span class="t4s-coupon-code" data-coupon-code>{{ bk_stts.coupon_code | escape }}</span>
+			   			<button type="button" class="t4s-coupon-copy" data-copy-coupon data-copied="{{ bk_stts.copied_label | escape }}">
+			   				<svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+			   				<span>{{ bk_stts.copy_label | escape }}</span>
+			   			</button>
+			   		</div>
+			   		{% endif %}
+			   		{% if bk_stts.note != blank %}<p class="t4s-coupon-note">{{ bk_stts.note }}</p>{% endif %}
+			   </div>
+			   {%- unless design_mode -%}
+			   <script>
+			   (function(){
+			   		var el = document.getElementById('t4s-popup__coupon');
+			   		if (!el) return;
+			   		var stt;
+			   		try { stt = JSON.parse(el.getAttribute('data-stt')); } catch(e) { return; }
+			   		if (!stt.isMobile && window.matchMedia('(max-width: 767px)').matches) return;
+			   		function getC(n){ var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : null; }
+			   		function setC(n,v,days){ var ex=''; if (days > 0){ var d = new Date(); d.setTime(d.getTime() + days*864e5); ex = '; expires=' + d.toUTCString(); } document.cookie = n + '=' + encodeURIComponent(v) + ex + '; path=/'; }
+			   		var cName = 't4s_coupon_v' + stt.pp_version;
+			   		if (getC(cName)) return;
+			   		var need = parseInt(stt.number_pages, 10) || 0;
+			   		if (need > 0) {
+			   			var c = (parseInt(getC('t4s_coupon_pages') || '0', 10) || 0) + 1;
+			   			setC('t4s_coupon_pages', c, 1);
+			   			if (c < need) return;
+			   		}
+			   		function openPopup(){
+			   			if (getC(cName)) return;
+			   			if (!(window.jQuery && jQuery.magnificPopupT4s)) return;
+			   			jQuery.magnificPopupT4s.open({
+			   				items: { src: '#t4s-popup__coupon' },
+			   				type: 'inline',
+			   				removalDelay: 300,
+			   				mainClass: 'mfp-with-anim',
+			   				closeOnBgClick: true,
+			   				callbacks: { close: function(){ setC(cName, 'shown', parseInt(stt.day_next, 10) || 0); } }
+			   			});
+			   		}
+			   		var cp = el.querySelector('[data-copy-coupon]');
+			   		if (cp) {
+			   			cp.addEventListener('click', function(){
+			   				var codeEl = el.querySelector('[data-coupon-code]');
+			   				var code = codeEl ? codeEl.textContent.replace(/^\s+|\s+$/g, '') : '';
+			   				if (!code) return;
+			   				var btn = this;
+			   				function done(){
+			   					var lb = btn.querySelector('span');
+			   					if (!lb) return;
+			   					var orig = lb.getAttribute('data-orig') || lb.textContent;
+			   					lb.setAttribute('data-orig', orig);
+			   					lb.textContent = btn.getAttribute('data-copied') || 'Copied';
+			   					btn.classList.add('is-copied');
+			   					setTimeout(function(){ lb.textContent = orig; btn.classList.remove('is-copied'); }, 2000);
+			   				}
+			   				function fallback(){
+			   					var t = document.createElement('textarea');
+			   					t.value = code;
+			   					t.setAttribute('readonly', '');
+			   					t.style.position = 'absolute';
+			   					t.style.left = '-9999px';
+			   					document.body.appendChild(t);
+			   					t.select();
+			   					try { document.execCommand('copy'); done(); } catch(e) {}
+			   					document.body.removeChild(t);
+			   				}
+			   				if (navigator.clipboard && navigator.clipboard.writeText) {
+			   					navigator.clipboard.writeText(code).then(done, fallback);
+			   				} else { fallback(); }
+			   			});
+			   		}
+			   		var cl = el.querySelector('[data-close-coupon]');
+			   		if (cl) {
+			   			cl.addEventListener('click', function(){
+			   				if (window.jQuery && jQuery.magnificPopupT4s) jQuery.magnificPopupT4s.close();
+			   			});
+			   		}
+			   		if (stt.after === 'time') {
+			   			setTimeout(openPopup, (parseInt(stt.time_delay, 10) || 2) * 1000);
+			   		} else {
+			   			var px = parseInt(stt.scroll_delay, 10) || 800;
+			   			var fired = false;
+			   			function onScroll(){
+			   				if (fired) return;
+			   				if ((window.pageYOffset || document.documentElement.scrollTop) >= px) {
+			   					fired = true;
+			   					window.removeEventListener('scroll', onScroll);
+			   					openPopup();
+			   				}
+			   			}
+			   			window.addEventListener('scroll', onScroll, {passive:true});
+			   			onScroll();
+			   		}
+			   })();
+			   </script>
+			   {%- endunless -%}
+
 		{%- when 'exit' -%}
 		   	{%- if design_mode %}<div {{ block.shopify_attributes }}></div>{% endif -%}
 		   	{%- liquid
@@ -850,6 +1053,50 @@ assign page_style  = true
 
 	{%- endfor -%}
 {%- endif -%}
+{%- if request.design_mode -%}
+<script>
+/* Editor preview: open any popup block when selected in theme editor */
+(function(){
+	var KEY = '__t4sPopupPreviewId', TKEY = '__t4sPopupPreviewT';
+	function mfp(){ return (window.jQuery && jQuery.magnificPopupT4s) ? jQuery.magnificPopupT4s : null; }
+	function closePopup(){
+		var m = mfp();
+		if (!m) return;
+		try { m.close(); } catch(e) {}
+	}
+	function findPopup(id){
+		if (!id) return null;
+		var el = document.querySelector('[data-block="' + id + '"]');
+		if (!el || el.id === 't4s-popup__sales-tmp') return null;
+		return el;
+	}
+	function reopen(){
+		var now = new Date().getTime();
+		if (now - (window[TKEY] || 0) < 800) return;
+		window[TKEY] = now;
+		closePopup();
+		setTimeout(function(){
+			var el = findPopup(window[KEY]);
+			var m = mfp();
+			if (el && m) {
+				m.open({ items: { src: el }, type: 'inline', removalDelay: 300, mainClass: 'mfp-with-anim', closeOnBgClick: true });
+			}
+		}, 250);
+	}
+	if (!window.__t4sPopupPreviewInit) {
+		window.__t4sPopupPreviewInit = true;
+		document.addEventListener('shopify:block:select', function(e){
+			window[KEY] = (e.detail && e.detail.blockId) || null;
+			if (findPopup(window[KEY])) { reopen(); } else { window[KEY] = null; closePopup(); }
+		});
+		document.addEventListener('shopify:block:deselect', function(){ window[KEY] = null; closePopup(); });
+		document.addEventListener('shopify:section:deselect', function(){ window[KEY] = null; closePopup(); });
+		document.addEventListener('shopify:section:load', function(){ if (window[KEY]) reopen(); });
+	}
+	if (window[KEY]) reopen();
+})();
+</script>
+{%- endif -%}
 
 {% schema %}
   {
@@ -1189,9 +1436,205 @@ assign page_style  = true
 		      }
          ]
       },
-      {
-         "type": "sales",
-         "name": "💰 Sales Popup",
+       {
+          "type": "coupon",
+          "name": "🎟️ Coupon Popup",
+          "limit": 1,
+          "settings": [
+		      {
+		        "type": "header",
+		        "content": "+ General settings"
+		      },
+		      {
+		        "type": "image_picker",
+		        "id": "image",
+		        "label": "Coupon image"
+		      },
+		      {
+		        "type": "text",
+		        "id": "heading",
+		        "label": "Heading",
+		        "default": "خصم خاص ليك 🎉"
+		      },
+		      {
+		        "type": "textarea",
+		        "id": "description",
+		        "label": "Description",
+		        "default": "استخدم كوبون الخصم ده عند الدفع واستفيد بالعرض قبل ما يخلص."
+		      },
+		      {
+		        "type": "text",
+		        "id": "coupon_code",
+		        "label": "Coupon code",
+		        "info": "كود الخصم اللي هيظهر للعميل مع زرار النسخ",
+		        "default": "WELCOME20"
+		      },
+		      {
+		        "type": "text",
+		        "id": "copy_label",
+		        "label": "Copy button text",
+		        "default": "انسخ الكود"
+		      },
+		      {
+		        "type": "text",
+		        "id": "copied_label",
+		        "label": "Copied button text",
+		        "info": "النص اللي بيظهر بعد النسخ",
+		        "default": "اتنسخ ✓"
+		      },
+		      {
+		        "type": "textarea",
+		        "id": "note",
+		        "label": "Note text",
+		        "default": "الكوبون ساري لفترة محدودة."
+		      },
+		      {
+		        "type": "paragraph",
+		        "content": "Show coupon popup to users when they enter the site."
+		      },
+		      {
+		        "type": "checkbox",
+		        "id": "mb",
+		        "label": "Show for mobile devices",
+		        "default": true
+		      },
+		      {
+		        "type": "header",
+		        "content": "+ Select page to display"
+		      },
+		      {
+		        "type": "checkbox",
+		        "id": "index",
+		        "label": "Home page",
+		        "default": true,
+		        "info": "Popup will display on home page"
+		      },
+		      {
+		        "type": "checkbox",
+		        "id": "product",
+		        "label": "Product page",
+		        "default": false,
+		        "info": "Popup will display on product page"
+		      },
+		      {
+		        "type": "checkbox",
+		        "id": "collection",
+		        "label": "Collection page",
+		        "default": false,
+		        "info": "Popupl display on collection page"
+		      },
+		      {
+		        "type": "checkbox",
+		        "id": "article",
+		        "label": "Article page",
+		        "default": false,
+		        "info": "Popup will display on article page"
+		      },
+		      {
+		        "type": "checkbox",
+		        "id": "blog",
+		        "label": "Blog page",
+		        "default": false,
+		        "info": "Popup will display on blog page"
+		      },
+		      {
+		        "type": "checkbox",
+		        "id": "cart",
+		        "label": "Cart page",
+		        "default": false,
+		        "info": "Popup will display on cart page"
+		      },
+		      {
+		        "type": "checkbox",
+		        "id": "page",
+		        "label": "Other page",
+		        "default": false,
+		        "info": "Popup will display on other page"
+		      },
+		      {
+		        "type": "header",
+		        "content": "+ Show popup after settings"
+		      },
+		      {
+		        "type": "range",
+		        "id": "number_pages",
+		        "min": 0,
+		        "max": 10,
+		        "step": 1,
+		        "label": "Show after number of pages visited",
+		        "info": "You can choose how much pages user should change before popup will be shown.",
+		        "default": 0
+		      },
+		      {
+		        "type": "radio",
+		        "id": "version",
+		        "label": "Popup version",
+		        "info": "If you apply any changes to your popup settings or content you might want to force the popup to all visitor who already close it again. In this case, you just need to change the popup version.",
+		        "default": "1",
+		        "options": [
+		          {
+		            "value": "1",
+		            "label": "1"
+		          },
+		          {
+		            "value": "2",
+		            "label": "2"
+		          }
+		        ]
+		      },
+		      {
+		        "type": "range",
+		        "id": "day_next",
+		        "min": 0,
+		        "max": 30,
+		        "step": 1,
+		        "unit": "day",
+		        "label": "Day next show (n)",
+		        "info": "If user close the popup, next show will be after 'n' days.",
+		        "default": 7
+		      },
+		      {
+		        "type": "select",
+		        "id": "after",
+		        "label": "Show popup after",
+		        "default": "time",
+		        "options": [
+		          {
+		            "value": "time",
+		            "label": "Some time"
+		          },
+		          {
+		            "value": "scroll",
+		            "label": "User scroll"
+		          }
+		        ]
+		      },
+		      {
+		        "type": "range",
+		        "id": "time_delay",
+		        "min": 1,
+		        "max": 50,
+		        "step": 1,
+		        "unit": "sec",
+		        "label": "++ Popup delay",
+		        "info": "Show popup after some time (in seconds).",
+		        "default": 5
+		      },
+		      {
+		        "type": "range",
+		        "id": "scroll_delay",
+		        "min": 100,
+		        "max": 5000,
+		        "step": 50,
+		        "label": "++ Show after user scroll down the page",
+		        "info": "Set the number of pixels users have to scroll down before popup opens.",
+		        "default": 800
+		      }
+          ]
+       },
+       {
+          "type": "sales",
+          "name": "💰 Sales Popup",
          "limit": 1,
          "settings": [
 		      {

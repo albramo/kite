@@ -703,6 +703,187 @@ t4option0_0 | alt text
                                 </div>
                             </div>
                         </div>
+
+                    {%- when 'tovee_viewing' -%}
+                        {%- liquid
+                          assign tov_view_id = sid | append: '-' | append: bk_id
+                          assign tov_eye_bg = bk_stts.eye_bg | default: '#DCFCE7'
+                          assign tov_eye_color = bk_stts.eye_color | default: '#16A34A'
+                          assign tov_text_color = bk_stts.text_color | default: '#1C1C1C'
+                          assign tov_text_size = bk_stts.text_size | default: 15
+                        -%}
+                        <div class="tov-viewing-counter" data-viewing-counter="tov-view-{{ tov_view_id }}" style="color: {{ tov_text_color }};" {{ block.shopify_attributes }}>
+                          <span class="viewing-counter__eye" style="background: {{ tov_eye_bg }}; color: {{ tov_eye_color }};">
+                            <span class="viewing-counter__ping" style="background: {{ tov_eye_bg }};"></span>
+                            <svg style="width:16px;height:16px;position:relative;z-index:1;" viewBox="0 0 20 20" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path stroke-linecap="round" d="M18.3334 10C18.3334 12.0833 15.8334 16.6667 10 16.6667C4.16669 16.6667 1.66669 12.0833 1.66669 10C1.66669 7.91668 4.16669 3.33334 10 3.33334C15.8334 3.33334 18.3334 7.91668 18.3334 10Z"></path>
+                              <path stroke-linecap="round" d="M12.5 10C12.5 11.3807 11.3807 12.5 10 12.5C8.61931 12.5 7.50002 11.3807 7.50002 10C7.50002 8.6193 8.61931 7.50001 10 7.50001C11.3807 7.50001 12.5 8.6193 12.5 10Z"></path>
+                            </svg>
+                          </span>
+                          <span class="viewing-counter__text" style="font-size: {{ tov_text_size }}px;">
+                            <span data-viewing-number class="viewing--in">1</span>
+                            <span>{{ 'products.product.viewing_suffix' | t }}</span>
+                          </span>
+                        </div>
+                        <style>
+                          .tov-viewing-counter{display:flex;align-items:center;gap:4px;padding-top:4px;padding-bottom:4px;}
+                          .tov-viewing-counter .viewing-counter__eye{position:relative;display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:9999px;flex-shrink:0;overflow:visible;}
+                          .tov-viewing-counter .viewing-counter__ping{position:absolute;inset:0;border-radius:9999px;opacity:.6;animation:viewing-ping 1.4s cubic-bezier(0,0,0.2,1) infinite;}
+                          @keyframes viewing-ping{0%{transform:scale(0.9);opacity:0.7;}75%,100%{transform:scale(1.9);opacity:0;}}
+                          .tov-viewing-counter .viewing-counter__text{display:flex;align-items:baseline;gap:4px;font-weight:500;line-height:1;}
+                          .tov-viewing-counter [data-viewing-number]{display:inline-block;font-variant-numeric:tabular-nums;transition:opacity 200ms ease,transform 200ms ease;}
+                          .tov-viewing-counter [data-viewing-number].viewing--out{opacity:0;transform:translateY(4px);}
+                          .tov-viewing-counter [data-viewing-number].viewing--in{opacity:1;transform:translateY(0);}
+                        </style>
+                        <script>
+                        (() => {
+                          const id = "tov-view-{{ tov_view_id }}";
+                          const wrap = document.querySelector('[data-viewing-counter="'+id+'"]');
+                          const numEl = wrap?.querySelector('[data-viewing-number]');
+                          if(!numEl || numEl.dataset.viewingInit) return;
+                          numEl.dataset.viewingInit = "1";
+                          const animateSet = (n) => {
+                            numEl.classList.remove('viewing--in'); numEl.classList.add('viewing--out');
+                            setTimeout(() => {
+                              numEl.textContent = String(n);
+                              numEl.classList.remove('viewing--out'); numEl.classList.add('viewing--in');
+                            }, 160);
+                          };
+                          let current = 1;
+                          numEl.textContent = String(current);
+                          numEl.classList.add('viewing--in');
+                          setTimeout(() => { current = 3; animateSet(current); }, 3000);
+                          const rand = (min,max) => Math.floor(Math.random()*(max-min+1))+min;
+                          const schedule = () => {
+                            const delay = rand(4000, 8000);
+                            setTimeout(() => {
+                              let next; do { next = rand(1,6); } while(next === current);
+                              current = next; animateSet(current); schedule();
+                            }, delay);
+                          };
+                          setTimeout(schedule, 3500);
+                        })();
+                        </script>
+
+                    {%- when 'tovee_delivery' -%}
+                        {%- liquid
+                          assign tov_del_id = sid | append: '-' | append: bk_id
+                          assign tov_min_days = bk_stts.min_days | default: 4
+                          assign tov_max_days = bk_stts.max_days | default: 5
+                          assign tov_del_text_color = bk_stts.text_color | default: '#1C1C1C'
+                          assign tov_del_text_size = bk_stts.text_size | default: 13
+                          assign tov_cd_bg = bk_stts.countdown_bg | default: '#FFFFFF'
+                          assign tov_cd_border = bk_stts.border_color | default: '#E5E7EB'
+                          assign tov_cd_color = bk_stts.countdown_text_color | default: '#111827'
+                        -%}
+                        <div class="tov-delivery-estimate" data-delivery-estimate="tov-del-{{ tov_del_id }}" data-min-days="{{ tov_min_days }}" data-max-days="{{ tov_max_days }}" style="color: {{ tov_del_text_color }};" {{ block.shopify_attributes }}>
+                          <div class="tov-delivery__main">
+                            <span class="tov-delivery__icon">
+                              <svg style="width:20px;height:20px;flex-shrink:0;" viewBox="0 0 32 32" stroke="currentColor" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.3335 25.3335C24.8503 25.3335 29.3335 20.8503 29.3335 15.3335C29.3335 9.81674 24.8503 5.3335 19.3335 5.3335C13.8167 5.3335 9.3335 9.81674 9.3335 15.3335C9.3335 20.8503 13.8167 25.3335 19.3335 25.3335Z"/>
+                                <path stroke-linecap="round" stroke-miterlimit="10" d="M6.63984 16.6135C6.63984 14.3335 7.31984 12.1068 8.5865 10.2002C9.85317 8.30683 11.6532 6.82683 13.7598 5.94683C15.8665 5.08016 18.1865 4.84016 20.4265 5.2935C22.6665 5.7335 24.7198 6.84016 26.3332 8.4535C27.9465 10.0668 29.0398 12.1202 29.4932 14.3602C29.9332 16.6002 29.7065 18.9202 28.8398 21.0268C27.9732 23.1335 26.4932 24.9335 24.5865 26.2002C22.6932 27.4668 20.6665 28.0002 18.1732 28.1468M17.7732 17.3335L23.1065 11.7868M2.6665 21.2268H13.0132M6.17317 25.6002H13.0132M9.35984 29.9735H13.0132M19.7732 1.5735C18.4665 1.2535 17.1065 1.2535 15.7998 1.5735"/>
+                              </svg>
+                            </span>
+                            <div class="tov-delivery__body">
+                              <p class="tov-delivery__text" style="font-size: {{ tov_del_text_size }}px;">
+                                <span>{{ 'products.product.order_in_next' | t }}</span>
+                                <span class="tov-bold" data-delivery-hours>05</span>
+                                <span>{{ 'products.product.hours' | t }}</span>
+                                <span class="tov-bold" data-delivery-minutes>12</span>
+                                <span>{{ 'products.product.minutes' | t }}</span>
+                                <span>{{ 'products.product.to_get_between' | t }}</span>
+                                <span class="tov-bold tov-nowrap" data-delivery-start>…</span>
+                                <span>{{ 'products.product.and' | t }}</span>
+                                <span class="tov-bold tov-nowrap" data-delivery-end>…</span>
+                              </p>
+                              {%- if bk_stts.show_countdown -%}
+                              <div class="tov-delivery__countdown" data-delivery-countdown>
+                                <div class="tov-cd-box" style="background: {{ tov_cd_bg }}; border-color: {{ tov_cd_border }}; color: {{ tov_cd_color }};" data-cd-hours>08</div>
+                                <span class="tov-cd-sep" style="color: {{ tov_del_text_color }};">:</span>
+                                <div class="tov-cd-box" style="background: {{ tov_cd_bg }}; border-color: {{ tov_cd_border }}; color: {{ tov_cd_color }};" data-cd-minutes>41</div>
+                                <span class="tov-cd-sep" style="color: {{ tov_del_text_color }};">:</span>
+                                <div class="tov-cd-box" style="background: {{ tov_cd_bg }}; border-color: {{ tov_cd_border }}; color: {{ tov_cd_color }};" data-cd-seconds>25</div>
+                              </div>
+                              {%- endif -%}
+                            </div>
+                          </div>
+                        </div>
+                        <style>
+                          .tov-delivery-estimate{display:block;}
+                          .tov-delivery__main{display:flex;align-items:flex-start;padding:12px;border-radius:8px;background:transparent;border:none;gap:4px;}
+                          .tov-delivery__icon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:9999px;flex-shrink:0;margin-top:2px;color:#111827;background:#FFFFFF;border:1px solid #E5E7EB;}
+                          .tov-delivery__body{flex:1;min-width:0;}
+                          .tov-delivery__text{margin:0;line-height:1.375;font-weight:500;}
+                          .tov-delivery__text .tov-bold{font-weight:700;font-variant-numeric:tabular-nums;}
+                          .tov-delivery__text .tov-nowrap{white-space:nowrap;}
+                          .tov-delivery__countdown{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;width:100%;}
+                          .tov-cd-box{display:flex;align-items:center;justify-content:center;min-width:56px;padding:10px 12px;border-radius:8px;border:2px solid;font-weight:700;font-variant-numeric:tabular-nums;font-size:16px;line-height:1;box-shadow:0 1px 2px rgba(0,0,0,.05);}
+                          .tov-cd-sep{font-weight:700;font-size:18px;line-height:1;}
+                        </style>
+                        <script>
+                        (function initDeliveryScript() {
+                          const id = "tov-del-{{ tov_del_id }}";
+                          function run() {
+                            const root = document.querySelector('[data-delivery-estimate="'+id+'"]');
+                            if(!root || root.dataset.deliveryInit) return;
+                            root.dataset.deliveryInit = "1";
+                            const minDays = parseInt(root.dataset.minDays) || 4;
+                            const maxDays = parseInt(root.dataset.maxDays) || 5;
+                            const hoursEl = root.querySelector('[data-delivery-hours]');
+                            const minutesEl = root.querySelector('[data-delivery-minutes]');
+                            const startEl = root.querySelector('[data-delivery-start]');
+                            const endEl = root.querySelector('[data-delivery-end]');
+                            const cdH = root.querySelector('[data-cd-hours]');
+                            const cdM = root.querySelector('[data-cd-minutes]');
+                            const cdS = root.querySelector('[data-cd-seconds]');
+                            const isRTL = document.documentElement.getAttribute('dir') === 'rtl' || (document.documentElement.lang || '').toLowerCase().indexOf('ar') === 0;
+                            const locale = isRTL ? 'ar-EG' : 'en-US';
+                            function formatDeliveryDate(daysAhead) {
+                              const d = new Date();
+                              d.setDate(d.getDate() + daysAhead);
+                              try {
+                                const weekday = new Intl.DateTimeFormat(locale, { weekday: 'long' }).format(d);
+                                const day = new Intl.DateTimeFormat(locale, { day: 'numeric' }).format(d);
+                                const month = new Intl.DateTimeFormat(locale, { month: 'short' }).format(d);
+                                return `${weekday} ${day} ${month}`;
+                              } catch(e) {
+                                return d.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'short' });
+                              }
+                            }
+                            function updateDates() {
+                              if(startEl) startEl.textContent = formatDeliveryDate(minDays);
+                              if(endEl) endEl.textContent = formatDeliveryDate(maxDays);
+                            }
+                            updateDates();
+                            function updateCountdown() {
+                              const now = new Date();
+                              const endOfDay = new Date(now);
+                              endOfDay.setHours(23, 59, 59, 999);
+                              let diff = endOfDay - now;
+                              if(diff < 0) diff = 0;
+                              const totalSec = Math.floor(diff / 1000);
+                              const h = Math.floor(totalSec / 3600);
+                              const m = Math.floor((totalSec % 3600) / 60);
+                              const s = totalSec % 60;
+                              if(hoursEl) hoursEl.textContent = String(h).padStart(2,'0');
+                              if(minutesEl) minutesEl.textContent = String(m).padStart(2,'0');
+                              if(cdH) cdH.textContent = String(h).padStart(2,'0');
+                              if(cdM) cdM.textContent = String(m).padStart(2,'0');
+                              if(cdS) cdS.textContent = String(s).padStart(2,'0');
+                            }
+                            updateCountdown();
+                            setInterval(updateCountdown, 1000);
+                            setInterval(updateDates, 60*60*1000);
+                          }
+                          if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', run);
+                          } else {
+                            run();
+                          }
+                          setTimeout(run, 300);
+                          setTimeout(run, 1000);
+                        })();
+                        </script>
         
                     {%- when 'countdown' %}{% unless bk_stts.source == '1' or pr_tags contains 'has_stock_countdown' %}{% continue %}{% endunless -%}
                         {{ 'countdown.css' | asset_url | stylesheet_tag }}
@@ -4383,6 +4564,130 @@ t4option0_0 | alt text
           "id": "min",
           "label": "Text minutes",
           "default": "minutes"
+        }
+      ]
+    },
+    {
+      "type": "tovee_viewing",
+      "name": "Tovee Viewing counter",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Same design & logic as Tovee theme (eye + live viewers 1-6)."
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Text size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 15
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#1C1C1C"
+        },
+        {
+          "type": "color",
+          "id": "eye_bg",
+          "label": "Eye background",
+          "default": "#DCFCE7"
+        },
+        {
+          "type": "color",
+          "id": "eye_color",
+          "label": "Eye icon color",
+          "default": "#16A34A"
+        }
+      ]
+    },
+    {
+      "type": "tovee_delivery",
+      "name": "Tovee Delivery estimate",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Same design & logic as Tovee theme (order in next X + dates + countdown)."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_countdown",
+          "label": "Show countdown",
+          "default": true
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Text size",
+          "min": 11,
+          "max": 16,
+          "step": 1,
+          "unit": "px",
+          "default": 13
+        },
+        {
+          "type": "range",
+          "id": "min_days",
+          "label": "Min delivery days",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 4
+        },
+        {
+          "type": "range",
+          "id": "max_days",
+          "label": "Max delivery days",
+          "min": 2,
+          "max": 12,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text color",
+          "default": "#1C1C1C"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Background",
+          "default": "#F9FAFB"
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border color",
+          "default": "#E5E7EB"
+        },
+        {
+          "type": "color",
+          "id": "icon_bg",
+          "label": "Icon background",
+          "default": "#E0F2FE"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon color",
+          "default": "#0284C7"
+        },
+        {
+          "type": "color",
+          "id": "countdown_bg",
+          "label": "Countdown background",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "countdown_text_color",
+          "label": "Countdown text color",
+          "default": "#111827"
         }
       ]
     },
