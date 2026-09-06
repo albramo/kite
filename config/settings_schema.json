@@ -1254,31 +1254,61 @@
       {
         "type": "color",
         "id": "sale_badge_color",
-        "label": "Sale badge",
+        "label": "Sale badge text",
+        "default": "#e33131"
+      },
+      {
+        "type": "color",
+        "id": "sale_badge_bg_color",
+        "label": "Sale badge background",
         "default": "#e33131"
       },
       {
         "type": "color",
         "id": "new_badge_color",
-        "label": "New badge",
+        "label": "New badge text",
+        "default": "#109533"
+      },
+      {
+        "type": "color",
+        "id": "new_badge_bg_color",
+        "label": "New badge background",
         "default": "#109533"
       },
       {
         "type": "color",
         "id": "preorder_badge_color",
-        "label": "Pre order badge",
+        "label": "Pre order badge text",
+        "default": "#0774d7"
+      },
+      {
+        "type": "color",
+        "id": "preorder_badge_bg_color",
+        "label": "Pre order badge background",
         "default": "#0774d7"
       },
       {
         "type": "color",
         "id": "soldout_badge_color",
-        "label": "Soldout Badge",
+        "label": "Soldout badge text",
+        "default": "#999999"
+      },
+      {
+        "type": "color",
+        "id": "soldout_badge_bg_color",
+        "label": "Soldout badge background",
         "default": "#999999"
       },
       {
         "type": "color",
         "id": "custom_badge_color",
-        "label": "Custom Badge",
+        "label": "Custom badge text",
+        "default": "#ec7501"
+      },
+      {
+        "type": "color",
+        "id": "custom_badge_bg_color",
+        "label": "Custom badge background",
         "default": "#ec7501"
       },
       {

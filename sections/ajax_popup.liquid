@@ -215,7 +215,11 @@
 
 {%- else -%}
    
-   {{- page.content -}}
+   {%- if request.page_type == 'policy' -%}
+      {{- policy.body -}}
+   {%- else -%}
+      {{- page.content -}}
+   {%- endif -%}
 
 {%- endif -%}
 

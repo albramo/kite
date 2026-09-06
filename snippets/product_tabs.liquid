@@ -197,7 +197,17 @@ assign listTyCurent2 = ''  -%}
                                             {%- when '5' -%}
                                             {%- capture the_snippet_reviews %}{% render 'socialshopwave-widget-recommends' with 1 %}{% endcapture -%}
                                             {%- unless the_snippet_reviews contains 'Liquid error' %}{{ the_snippet_reviews }}{% endunless -%}
-                                            {%- when '7' -%}{%- render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product -%}
+                                            {%- when '7' -%}
+                                            {%- unless request.design_mode -%}
+                                            <div class="jdgm-lazy-review" data-jdgm-lazy-review>
+                                                <div class="jdgm-lazy-review__placeholder" aria-hidden="true"><div class="t4s-loading--bg" style="min-height:200px"></div></div>
+                                                <template data-jdgm-review-template>
+                                                    {%- render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product -%}
+                                                </template>
+                                            </div>
+                                            {%- else -%}
+                                            {%- render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: false, product: product -%}
+                                            {%- endunless -%}
                                             {%- when '8' -%}
                                                 {%- render "reviews-importer", product : product -%}
                                                 <div class="scm-container custom" style="display: none;"><div id="scm-reviews-importer" class="scm-reviews-importer"><iframe id="scm-reviews-importer-iframe" width="100%"></iframe></div></div>

@@ -33,10 +33,14 @@
     "atc_ajax_enable": true,
     "wishlist_mode": "1",
     "wishlist_drawer_enable": true,
+    "wis_atc_added": "2",
     "enable_compe": true,
     "enable_compe_popup": true,
+    "app_review": "7",
     "badge_reverse_color": true,
     "label_sale_style": "2",
+    "sale_badge_color": "#F10D0D",
+    "sale_badge_bg_color": "#FFFFFF",
     "enable_rating": false,
     "show_qty": false,
     "pr_img_effect": "1",
@@ -2907,6 +2911,30 @@
         "settings": {}
       }
     },
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      },
+      "2200952712151285029": {
+        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "13047258039897440615": {
+        "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": true,
+        "settings": {
+          "widget_type": "review-widget"
+        }
+      }
+    }
   }
 }

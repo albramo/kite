@@ -475,12 +475,51 @@ t4option0_0 | alt text
                           -%}
                       {%- when 'delivery_ask' -%}
                           <div class="t4s-extra-link" {{ block.shopify_attributes }}>
-                              {%- assign page_delivery = bk_stts.page_dr %}{% if bk_stts.delivery and page_delivery != blank -%}
+                              {%- liquid
+                                assign page_delivery = bk_stts.page_dr
+                                case bk_stts.policy_dr
+                                  when 'shipping-policy'
+                                    assign policy_delivery = shop.shipping_policy
+                                  when 'refund-policy'
+                                    assign policy_delivery = shop.refund_policy
+                                  when 'privacy-policy'
+                                    assign policy_delivery = shop.privacy_policy
+                                  when 'terms-of-service'
+                                    assign policy_delivery = shop.terms_of_service
+                                  when 'contact-information'
+                                    assign policy_delivery = shop.contact_information
+                                  when 'subscription-policy'
+                                    assign policy_delivery = shop.subscription_policy
+                                endcase
+                                assign page_ask = bk_stts.page_ask
+                                case bk_stts.policy_ask
+                                  when 'shipping-policy'
+                                    assign policy_ask = shop.shipping_policy
+                                  when 'refund-policy'
+                                    assign policy_ask = shop.refund_policy
+                                  when 'privacy-policy'
+                                    assign policy_ask = shop.privacy_policy
+                                  when 'terms-of-service'
+                                    assign policy_ask = shop.terms_of_service
+                                  when 'contact-information'
+                                    assign policy_ask = shop.contact_information
+                                  when 'subscription-policy'
+                                    assign policy_ask = shop.subscription_policy
+                                endcase -%}
+                              {%- if bk_stts.delivery and policy_delivery.body != blank -%}
+                                  <a class="t4s-ch" data-no-instant rel="nofollow" href="{{ policy_delivery.url }}" data-class="t4s-mfp-btn-close-inline" data-id="t4s-pr-popup__delivery" data-storageid="{{ policy_delivery.url }}" data-open-mfp-ajax data-style="max-width:931px" data-mfp-src="{{ policy_delivery.url }}/?section_id=ajax_popup">{{ 'products.product.delivery_return' | t }}</a>
+                              {%- elsif bk_stts.delivery and page_delivery != blank -%}
                                   <a class="t4s-ch" data-no-instant rel="nofollow" href="{{ page_delivery.url }}" data-class="t4s-mfp-btn-close-inline" data-id="t4s-pr-popup__delivery" data-storageid="{{ page_delivery.url }}" data-open-mfp-ajax data-style="max-width:931px" data-mfp-src="{{ page_delivery.url }}/?section_id=ajax_popup">{{ 'products.product.delivery_return' | t }}</a>
                               {%- endif -%}
                   
                               {%- if bk_stts.ask -%}
-                              <a class="t4s-ch" data-no-instant rel="nofollow" href="{{ product.url }}" data-class="t4s-mfp-btn-close-inline" data-id="t4s-pr-popup__contact" data-storageid="contact_product{{ product.id }}" data-open-mfp-ajax data-style="max-width:563px" data-mfp-src="{{ product.url }}/?section_id=ajax_popup" data-phone='{{ bk_stts.phone }}'>{{ 'products.product.ask_question' | t }}</a>
+                                {%- if policy_ask.body != blank -%}
+                                <a class="t4s-ch" data-no-instant rel="nofollow" href="{{ policy_ask.url }}" data-class="t4s-mfp-btn-close-inline" data-id="t4s-pr-popup__delivery" data-storageid="{{ policy_ask.url }}" data-open-mfp-ajax data-style="max-width:931px" data-mfp-src="{{ policy_ask.url }}/?section_id=ajax_popup">{{ 'products.product.ask_question' | t }}</a>
+                                {%- elsif page_ask != blank -%}
+                                <a class="t4s-ch" data-no-instant rel="nofollow" href="{{ page_ask.url }}" data-class="t4s-mfp-btn-close-inline" data-id="t4s-pr-popup__delivery" data-storageid="{{ page_ask.url }}" data-open-mfp-ajax data-style="max-width:931px" data-mfp-src="{{ page_ask.url }}/?section_id=ajax_popup">{{ 'products.product.ask_question' | t }}</a>
+                                {%- else -%}
+                                <a class="t4s-ch" data-no-instant rel="nofollow" href="{{ product.url }}" data-class="t4s-mfp-btn-close-inline" data-id="t4s-pr-popup__contact" data-storageid="contact_product{{ product.id }}" data-open-mfp-ajax data-style="max-width:563px" data-mfp-src="{{ product.url }}/?section_id=ajax_popup" data-phone='{{ bk_stts.phone }}'>{{ 'products.product.ask_question' | t }}</a>
+                                {%- endif -%}
                               {%- endif -%}
                           </div>
                       {%- when 'meta' -%}
@@ -2579,6 +2618,22 @@ t4option0_0 | alt text
                             "info": "This page content will appear."
                     },
                     {
+                        "type": "select",
+                        "id": "policy_dr",
+                        "label": "Or choose a Shopify policy",
+                        "info": "Shown in a popup instead of the page above. The policy must have content in Settings > Policies.",
+                        "default": "",
+                        "options": [
+                            { "value": "", "label": "None" },
+                            { "value": "shipping-policy", "label": "Shipping policy" },
+                            { "value": "refund-policy", "label": "Refund policy" },
+                            { "value": "privacy-policy", "label": "Privacy policy" },
+                            { "value": "terms-of-service", "label": "Terms of service" },
+                            { "value": "contact-information", "label": "Contact information" },
+                            { "value": "subscription-policy", "label": "Subscription policy" }
+                        ]
+                    },
+                    {
                         "type": "header",
                         "content": "+ Ask a question"
                     },
@@ -2593,6 +2648,28 @@ t4option0_0 | alt text
                     "id": "phone",
                     "label": "Show input phone",
                     "default": true
+                    },
+                    {
+                        "type": "page",
+                        "id": "page_ask",
+                        "label": "Ask a question page (optional)",
+                        "info": "If set, opens this page in a popup instead of the contact form."
+                    },
+                    {
+                        "type": "select",
+                        "id": "policy_ask",
+                        "label": "Or choose a Shopify policy",
+                        "info": "Shown in a popup instead of the options below. The policy must have content in Settings > Policies.",
+                        "default": "",
+                        "options": [
+                            { "value": "", "label": "None" },
+                            { "value": "shipping-policy", "label": "Shipping policy" },
+                            { "value": "refund-policy", "label": "Refund policy" },
+                            { "value": "privacy-policy", "label": "Privacy policy" },
+                            { "value": "terms-of-service", "label": "Terms of service" },
+                            { "value": "contact-information", "label": "Contact information" },
+                            { "value": "subscription-policy", "label": "Subscription policy" }
+                        ]
                     }
                 ]
             },

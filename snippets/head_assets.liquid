@@ -130,23 +130,18 @@
         --btn-radius2             : {{ settings.btn_radius2 }}px;
         --other-radius            : {{ settings.other_radius }}px;
        
-       {%- liquid 
-       assign sale_badge_lightness     = settings.sale_badge_color | color_extract: 'lightness'
-       assign new_badge_lightness      = settings.new_badge_color | color_extract: 'lightness'
-       assign preorder_badge_lightness = settings.preorder_badge_color | color_extract: 'lightness'
-       assign soldout_badge_lightness  = settings.soldout_badge_color | color_extract: 'lightness'
-       assign custom_badge_lightness   = settings.custom_badge_color | color_extract: 'lightness' %}
+       {%- liquid %}
 
-        --sale-badge-primary    : {{ settings.sale_badge_color }};
-        --sale-badge-secondary         : {% if sale_badge_lightness < 85 %}#fff{% else %}#222{% endif %};
-        --new-badge-primary     : {{ settings.new_badge_color }};
-        --new-badge-secondary          : {% if new_badge_lightness < 85 %}#fff{% else %}#222{% endif %};
-        --preorder-badge-primary: {{ settings.preorder_badge_color }};
-        --preorder-badge-secondary     : {% if preorder_badge_lightness < 85 %}#fff{% else %}#222{% endif %};
-        --soldout-badge-primary : {{ settings.soldout_badge_color }};
-        --soldout-badge-secondary      : {% if soldout_badge_lightness < 85 %}#fff{% else %}#222{% endif %};
-        --custom-badge-primary  : {{ settings.custom_badge_color }};
-        --custom-badge-secondary       : {% if custom_badge_lightness < 85 %}#fff{% else %}#222{% endif %};
+        --sale-badge-primary    : {{ settings.sale_badge_bg_color | default: '#e33131' }};
+        --sale-badge-secondary         : {{ settings.sale_badge_color }};
+        --new-badge-primary     : {{ settings.new_badge_bg_color | default: '#109533' }};
+        --new-badge-secondary          : {{ settings.new_badge_color }};
+        --preorder-badge-primary: {{ settings.preorder_badge_bg_color | default: '#0774d7' }};
+        --preorder-badge-secondary     : {{ settings.preorder_badge_color }};
+        --soldout-badge-primary : {{ settings.soldout_badge_bg_color | default: '#999999' }};
+        --soldout-badge-secondary      : {{ settings.soldout_badge_color }};
+        --custom-badge-primary  : {{ settings.custom_badge_bg_color | default: '#ec7501' }};
+        --custom-badge-secondary       : {{ settings.custom_badge_color }};
         
         {%- if settings.c_1 != blank %}--aspect-ratiocus1: {{ settings.c_1.aspect_ratio }};{% endif -%}
         {%- if settings.c_2 != blank %}--aspect-ratiocus2: {{ settings.c_2.aspect_ratio }};{% endif -%}

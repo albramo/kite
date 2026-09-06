@@ -1,0 +1,163 @@
+{%- comment -%}
+  Judge.me lazy-load: Star Ratings (preview badge) stays eager,
+  heavy Review Widget(s) below the fold load only after the full page loads.
+  - Tab review widget HTML is stored in <template> (snippets/product_tabs.liquid) so Judge.me never fetches it early.
+  - Bottom apps-section review widget / carousel is detached early and restored after load.
+  - Skipped entirely in theme editor (design_mode) so merchants still see widgets in the customizer.
+{%- endcomment -%}
+{%- if request.page_type == 'product' and request.design_mode == false -%}
+<style>
+  /* Reserve space for eager star badge to avoid layout shift (Judge.me recommendation) */
+  .jdgm-prev-badge, .jdgm-preview-badge { min-height: 24px; display: inline-block; }
+  /* Below-fold heavy widgets: skip rendering until scrolled into view */
+  .jdgm-lazy-review,
+  .jdgm-lazy-apps-placeholder,
+  .shopify-app-block .jdgm-widget.jdgm-review-widget,
+  .shopify-app-block .jdgm-carousel-wrapper {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
+  .jdgm-lazy-review { min-height: 200px; display: block; }
+  .jdgm-lazy-apps-placeholder { min-height: 400px; display: block; }
+</style>
+<script>
+(function () {
+  'use strict';
+  if (window.T4Srequest && window.T4Srequest.design_mode) return;
+
+  var pageLoaded = document.readyState === 'complete';
+  var pending = [];
+
+  function jdgmRefresh(scope) {
+    try {
+      if (window.jdgm && typeof window.jdgm.init === 'function') { window.jdgm.init(); return; }
+    } catch (e) {}
+    try {
+      if (window.JDGM && typeof window.JDGM.init === 'function') { window.JDGM.init(); return; }
+    } catch (e) {}
+    try { (scope || document).dispatchEvent(new CustomEvent('jdgm:load', { bubbles: true })); } catch (e) {}
+    try { document.dispatchEvent(new CustomEvent('jdgm:load', { bubbles: true })); } catch (e) {}
+  }
+
+  function isPreviewBadge(el) {
+    try {
+      return el.classList.contains('jdgm-preview-badge') || el.classList.contains('jdgm-prev-badge');
+    } catch (e) { return false; }
+  }
+
+  /* 1) Tab review widget(s) rendered inside <template> by product_tabs.liquid */
+  function collectTabWidgets() {
+    var holders = document.querySelectorAll('[data-jdgm-lazy-review]');
+    holders.forEach(function (holder) {
+      if (holder.dataset.jdgmLazyDone === '1') return;
+      var tpl = holder.querySelector('template[data-jdgm-review-template]');
+      if (!tpl) return;
+      pending.push({
+        el: holder,
+        load: function () {
+          if (holder.dataset.jdgmLazyDone === '1') return;
+          holder.dataset.jdgmLazyDone = '1';
+          try {
+            var frag = tpl.content.cloneNode(true);
+            var ph = holder.querySelector('.jdgm-lazy-review__placeholder');
+            if (ph) ph.remove();
+            holder.appendChild(frag);
+          } catch (e) {}
+          tpl.remove();
+          jdgmRefresh(holder);
+        }
+      });
+    });
+  }
+
+  /* 2) Bottom apps-section heavy widget(s): detach early, restore after full page load */
+  function collectAppsWidgets() {
+    var sels = '.jdgm-widget.jdgm-review-widget, .jdgm-carousel-wrapper, [id="judgeme_product_reviews"]';
+    var nodes = document.querySelectorAll(sels);
+    nodes.forEach(function (node) {
+      if (isPreviewBadge(node)) return;
+      if (node.closest('[data-jdgm-lazy-review]')) return; /* handled above */
+      if (node.dataset.jdgmLazyMoved === '1') return;
+      node.dataset.jdgmLazyMoved = '1';
+      var parent = node.parentNode;
+      if (!parent) return;
+      var ph = document.createElement('div');
+      ph.className = 'jdgm-lazy-apps-placeholder';
+      ph.setAttribute('aria-hidden', 'true');
+      try {
+        var h = node.getBoundingClientRect().height;
+        if (h > 120) ph.style.minHeight = Math.round(h) + 'px';
+      } catch (e) {}
+      var next = node.nextSibling;
+      try { parent.replaceChild(ph, node); } catch (e) { return; }
+      pending.push({
+        el: ph,
+        load: function () {
+          if (ph.dataset.jdgmLazyDone === '1') return;
+          ph.dataset.jdgmLazyDone = '1';
+          try { parent.insertBefore(node, next); } catch (e) {
+            try { parent.appendChild(node); } catch (e2) {}
+          }
+          try { ph.remove(); } catch (e) {}
+          jdgmRefresh(parent);
+        }
+      });
+    });
+  }
+
+  function loadAll() {
+    var jobs = pending.slice();
+    pending.length = 0;
+    jobs.forEach(function (j) { try { j.load(); } catch (e) {} });
+  }
+
+  function observeOrFallback() {
+    if (!pending.length) return;
+    var targets = pending.map(function (j) { return j.el; });
+    /* Load immediately when shopper opens the Reviews tab */
+    try {
+      document.addEventListener('click', function (e) {
+        var t = e.target && e.target.closest ? e.target.closest('[data-t4s-tab-item], [data-t4s-tab-wrapper] .t4s-tab__title') : null;
+        if (t) loadAll();
+      }, { passive: true });
+    } catch (e) {}
+    if ('IntersectionObserver' in window) {
+      try {
+        var io = new IntersectionObserver(function (entries) {
+          for (var i = 0; i < entries.length; i++) {
+            if (entries[i].isIntersecting) { loadAll(); try { io.disconnect(); } catch (e) {} break; }
+          }
+        }, { rootMargin: '1000px 0px' });
+        targets.forEach(function (t) { try { io.observe(t); } catch (e) {} });
+      } catch (e) {}
+    }
+    /* Safety net: always load shortly after full page load even if never scrolled */
+    setTimeout(loadAll, 2500);
+  }
+
+  function boot() {
+    collectTabWidgets();
+    collectAppsWidgets();
+    if (!pending.length) return;
+    if (pageLoaded) {
+      observeOrFallback();
+    } else {
+      window.addEventListener('load', function () {
+        pageLoaded = true;
+        observeOrFallback();
+      });
+      /* If load event is very slow, still start observing so near-viewport widgets can load */
+      if ('requestIdleCallback' in window) {
+        try { requestIdleCallback(function () { if (!pageLoaded) observeOrFallback(); }, { timeout: 8000 }); } catch (e) {}
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+{%- endif -%}
