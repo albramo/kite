@@ -101,6 +101,34 @@
   margin-inline-end: var(--tab-icon-gap,8px);
   max-width: none;
 }
+/* P0 perf: inline-SVG replacement for la-medal / la-shopping-bag (no line-awesome needed) */
+.t4s-tabs-se .t4s-tabs-ul li a .t4s-icon-title--svg svg {
+  width: 1em;
+  height: 1em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  display: block;
+}
+/* P0 perf: pre-JS fallback — keep tab pills in one horizontal row so there's no stacked flash before Flickity inits */
+.t4s-tabs-se .t4s-tabs-ul.t4s-flickity-slider:not(.flickityt4s-enabled) {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.t4s-tabs-se .t4s-tabs-ul.t4s-flickity-slider:not(.flickityt4s-enabled)::-webkit-scrollbar {
+  display: none;
+}
+.t4s-tabs-se .t4s-tabs-ul.t4s-flickity-slider:not(.flickityt4s-enabled) > .t4s-tab-item {
+  flex: 0 0 auto;
+}
+.t4s-tabs-se .t4s-text-center .t4s-tabs-ul.t4s-flickity-slider:not(.flickityt4s-enabled) {
+  justify-content: center;
+}
 .t4s-tabs-se .t4s-tabs-ul li a .t4s-image-title {
   max-width: 45px;
   margin: 0 auto 5px;

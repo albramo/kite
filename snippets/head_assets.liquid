@@ -39,8 +39,7 @@
   {%- endif -%}
 
   {{- 't4s-base.css' | asset_url | stylesheet_tag: preload: true -}}
-  {%- comment -%} Preload Line Awesome icon font (used above the fold) to reduce FCP delay {%- endcomment -%}
-  <link rel="preload" href="{{ 'la-solid-900.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+  {%- comment -%} Line Awesome font preload removed (P0 perf): library now loads on-demand only if <i class="las"> exists. See render_bottom.liquid la-ondemand loader. {%- endcomment -%}
   {%- if request.locale.iso_code contains 'ar' -%}
     {%- comment -%} Arabic font: Noto Kufi Arabic (local asset, only on Arabic pages) {%- endcomment -%}
     <link rel="preload" href="{{ 'NotoKufiArabic.ttf' | asset_url }}" as="font" type="font/ttf" crossorigin>

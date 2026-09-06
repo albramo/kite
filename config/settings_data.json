@@ -34,8 +34,8 @@
     "wishlist_mode": "1",
     "wishlist_drawer_enable": true,
     "wis_atc_added": "2",
-    "enable_compe": true,
-    "enable_compe_popup": true,
+    "enable_compe": false,
+    "enable_compe_popup": false,
     "app_review": "7",
     "badge_reverse_color": true,
     "label_sale_style": "2",
@@ -48,7 +48,7 @@
     "selector_mode": "circle",
     "free_ship_pr": "adilette-slide-sandal",
     "free_ship_amount": 600,
-    "enable_confetti": true,
+    "enable_confetti": false,
     "enable_shipbar": true,
     "des_shipbar": "0",
     "gift_wrap_pr": "gift-wrap",
@@ -1074,7 +1074,6 @@
         "settings": {
           "tabs_list": "best_seller, wishlist, visited, cart",
           "product_list": [
-            "adilette-slide-sandal",
             "adilette-slide-sandal-colorful",
             "bella-tie-shoulder-cami",
             "bella-tie-shoulder-cami-multi-colors",
@@ -1092,7 +1091,7 @@
           "enable_rates": true,
           "enable_discount": true,
           "enable_gift_wrap": true,
-          "ship_df_country": "United States"
+          "ship_df_country": "Egypt"
         }
       },
       "main-qv": {
@@ -1378,16 +1377,16 @@
               "mb": true,
               "index": true,
               "product": true,
-              "collection": false,
+              "collection": true,
               "article": false,
               "blog": false,
               "cart": false,
               "page": false,
-              "number_pages": 0,
+              "number_pages": 1,
               "version": "1",
-              "day_next": 2,
+              "day_next": 0,
               "after": "time",
-              "time_delay": 5,
+              "time_delay": 10,
               "scroll_delay": 500
             }
           },
@@ -2500,6 +2499,18 @@
       },
       "extras": {
         "type": "extras",
+        "blocks": {
+          "inactive_tab_eezL7F": {
+            "type": "inactive_tab",
+            "settings": {
+              "message": "🔥 Don't forget this...; 🔥 Come back!",
+              "delay": 800
+            }
+          }
+        },
+        "block_order": [
+          "inactive_tab_eezL7F"
+        ],
         "settings": {}
       },
       "header-e-commerce": {
@@ -2918,22 +2929,22 @@
         "disabled": false,
         "settings": {}
       },
-      "2200952712151285029": {
-        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
-        "disabled": false,
-        "settings": {}
-      },
-      "2567389343055140935": {
-        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
-        "disabled": false,
-        "settings": {}
-      },
       "13047258039897440615": {
         "type": "shopify://apps/judge-me-reviews/blocks/cart_drawer_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": true,
         "settings": {
           "widget_type": "review-widget"
         }
+      },
+      "2200952712151285029": {
+        "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": true,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
       }
     }
   }

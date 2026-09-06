@@ -92,7 +92,11 @@
                       <li class="t4s-tab-item t4s-d-inline-flex {%- if image != blank %} t4s-has-img-title {% endif -%}">
                         <a id="b_{{ block.id }}" href="#t4s-{{ blockid }}" rel="nofollow" data-t4s-tab-item data-no-instant {{ block.shopify_attributes }} {% if forloop.first == true %} class="t4s-active" {% endif %} data-dropdown-item data-sortby-item>
                         <span class="t4s-tab-title-inner">
-                          {% if icon_title != blank %}  
+                          {% if icon_title contains 'la-medal' %}
+                            <span class="t4s-icon-title t4s-icon-title--svg"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#t4s-icon-flame"/></svg></span>
+                          {% elsif icon_title contains 'la-shopping-bag' %}
+                            <span class="t4s-icon-title t4s-icon-title--svg"><svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#t4s-icon-atc"/></svg></span>
+                          {% elsif icon_title != blank %}
                             <span class="t4s-icon-title"><i class="{{ icon_title }}"></i></span>
                           {% elsif bk_stts.image_title != blank %}
                             <span class="t4s-image-title">
