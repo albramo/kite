@@ -39,6 +39,28 @@
   {%- endif -%}
 
   {{- 't4s-base.css' | asset_url | stylesheet_tag: preload: true -}}
+  {%- comment -%} Preload Line Awesome icon font (used above the fold) to reduce FCP delay {%- endcomment -%}
+  <link rel="preload" href="{{ 'la-solid-900.woff2' | asset_url }}" as="font" type="font/woff2" crossorigin>
+  {%- if request.locale.iso_code contains 'ar' -%}
+    {%- comment -%} Arabic font: Noto Kufi Arabic (local asset, only on Arabic pages) {%- endcomment -%}
+    <link rel="preload" href="{{ 'NotoKufiArabic.ttf' | asset_url }}" as="font" type="font/ttf" crossorigin>
+    {%- style -%}
+      @font-face {
+        font-family: 'Noto Kufi Arabic';
+        font-style: normal;
+        font-weight: 400 700;
+        font-display: swap;
+        src: url("{{ 'NotoKufiArabic.ttf' | asset_url }}") format('truetype');
+      }
+      html[lang="ar"], html[lang^="ar-"] {
+        --font-body-family: 'Noto Kufi Arabic', Arial, Tahoma, sans-serif;
+        --font-heading-family: 'Noto Kufi Arabic', Arial, Tahoma, sans-serif;
+        --font-family-1: 'Noto Kufi Arabic', Arial, Tahoma, sans-serif;
+        --font-family-2: 'Noto Kufi Arabic', Arial, Tahoma, sans-serif;
+        --font-family-3: 'Noto Kufi Arabic', Arial, Tahoma, sans-serif;
+      }
+    {%- endstyle -%}
+  {%- endif -%}
   {%- if isRTL %}{{- 'theme_rtl.css' | asset_url | stylesheet_tag: preload: true -}}{% endif -%}
   {%- if settings.bootstrap_css %}{{- 'bootstrap.min.css' | asset_url | stylesheet_tag -}}{% endif -%}
   {%- style -%}

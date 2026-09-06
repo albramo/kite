@@ -47,7 +47,7 @@
               </div>
             {%- when 'cart' -%}
                 <div class="t4s-toolbart-{{ block_type }} t4s-toolbar-item">
-                    <a href="{{ routes.cart_url }}"{% if request.page_type != 'cart' and settings.cart_type != 'disable' %} data-drawer-delay- data-drawer-options='{ "id": "#t4s-mini_cart" }'{% endif %}>
+                    <a href="{{ routes.cart_url }}"{% if request.page_type != 'cart' and settings.cart_type != 'disable' %} data-drawer-delay- data-drawer-options='{ "id": "#t4s-mini_cart" }'{% endif %} aria-label="{{ 'customer.menu.cart' | t }}">
                         <span class="t4s-toolbar-icon t4s-pr">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-bag"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
                             <span data-cart-count class="t4s-pa t4s-op-0 t4s-ts-op t4s-count-box">{{ cart.item_count }}</span>
@@ -66,7 +66,7 @@
                 </div>
             {%- when 'search' -%}
                 <div class="t4s-toolbart-{{ block_type }} t4s-toolbar-item">
-                    <a href="{{ routes.search_url }}" data-drawer-delay- data-drawer-options='{ "id": "#t4s-search-hidden" }'>
+                    <a href="{{ routes.search_url }}" data-drawer-delay- data-drawer-options='{ "id": "#t4s-search-hidden" }' aria-label="{{ 'customer.menu.search' | t }}">
                         <span class="t4s-toolbar-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                         </span>
@@ -94,9 +94,9 @@
             </div>
             {%- when 'nav' -%}
                 <div class="t4s-toolbart-{{ block_type }} t4s-toolbar-item">
-                    <a href="{{ routes.root_url }}" data-menu-drawer data-drawer-options='{ "id": "#t4s-menu-drawer" }' class="t4s-push-menu-btn">
+                    <a href="{{ routes.root_url }}" data-menu-drawer data-drawer-options='{ "id": "#t4s-menu-drawer" }' class="t4s-push-menu-btn" aria-label="{{ 'general.mobile_menu.menu' | t }}" role="button">
                         <span class="t4s-toolbar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" viewBox="0 0 30 16" fill="currentColor"><rect width="25" height="2"></rect><rect y="7" width="25" height="2"></rect><rect y="14" width="25" height="2"></rect></svg>                        
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" viewBox="0 0 30 16" fill="currentColor" aria-hidden="true"><rect width="25" height="2"></rect><rect y="7" width="25" height="2"></rect><rect y="14" width="25" height="2"></rect></svg>                        
                         </span>
                         {%- if show_txt -%}<span class="t4s-toolbar-label">{{ bk_stts.title }}</span>{%- endif -%}
                     </a>

@@ -473,7 +473,7 @@ t4s_group_btns_split
 						<svg class="t4s-icon t4s-icon--search {% if se_stts.h_txt_lable %}t4s-d-lg-none{% endif -%}" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-search"></use></svg>
 					  </a>
 		    {%- else -%}
-					<a class="t4s-pr" href="{{ routes.search_url }}" data-drawer-delay- data-drawer-options='{ "id": "#t4s-search-hidden" }'>
+					<a class="t4s-pr" href="{{ routes.search_url }}" data-drawer-delay- data-drawer-options='{ "id": "#t4s-search-hidden" }' aria-label="{{ 'customer.menu.search' | t }}">
 						<span class="{% if se_stts.h_txt_lable %}t4s-d-lg-inline-block t4s-d-none{% else %}t4s-d-none{% endif %}">{{ 'customer.menu.search' | t }}</span>
 						<svg class="t4s-icon t4s-icon--search {% if se_stts.h_txt_lable %}t4s-d-lg-none{% endif -%}" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-search"></use></svg>
 					</a>
@@ -514,7 +514,7 @@ t4s_group_btns_split
 
 			{%- if se_stts.cart_des != '0' -%}
 		   <div class="t4s-site-nav__icon t4s-site-nav__cart">	
-				<a href="{{ routes.cart_url }}"{% if request.page_type != 'cart' and settings.cart_type != 'disable' %} data-drawer-delay- data-drawer-options='{ "id": "#t4s-mini_cart" }'{% endif %}>
+				<a href="{{ routes.cart_url }}"{% if request.page_type != 'cart' and settings.cart_type != 'disable' %} data-drawer-delay- data-drawer-options='{ "id": "#t4s-mini_cart" }'{% endif %} aria-label="{{ 'customer.menu.cart' | t }}">
 					<span class="t4s-pr t4s-icon-cart__wrap">
 					  <span class="{% if se_stts.h_txt_lable %}t4s-d-lg-inline-block t4s-d-none{% else %}t4s-d-none{% endif %}">{{ 'customer.menu.cart' | t }}</span><svg class="t4s-icon t4s-icon--cart {% if se_stts.h_txt_lable %}t4s-d-lg-none{% endif -%}" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-cart"></use></svg>
 					  <span data-cart-count class="t4s-pa t4s-op-0 t4s-ts-op t4s-count-box">{{ cart.item_count }}</span>
@@ -537,7 +537,7 @@ t4s_group_btns_split
 			<div class="t4s-site-nav__icons t4s-use__{{ se_stts.h_icon }} {% if se_stts.h_txt_lable %}t4s-use__label {% endif -%} is--hover{{ se_stts.hover_icon }} t4s-h-cart__design{{ se_stts.cart_des }} t4s-lh-1 t4s-d-inline-flex t4s-align-items-center">
 				{%- if se_stts.show_search -%}
 				<div class="t4s-site-nav__icon t4s-site-nav__search">
-					<a class="t4s-pr" href="{{ routes.search_url }}" data-drawer-delay- data-drawer-options='{ "id": "#t4s-search-hidden" }'>
+					<a class="t4s-pr" href="{{ routes.search_url }}" data-drawer-delay- data-drawer-options='{ "id": "#t4s-search-hidden" }' aria-label="{{ 'customer.menu.search' | t }}">
 						<svg class="t4s-icon t4s-icon--search" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-search"></use></svg>
 					</a>
 			   </div>
@@ -585,9 +585,9 @@ t4s_group_btns_split
 
 				{%- if se_stts.cart_des != '0' -%}
 			    <div class="t4s-site-nav__icon t4s-site-nav__cart">	
-					<a href="{{ routes.cart_url }}"{% if request.page_type != 'cart' and settings.cart_type != 'disable' %} data-drawer-delay- data-drawer-options='{ "id": "#t4s-mini_cart" }'{% endif %}>
+					<a href="{{ routes.cart_url }}"{% if request.page_type != 'cart' and settings.cart_type != 'disable' %} data-drawer-delay- data-drawer-options='{ "id": "#t4s-mini_cart" }'{% endif %} aria-label="{{ 'customer.menu.cart' | t }}">
 						<span class="t4s-pr t4s-icon-cart__wrap">
-						  <svg class="t4s-icon t4s-icon--account" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-cart"></use></svg>
+						  <svg class="t4s-icon t4s-icon--cart" aria-hidden="true" focusable="false" role="presentation"><use href="#icon-h-cart"></use></svg>
 						  <span data-cart-count class="t4s-pa t4s-op-0 t4s-ts-op t4s-count-box">{{ cart.item_count }}</span>
 						</span>
 						<span class="t4s-h-cart-totals t4s-dn t4s-truncate">

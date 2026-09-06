@@ -1,4 +1,30 @@
 {
+  "general": {
+    "mobile_menu": {
+      "menu": "القائمة",
+      "close": "إغلاق القائمة، الأقسام",
+      "categories": "الأقسام",
+      "wishlist": "قائمة الأمنيات",
+      "compare": "مقارنة",
+      "search": "بحث",
+      "login_register": "تسجيل الدخول / التسجيل",
+      "my_account": "حسابي"
+    }
+  },
+  "customer": {
+    "menu": {
+      "dashboard": "لوحة التحكم",
+      "login_register": "تسجيل الدخول / التسجيل",
+      "account": "الحساب",
+      "search": "بحث",
+      "cart": "سلة التسوق",
+      "compare": "مقارنة",
+      "wishlist": "قائمة الأمنيات",
+      "addresses": "العناوين",
+      "logout": "تسجيل الخروج",
+      "off": "خصم"
+    }
+  },
   "products": {
     "product": {
       "viewing_suffix": "شخص يشاهد هذا المنتج الآن",
