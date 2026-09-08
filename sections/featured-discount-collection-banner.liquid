@@ -348,7 +348,13 @@
                      {%- for product in product_list -%}
 
                           {%- liquid
-                            assign date_countdown =  product.metafields.theme.countdown | default: se_stts_date
+                            assign date_countdown = product.metafields.theme.countdown.value | default: product.metafields.theme.countdown | default: se_stts_date
+                            assign date_countdown_ck = date_countdown | date: '%Y'
+                            if date_countdown_ck.size == 4
+                              assign date_countdown = date_countdown | date: '%Y/%m/%d %H:%M:%S'
+                            else
+                              assign date_countdown = ''
+                            endif
                             if date_countdown != blank and se_stts.countdown_heading == false
                                 assign pr_countdown = pr_countdown_html | replace_first: 'date_data_t4s', date_countdown
                             else

@@ -31,7 +31,36 @@
   assign total_compare_price= 0
   assign index = 0
   assign min = 1
-  assign form_id = 'form_id' | append: section.id -%}
+  assign form_id = 'form_id' | append: section.id
+  assign bundle_design = se_stts.design | default: 'classic'
+  assign bundle_cd_raw = se_stts.countdown_date
+  assign bundle_cd = ''
+  assign bundle_cd_pos = se_stts.countdown_pos | default: 'above'
+  assign bundle_cd_pos_mb = se_stts.countdown_pos_mb | default: 'same'
+  if bundle_cd_pos_mb == 'same'
+    assign bundle_cd_pos_mb = bundle_cd_pos
+  endif
+  assign bundle_cd_pos_eff = bundle_cd_pos
+  assign bundle_cd_pos_mb_eff = bundle_cd_pos_mb
+  if bundle_design == 'upsell' and bundle_cd_pos_eff == 'on_image'
+    assign bundle_cd_pos_eff = 'above'
+  endif
+  if bundle_design == 'upsell' and bundle_cd_pos_mb_eff == 'on_image'
+    assign bundle_cd_pos_mb_eff = 'above'
+  endif
+  if se_stts.show_countdown and bundle_cd_raw != blank
+    assign bundle_cd_ck = bundle_cd_raw | date: '%Y'
+    if bundle_cd_ck.size == 4
+      assign bundle_cd = bundle_cd_raw | date: '%Y/%m/%d %H:%M:%S'
+    endif
+  endif -%}
+{%- capture bundle_cd_html -%}
+{%- if bundle_cd != blank -%}
+{%- assign bundle_cd_label = se_stts.countdown_text -%}
+{%- if bundle_cd_label == blank -%}{%- assign bundle_cd_label = 'sections.bundle_products.countdown_label' | t -%}{%- endif -%}
+<div class="t4s-bundle-countdown" data-countdown-wrap style="--cd-bg: {{ se_stts.cd_bg | default: '#111111' }}; --cd-cl: {{ se_stts.cd_color | default: '#ffffff' }};"><span class="t4s-bundle-countdown__label">{{ bundle_cd_label | escape }}</span><span class="t4s-bundle-countdown__timer" role="timer" aria-label="{{ bundle_cd_label | escape }}" data-countdown-t4s data-date="{{ bundle_cd }}"><span class="t4s-bundle-cd-box"><b>%-D</b><small>{{ 'products.product_card.countdown_text.day_short' | t }}</small></span><span class="t4s-bundle-cd-sep">:</span><span class="t4s-bundle-cd-box"><b>%H</b><small>{{ 'products.product_card.countdown_text.hr_short' | t }}</small></span><span class="t4s-bundle-cd-sep">:</span><span class="t4s-bundle-cd-box"><b>%M</b><small>{{ 'products.product_card.countdown_text.min_short' | t }}</small></span><span class="t4s-bundle-cd-sep">:</span><span class="t4s-bundle-cd-box"><b>%S</b><small>{{ 'products.product_card.countdown_text.sec_short' | t }}</small></span></span></div>
+{%- endif -%}
+{%- endcapture -%}
 
 
 <div class="t4s-section-inner t4s_se_{{ sid }} {{ stt_layout }}{% if stt_image_bg != blank and stt_layout != 't4s-se-container' %} t4s-has-imgbg lazyloadt4s{% endif %}" {%- if stt_image_bg != blank and stt_layout != 't4s-se-container' -%} data-bgset="{{ stt_image_bg | image_url: width: 1 }}" data-sizes="auto"  data-optimumx="1.5"{%- endif -%} {% render 'section_style', se_stts: se_stts %}>
@@ -81,7 +110,7 @@
     		        </div>
     					  <div class="t4s-bundle-pr__info">
     		            <a class="t4s-bundle-pr__title t4s-bundle-pr__link t4s-d-block" href="{{product.url}}">{{product.title | escape }}</a>
-    		            {%- if product.variants.size < 2 -%}
+     		            {%- if product.variants.size < 2 or bundle_design == 'minimal' -%}
     		               <input {{_disabled}} data-groups-pr-sl name="items[][id]" data-cpprice="{{cp_pr}}" data-price="{{cu_pr}}" value="{{ available_v_1.id }}" type="hidden">
     		            {%- else -%}
     		               <select {{_disabled}} data-groups-pr-sl name="items[][id]" autocomplete="off" data-cpprice="{{cp_pr}}" data-price="{{cu_pr}}">
@@ -138,9 +167,9 @@
   	{%- endfor -%}
 
   {%- endif -%}
-  <div data-product-bundles class="t4s-bundle-prs-wrapper" style="--fw-sum:{{ se_stts.fw_sum }};--fs-subheading:{{ se_stts.fs_subheading }}px;--fs-heading:{{ se_stts.fs_heading }}px;--color-subheading:{{ se_stts.cl_subheading }};--color-heading:{{ se_stts.cl_heading }};">
+  <div data-product-bundles class="t4s-bundle-prs-wrapper t4s-bundle-design--{{ bundle_design }}" style="--fw-sum:{{ se_stts.fw_sum }};--fs-subheading:{{ se_stts.fs_subheading }}px;--fs-heading:{{ se_stts.fs_heading }}px;--color-subheading:{{ se_stts.cl_subheading }};--color-heading:{{ se_stts.cl_heading }};">
   	<div class="t4s-row{% if se_stts.image_placement == 'second' %} t4s-flex-md-row-reverse{% endif %}" style="--space-img-prs:{{ se_stts.space_img_prs }}px">
-  <div class="t4s-col-12 t4s-col-md-6 t4s-col-lg-6{% if se_stts.enable_offset_img %} t4s-offset-lg-1{% endif %} t4s-col-item">
+  <div class="t4s-col-12 t4s-col-md-6 t4s-col-lg-6{% if se_stts.enable_offset_img %} t4s-offset-lg-1{% endif %} t4s-col-item t4s-bundle-prs-img-col">
   	      <div data-bundle-image class="t4s-bundle-prs-img t4s-pr t4s-oh t4s_position_8 t4s_ratioadapt t4s_cover ">
 
            {%- assign image = se_stts.image -%}
@@ -153,13 +182,18 @@
   	        {{ 'collection-1' | placeholder_svg_tag: 't4s-placeholder-svg t4s-svg-bg1' }}  
   	      {%- endif -%}
   	       {{- html_pin -}}
+               {%- if bundle_cd != blank and bundle_cd_pos_eff == 'on_image' -%}<div class="t4s-bundle-countdown--onimg t4s-only-dk">{{ bundle_cd_html }}</div>{%- endif -%}{%- if bundle_cd != blank and bundle_cd_pos_mb_eff == 'on_image' -%}<div class="t4s-bundle-countdown--onimg t4s-only-mb">{{ bundle_cd_html }}</div>{%- endif -%}
   	      </div>
   		</div>
-  		<div class="t4s-col-12 t4s-col-md-6 t4s-col-lg-5 t4s-col-item">
+  		<div class="t4s-col-12 t4s-col-md-6 t4s-col-lg-5 t4s-col-item t4s-bundle-prs-content-col">
   	      <div class="t4s-bundle-prs-with-head">
-  	      	<div class="t4s-bundle-prs-head">
-  	      		<p class="t4s-bundle-prs-subheading">{{se_stts.subheading}}</p>
+<div class="t4s-bundle-prs-head">
+            {%- if bundle_cd != blank and bundle_cd_pos_eff == 'above' -%}<div class="t4s-bundle-cd-slot t4s-only-dk">{{ bundle_cd_html }}</div>{%- endif -%}{%- if bundle_cd != blank and bundle_cd_pos_mb_eff == 'above' -%}<div class="t4s-bundle-cd-slot t4s-only-mb">{{ bundle_cd_html }}</div>{%- endif -%}
+            <div class="t4s-bundle-head-text">
+            <p class="t4s-bundle-prs-subheading">{{se_stts.subheading}}</p>
   	      		<h3 class="t4s-bundle-prs-heading">{{se_stts.heading}}</h3>
+            </div>
+            {%- if bundle_cd != blank and bundle_cd_pos_eff == 'below' -%}<div class="t4s-bundle-cd-slot t4s-only-dk">{{ bundle_cd_html }}</div>{%- endif -%}{%- if bundle_cd != blank and bundle_cd_pos_mb_eff == 'below' -%}<div class="t4s-bundle-cd-slot t4s-only-mb">{{ bundle_cd_html }}</div>{%- endif -%}
   	      	</div>
   	      	<div class="t4s-bundle-prs-innner">
   				  {%- if has_product -%}
@@ -197,6 +231,31 @@
       {
         "type": "header",
         "content": "1. General options"
+      },
+      {
+        "type": "select",
+        "id": "design",
+        "label": "Design style",
+        "info": "Classic is the default tall layout. Compact is short & elegant. Minimal shows image + heading + button only. Upsell is for product pages.",
+        "default": "classic",
+        "options": [
+          {
+            "value": "classic",
+            "label": "Classic"
+          },
+          {
+            "value": "compact",
+            "label": "Compact (short & elegant)"
+          },
+          {
+            "value": "minimal",
+            "label": "Minimal (image + button only)"
+          },
+          {
+            "value": "upsell",
+            "label": "Upsell (for product page)"
+          }
+        ]
       },
       {
         "type": "header",
@@ -250,6 +309,85 @@
         "id":"cl_heading",
         "label": "Color heading",
         "default": "#000"
+      },
+      {
+        "type": "header",
+        "content": "+ Countdown"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_countdown",
+        "label": "Enable countdown",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "countdown_date",
+        "label": "End date",
+        "info": "Format: YYYY/MM/DD HH:MM:SS. Example: 2026/12/31 23:59:59",
+        "default": "2026/12/31 23:59:59"
+      },
+      {
+        "type": "select",
+        "id": "countdown_pos",
+        "label": "Countdown position on desktop (PC)",
+        "default": "above",
+        "options": [
+          {
+            "value": "above",
+            "label": "Above heading"
+          },
+          {
+            "value": "below",
+            "label": "After heading"
+          },
+          {
+            "value": "on_image",
+            "label": "Over main image"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "countdown_pos_mb",
+        "label": "Countdown position on mobile",
+        "default": "same",
+        "options": [
+          {
+            "value": "same",
+            "label": "Same as desktop"
+          },
+          {
+            "value": "above",
+            "label": "Above heading"
+          },
+          {
+            "value": "below",
+            "label": "After heading"
+          },
+          {
+            "value": "on_image",
+            "label": "Over main image"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "countdown_text",
+        "label": "Countdown label",
+        "default": "Offer ends in"
+      },
+      {
+        "type": "color",
+        "id": "cd_bg",
+        "label": "Countdown boxes background",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "cd_color",
+        "label": "Countdown boxes text",
+        "default": "#ffffff"
       },
       {
         "type": "header",
@@ -806,6 +944,44 @@
             "bg_cl": "#000000",
             "icon_cl": "#fff"
           }
+        }
+      ]
+    },
+    {
+      "name": "Bundle minimal",
+      "category": "group3",
+      "settings": {
+        "design": "minimal"
+      },
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    },
+    {
+      "name": "Bundle upsell",
+      "category": "group3",
+      "settings": {
+        "design": "upsell",
+        "heading": "Frequently bought together",
+        "subheading": "Complete the look"
+      },
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
         }
       ]
     }

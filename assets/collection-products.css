@@ -1801,3 +1801,289 @@
         margin-bottom: 5px;
     }
 }
+/* Umino Style 3 => T4S Design 8 : vertical round icons top-right + full-width ATC bar bottom */
+.t4s-pr-style8 .t4s-product-inner {
+    border-radius: 12px;
+}
+.t4s-pr-style8 .t4s-product-btns2 {
+    position: absolute;
+    z-index: 4;
+    top: 12px;
+    right: 12px;
+    left: auto;
+    bottom: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: opacity .35s ease, transform .35s ease, visibility .35s;
+}
+.t4s-pr-style8 .t4s-product-btns2 > * {
+    margin: 0;
+}
+.t4s-pr-style8 .t4s-product-btns2 a,
+.t4s-pr-style8 .t4s-product-btns2 button {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background: var(--t4s-light-color, #fff);
+    color: var(--t4s-dark-color, #111);
+    box-shadow: 0 5px 30px rgba(0,0,0,.08);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.t4s-pr-style8 .t4s-product-btns2 a .t4s-text-pr {
+    display: none;
+}
+.t4s-pr-style8 .t4s-product-btns2 a:hover {
+    background: var(--t4s-dark-color, #111);
+    color: #fff;
+}
+.t4s-pr-style8 .t4s-product-btns2 a:hover .t4s-svg-pr-icon svg path {
+    fill: #fff;
+}
+.t4s-pr-style8 .t4s-product-btns {
+    position: absolute;
+    z-index: 4;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    top: auto;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity .35s ease, transform .35s ease, visibility .35s;
+}
+.t4s-pr-style8 .t4s-product-btns > * {
+    width: 100%;
+    margin: 0;
+}
+.t4s-pr-style8 .t4s-product-btns a.t4s-pr-addtocart {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: var(--pr-addtocart-color, #fff);
+    color: var(--pr-addtocart-color2, #111);
+    box-shadow: 0 5px 30px rgba(0,0,0,.08);
+    font-size: 13px;
+    font-weight: 500;
+    text-transform: capitalize;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.t4s-pr-style8 .t4s-product-btns a.t4s-pr-addtocart:hover {
+    background: var(--pr-addtocart-color-hover, #111);
+    color: var(--pr-addtocart-color2-hover, #fff);
+}
+.t4s-pr-style8 .t4s-product-btns a.t4s-pr-addtocart .t4s-svg-pr-icon {
+    display: none;
+}
+.t4s-pr-style8 .t4s-product-btns a.t4s-pr-addtocart .t4s-text-pr {
+    display: block;
+}
+.t4s-pr-style8 .t4s-product-atc-qty {
+    background: var(--pr-addtocart-color, #fff);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 30px rgba(0,0,0,.08);
+}
+/* Umino Style 1 => T4S Design 9 : single centered pill with all icons */
+.t4s-pr-style9 .t4s-product-inner {
+    border-radius: 12px;
+}
+.t4s-pr-style9 .t4s-product-btns {
+    position: absolute;
+    z-index: 4;
+    bottom: 12px;
+    left: 50%;
+    right: auto;
+    top: auto;
+    transform: translateX(-50%) translateY(10px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px;
+    background: rgba(255,255,255,.95);
+    border-radius: 40px;
+    box-shadow: 0 5px 30px rgba(0,0,0,.10);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s ease, transform .35s ease, visibility .35s;
+    max-width: calc(100% - 24px);
+}
+.t4s-pr-style9 .t4s-product-btns > * {
+    margin: 0;
+}
+.t4s-pr-style9 .t4s-product-btns a,
+.t4s-pr-style9 .t4s-product-btns button {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    padding: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--t4s-dark-color, #111);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.t4s-pr-style9 .t4s-product-btns a:hover {
+    background: var(--t4s-dark-color, #111);
+    color: #fff;
+}
+.t4s-pr-style9 .t4s-product-btns a:hover .t4s-svg-pr-icon svg path {
+    fill: #fff;
+}
+.t4s-pr-style9 .t4s-product-btns a .t4s-text-pr {
+    display: none;
+}
+.t4s-pr-style9 .t4s-product-btns .t4s-product-atc-qty {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+@media (min-width: 1025px) {
+    .t4s-pr-style8:hover .t4s-product-btns2,
+    .t4s-pr-style8.t4s-colors-selected .t4s-product-inner:hover .t4s-product-btns2 {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0);
+    }
+    .t4s-pr-style8:hover .t4s-product-btns,
+    .t4s-pr-style8.t4s-colors-selected .t4s-product-inner:hover .t4s-product-btns {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .t4s-pr-style9:hover .t4s-product-btns,
+    .t4s-pr-style9.t4s-colors-selected .t4s-product-inner:hover .t4s-product-btns {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+    }
+    .t4s-pr-style8:hover .t4s-product-inner .t4s-pr-group-variable > *,
+    .t4s-pr-style9:hover .t4s-product-inner .t4s-pr-group-variable > * {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+@media (max-width: 1024px) {
+    .t4s-product.t4s-pr-grid.t4s-pr-style8 .t4s-product-btns2 {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        top: 10px;
+        right: 10px;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style8 .t4s-product-btns2 a,
+    .t4s-product.t4s-pr-grid.t4s-pr-style8 .t4s-product-btns2 button {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style8 .t4s-product-btns {
+        position: absolute;
+        top: auto;
+        bottom: 10px;
+        left: auto;
+        right: 10px;
+        width: auto;
+        display: flex;
+        flex-direction: row;
+        border: none;
+        border-right: none;
+        overflow: visible;
+        padding: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style8 .t4s-product-btns > * {
+        width: auto;
+        height: auto;
+        line-height: normal;
+        margin: 0;
+        top: auto;
+        right: auto;
+        border: none;
+        border-right: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style8 .t4s-product-btns a {
+        width: auto;
+        box-shadow: 0 5px 30px rgba(0,0,0,.08);
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style8 .t4s-product-btns a.t4s-pr-addtocart {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+        padding: 0;
+        border-radius: 50%;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style8 .t4s-product-btns a.t4s-pr-addtocart .t4s-svg-pr-icon {
+        display: inline-flex;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style8 .t4s-product-btns a.t4s-pr-addtocart .t4s-text-pr {
+        display: none;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style9 .t4s-product-btns {
+        position: absolute;
+        top: auto;
+        bottom: 10px;
+        left: 50%;
+        right: auto;
+        width: max-content;
+        max-width: calc(100% - 20px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-right: none;
+        overflow: visible;
+        padding: 4px;
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%);
+        gap: 2px;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style9 .t4s-product-btns > * {
+        height: auto;
+        line-height: normal;
+        margin: 0;
+        top: auto;
+        right: auto;
+        border: none;
+        border-right: none;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        flex: 0 0 auto;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style9 .t4s-product-btns a {
+        width: auto;
+        box-shadow: none;
+        border-radius: 50%;
+    }
+    .t4s-product.t4s-pr-grid.t4s-pr-style9 .t4s-product-btns a,
+    .t4s-product.t4s-pr-grid.t4s-pr-style9 .t4s-product-btns button {
+        width: 34px;
+        height: 34px;
+        min-width: 34px;
+    }
+}

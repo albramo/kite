@@ -1,0 +1,134 @@
+{% liquid
+  assign enable_rtl = settings.rtl
+  assign iso_code = request.locale.iso_code
+  assign lis_language_rtl = settings.language_rtl
+  if lis_language_rtl != blank
+    if lis_language_rtl contains iso_code
+      assign enable_rtl = true
+    else
+      assign enable_rtl = false
+    endif
+  endif
+%}
+
+<!doctype html>
+<html
+  class="no-js{% if enable_rtl %} body-rtl{% endif %} {% if settings.pre_load_page %}overflow-hidden{% endif %}"
+  lang="{{ iso_code }}"
+>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_mobile_browser }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    {%- if settings.favicon != blank -%}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {%- endif -%}
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+    <meta name="description" content="{{ page_description | default: shop.description | default: shop.name | escape }}">
+    {% render 'meta-tags' %}
+    {{ content_for_header }}
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+      if (Shopify.designMode) {
+        document.documentElement.classList.add('shopify-design-mode');
+      }
+    </script>
+    {%- render 'head-assets' -%}
+    <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'easydlg.min.js' | asset_url }}" defer="defer"></script>
+    {{ shop.metafields.loox.global_html_head }}
+    {% if settings.pre_load_page %}
+      <style>
+        .preloader {
+          position: fixed;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: white;
+          width: inherit;
+          height: inherit;
+          z-index: 99999999;
+          inset: 0;
+        }
+        .preloader-icon {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+        .preloader-dot-loading {
+          background-image: url("{{ 'dots-loading.gif' | asset_url }}");
+          width: 35px;
+          height: 35px;
+        }
+        .preloader-infinity {
+          background-image: url("{{ 'infinity.gif' | asset_url }}");
+          width: 50px;
+          height: 50px;
+        }
+        .preloader-spin {
+          background-image: url("{{ 'spin.gif' | asset_url }}");
+          width: 30px;
+          height: 30px;
+        }
+        .preloader-spinner {
+          background-image: url("{{ 'spinner.gif' | asset_url }}");
+          width: 50px;
+          height: 50px;
+        }
+      </style>
+      <script>
+        window.addEventListener('load', function () {
+          setTimeout(() => {
+            document.getElementById('preloader').style.display = 'none';
+            document.querySelector('html').classList.remove('overflow-hidden');
+          }, 500);
+        });
+      </script>
+    {% endif %}
+  </head>
+  <body class="gradient {% if template.name == 'collection' %}template-collection{% endif %}{% if template.name == 'product' %}template-product {% endif %}{% if template.name == 'index' %}template-index{% endif %} {%- if settings.general_layout == 'boxed' -%}box-layout{% elsif settings.general_layout == 'full_width' %}full-width-layout{% else %}{%- endif -%} {% if settings.content_center %}item-center{% endif %} {% if settings.image_style != blank %}product-images-style-radius{% endif %} {% if template.suffix contains 'layout-2' %}product-digital-layout-2{% endif %}">
+    <div class="bls-wrapper">
+      {% if settings.pre_load_page %}
+        <div class="preloader" id="preloader">
+          <div class="preloader-icon preloader-{{ settings.icon_preload }}"></div>
+        </div>
+      {% endif %}
+      {%- render 'umino-home' -%}
+      <div class="bls__overlay d-none-overlay"></div>
+      {% section 'announcement' %}
+      {%- render 'header' -%}
+      <main
+        id="MainContent"
+        class="content-for-layout focus-none{% if template == 'product' or template == 'page.wishlist' or template == "page.recently-viewed-products" %} skeleton-product-detail{% endif %}"
+        role="main"
+        tabindex="-1"
+      >
+        {{ content_for_layout }}
+      </main>
+      {%- sections 'overlay-group' -%}
+      {%- render 'footer-layout' -%}
+      {%- section 'mobile-stickybar' -%}
+      {%- section 'custom-colors' -%}
+    </div>
+    {%- render 'fake-order' -%}
+    {%- render 'content-bottom' -%}
+    {%- render 'before-you-leave' -%}
+    {%- render 'scripts-tag' -%}
+    {%- if shop.domain == 'umino-demo.myshopify.com'
+      or shop.domain == 'demo-umino.myshopify.com'
+      or shop.domain == 'umino-demo-v2.myshopify.com'
+    -%}
+      <feature-button class="d-none extent-button-right-bar"></feature-button>
+    {%- endif -%}
+
+    {{ shop.metafields.loox.global_html_body }}
+  </body>
+</html>

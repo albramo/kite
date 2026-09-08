@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "page-heading": {
+      "type": "page-heading",
+      "blocks": {
+        "title": {
+          "type": "1",
+          "settings": {
+            "page_title": "Recently Viewed Products",
+            "text_fs": 45
+          }
+        }
+      },
+      "block_order": [
+        "title"
+      ],
+      "settings": {
+        "layout": "container",
+        "show_banner": false,
+        "min_height": 200,
+        "parallax": false,
+        "show_overlay": false,
+        "overlay": 54,
+        "design": "text-overlay-image",
+        "text_postion": "text-center"
+      }
+    },
+    "main": {
+      "type": "page-recently-viewed",
+      "settings": {
+        "layout": "container"
+      }
+    }
+  },
+  "order": [
+    "page-heading",
+    "main"
+  ]
+}

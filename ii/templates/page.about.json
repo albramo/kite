@@ -1,0 +1,729 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-about",
+      "settings": {}
+    },
+    "d5c751ad-2b85-4c9d-b68f-d9a66d5e9199": {
+      "type": "custom-text",
+      "blocks": {
+        "8bf1d9d6-cada-478b-9ba4-2d2e44855632": {
+          "type": "desc",
+          "settings": {
+            "desc": "<p>Welcome to umino<\/p>",
+            "desc_fs": 12,
+            "desc_fw": "600",
+            "content_width": 100,
+            "desc_tf": "uppercase",
+            "desc_mt": 0,
+            "desc_mb": 15
+          }
+        },
+        "template--21763387359529__d5c751ad-2b85-4c9d-b68f-d9a66d5e9199-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Perfect Store",
+            "heading_fs": 45,
+            "heading_fw": "default",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 5
+          }
+        },
+        "dd92a639-33fa-4540-8684-c397f5f3813c": {
+          "type": "heading",
+          "settings": {
+            "heading": "Available to Everyone!",
+            "heading_fs": 45,
+            "heading_fw": "default",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 15
+          }
+        },
+        "template--21763387359529__d5c751ad-2b85-4c9d-b68f-d9a66d5e9199-desc-1": {
+          "type": "desc",
+          "settings": {
+            "desc": "<p>Over 20 years of experience, we have meticulously curated collections that transcend fleeting trends, embodying a timeless elegance that resonates with our discerning clientele.<\/p>",
+            "desc_fs": 16,
+            "desc_fw": "default",
+            "content_width": 60,
+            "desc_tf": "unset",
+            "desc_mt": 0,
+            "desc_mb": 0
+          }
+        }
+      },
+      "block_order": [
+        "8bf1d9d6-cada-478b-9ba4-2d2e44855632",
+        "template--21763387359529__d5c751ad-2b85-4c9d-b68f-d9a66d5e9199-heading-1",
+        "dd92a639-33fa-4540-8684-c397f5f3813c",
+        "template--21763387359529__d5c751ad-2b85-4c9d-b68f-d9a66d5e9199-desc-1"
+      ],
+      "settings": {
+        "container": "container",
+        "text_align": "text-center",
+        "color_scheme": "",
+        "custom_class": "",
+        "padding_top": 100,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "174faa98-7109-44fa-bcb2-0fb5dbeea6c3": {
+      "type": "banner-image",
+      "blocks": {
+        "template--21763387359529__174faa98-7109-44fa-bcb2-0fb5dbeea6c3-image_banner-1": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "12",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/about-us.png",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "subtext": "",
+            "title": "",
+            "content": "",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "template--21763387359529__174faa98-7109-44fa-bcb2-0fb5dbeea6c3-image_banner-1"
+      ],
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "",
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container",
+        "color_scheme": "",
+        "column_gap": 30,
+        "layout_on_mobile": false,
+        "design_banner": "text-overlay-image",
+        "design_content": "default",
+        "text_align": "text-left",
+        "hover_effect": "none",
+        "h_font_size": 36,
+        "h_font_weight": "default",
+        "h_spacing": 10,
+        "sub_font_size": 18,
+        "sub_font_weight": "default",
+        "sub_spacing": 10,
+        "des_font_size": 16,
+        "des_font_weight": "default",
+        "des_spacing": 30,
+        "image_behavior": "none",
+        "text_position": "top",
+        "content_on_mobile": false,
+        "reset_color_mb": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "d2b8393e-8792-40a7-a4c8-5c192feb9e83": {
+      "type": "counter",
+      "blocks": {
+        "template--21763387359529__d2b8393e-8792-40a7-a4c8-5c192feb9e83-counter-1": {
+          "type": "counter",
+          "settings": {
+            "starting_number": "1",
+            "ending_number": "56",
+            "unit_number": "M",
+            "heading": "Products for Sale",
+            "description": "<p>That's why we strive to offer a diverse range of products that cater to all styles.<\/p>"
+          }
+        },
+        "template--21763387359529__d2b8393e-8792-40a7-a4c8-5c192feb9e83-counter-2": {
+          "type": "counter",
+          "settings": {
+            "starting_number": "1",
+            "ending_number": "9.6",
+            "unit_number": "M",
+            "heading": "Happy Customer",
+            "description": "<p>We pride ourselves on creating great products and experiences with our valued customers.<\/p>"
+          }
+        },
+        "template--21763387359529__d2b8393e-8792-40a7-a4c8-5c192feb9e83-counter-3": {
+          "type": "counter",
+          "settings": {
+            "starting_number": "1",
+            "ending_number": "13",
+            "unit_number": "M",
+            "heading": "Partner Brand",
+            "description": "<p>Partner with brands that share our values, striving to protect our environment.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--21763387359529__d2b8393e-8792-40a7-a4c8-5c192feb9e83-counter-1",
+        "template--21763387359529__d2b8393e-8792-40a7-a4c8-5c192feb9e83-counter-2",
+        "template--21763387359529__d2b8393e-8792-40a7-a4c8-5c192feb9e83-counter-3"
+      ],
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "",
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container",
+        "custom_column": 3,
+        "column_gap": 30,
+        "color_scheme": "",
+        "icon_width": 42,
+        "icon_spacing": 20,
+        "img_position": "position-top",
+        "content_text_alignment": "text-center",
+        "ib_h_font_size": 18,
+        "ib_h_font_weight": "600",
+        "ib_spacing": 10,
+        "ib_number_font_size": 36,
+        "ib_number_font_weight": "500",
+        "number_spacing": 10,
+        "ib_desc_font_size": 16,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "4205dfc1-7103-45d0-8f15-320364f52bf1": {
+      "type": "divider",
+      "settings": {
+        "container": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "de27bbae-8b57-4758-bfe7-5ac9b1179505": {
+      "type": "custom-text",
+      "blocks": {
+        "4ce13d24-4dc5-4b90-bd4d-cc9b130578c7": {
+          "type": "desc",
+          "settings": {
+            "desc": "<p>Why Choose Us<\/p>",
+            "desc_fs": 12,
+            "desc_fw": "600",
+            "content_width": 100,
+            "desc_tf": "uppercase",
+            "desc_mt": 0,
+            "desc_mb": 0
+          }
+        },
+        "template--16584037925111__de27bbae-8b57-4758-bfe7-5ac9b1179505-1665713233cd3512b4-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "Our Unique Things",
+            "heading_fs": 40,
+            "heading_fw": "default",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 10
+          }
+        },
+        "template--16584037925111__de27bbae-8b57-4758-bfe7-5ac9b1179505-1665713233cd3512b4-2": {
+          "type": "desc",
+          "settings": {
+            "desc": "<p>Class aptent taciti sociosqu ad litora torquent per conubia nostra per inceptos vel pretium  lectus qua. Nunc id cursus metus ididunt ut labore metus episcing.<\/p>",
+            "desc_fs": 16,
+            "desc_fw": "default",
+            "content_width": 60,
+            "desc_tf": "unset",
+            "desc_mt": 0,
+            "desc_mb": 0
+          }
+        }
+      },
+      "block_order": [
+        "4ce13d24-4dc5-4b90-bd4d-cc9b130578c7",
+        "template--16584037925111__de27bbae-8b57-4758-bfe7-5ac9b1179505-1665713233cd3512b4-1",
+        "template--16584037925111__de27bbae-8b57-4758-bfe7-5ac9b1179505-1665713233cd3512b4-2"
+      ],
+      "settings": {
+        "container": "container",
+        "text_align": "text-center",
+        "color_scheme": "",
+        "custom_class": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "75a2bab7-280b-45ab-bb79-213765e91dbc": {
+      "type": "banner-image",
+      "blocks": {
+        "template--16584037925111__75a2bab7-280b-45ab-bb79-213765e91dbc-166556395381b5ea4f-0": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "4",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/banner-about.png",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "subtext": "Unique for Women’s",
+            "title": "",
+            "content": "<p>Our collections dress a unique and feminine woman. The pieces showcase a timeless style while keeping in mind fashion aesthetics and trends.<\/p>",
+            "btn_content": "",
+            "button_type": "link"
+          }
+        },
+        "template--16584037925111__75a2bab7-280b-45ab-bb79-213765e91dbc-166556395381b5ea4f-1": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "4",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/banner-about-2.png",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "subtext": "Elegant for Men’s",
+            "title": "",
+            "content": "<p>From traditional tailoring to the most informal pieces. Our Umino Man collections feature the latest trends with the maximum comfort.<\/p>",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        },
+        "3b05d3c8-67d9-4dc9-95bd-ecc9facfdd8b": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "4",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/banner-about-3.png",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "subtext": "Freedom for Everyone",
+            "title": "",
+            "content": "<p>The designs have been created adopting the current trends, while leaving room for personal expression among young people.<\/p>",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "template--16584037925111__75a2bab7-280b-45ab-bb79-213765e91dbc-166556395381b5ea4f-0",
+        "template--16584037925111__75a2bab7-280b-45ab-bb79-213765e91dbc-166556395381b5ea4f-1",
+        "3b05d3c8-67d9-4dc9-95bd-ecc9facfdd8b"
+      ],
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "",
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container",
+        "color_scheme": "",
+        "column_gap": 30,
+        "layout_on_mobile": false,
+        "design_banner": "text-below-image",
+        "design_content": "default",
+        "text_align": "text-left",
+        "hover_effect": "zoom",
+        "h_font_size": 36,
+        "h_font_weight": "default",
+        "h_spacing": 10,
+        "sub_font_size": 18,
+        "sub_font_weight": "default",
+        "sub_spacing": 5,
+        "des_font_size": 16,
+        "des_font_weight": "default",
+        "des_spacing": 0,
+        "image_behavior": "none",
+        "text_position": "bottom",
+        "content_on_mobile": false,
+        "reset_color_mb": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "2dc0f1df-4f5b-4b3c-869a-2e69745ae766": {
+      "type": "custom-text",
+      "blocks": {
+        "a1a3c57a-7dfe-4c13-bb19-d22d3166f94c": {
+          "type": "desc",
+          "settings": {
+            "desc": "<p>“ Umino will become an example of the responsible business model by doing business with kindness, profit and bringing practical and long-term values to customers, employees,  partners, the community for the environment and for shareholders ”<\/p>",
+            "desc_fs": 20,
+            "desc_fw": "default",
+            "content_width": 60,
+            "desc_tf": "unset",
+            "desc_mt": 0,
+            "desc_mb": 20
+          }
+        },
+        "03a56868-5767-4f3d-bda1-2ea7942d2c90": {
+          "type": "sub_heading",
+          "settings": {
+            "sub_heading": "<p>Michael Anthony, CEO & Founder Umino<\/p>",
+            "sub_fs": 14,
+            "sub_fw": "default",
+            "sub_tf": "unset",
+            "sub_mt": 0,
+            "sub_mb": 0
+          }
+        }
+      },
+      "block_order": [
+        "a1a3c57a-7dfe-4c13-bb19-d22d3166f94c",
+        "03a56868-5767-4f3d-bda1-2ea7942d2c90"
+      ],
+      "settings": {
+        "container": "container",
+        "text_align": "text-center",
+        "color_scheme": "scheme-735c978e-d3b7-474f-a3f7-562370446399",
+        "custom_class": "",
+        "padding_top": 70,
+        "padding_bottom": 24,
+        "reset_spacing": false
+      }
+    },
+    "26c21a87-4e2f-4f70-a443-ad63d4341ac2": {
+      "type": "banner-with-text",
+      "blocks": {
+        "7037bd9d-7ccb-4b05-b7b9-0a3b718156b1": {
+          "type": "text",
+          "settings": {
+            "txt_content": "<p>OUR FACTORIES<\/p>",
+            "txt_fs": 12,
+            "txt_fw": "600",
+            "txt_tf": "unset",
+            "txt_mt": 1,
+            "txt_mb": 5
+          }
+        },
+        "template--16584037925111__26c21a87-4e2f-4f70-a443-ad63d4341ac2-16655668072faff6b4-0": {
+          "type": "heading",
+          "settings": {
+            "title": "The Best Product",
+            "heading_fs": 40,
+            "heading_fw": "default",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 15
+          }
+        },
+        "template--16584037925111__26c21a87-4e2f-4f70-a443-ad63d4341ac2-16655668072faff6b4-1": {
+          "type": "text",
+          "settings": {
+            "txt_content": "<p>We spend months finding the best factories around the world—the same ones that produce your favorite designer labels. We visit them often and build strong personal relationships with the owners. Each factory is given a compliance audit to evaluate factors like fair wages.<\/p>",
+            "txt_fs": 16,
+            "txt_fw": "default",
+            "txt_tf": "unset",
+            "txt_mt": 1,
+            "txt_mb": 35
+          }
+        },
+        "template--16584037925111__26c21a87-4e2f-4f70-a443-ad63d4341ac2-16655668072faff6b4-2": {
+          "type": "buttons",
+          "settings": {
+            "btn_content": "Learn More",
+            "button_type": "primary",
+            "button_link": "",
+            "button_target": false,
+            "b_mt": 0,
+            "b_mb": 15
+          }
+        }
+      },
+      "block_order": [
+        "7037bd9d-7ccb-4b05-b7b9-0a3b718156b1",
+        "template--16584037925111__26c21a87-4e2f-4f70-a443-ad63d4341ac2-16655668072faff6b4-0",
+        "template--16584037925111__26c21a87-4e2f-4f70-a443-ad63d4341ac2-16655668072faff6b4-1",
+        "template--16584037925111__26c21a87-4e2f-4f70-a443-ad63d4341ac2-16655668072faff6b4-2"
+      ],
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "banner_type": "image",
+        "image": "shopify:\/\/shop_images\/about-1.png",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "link": "shopify:\/\/pages\/about-us",
+        "open_link": "_blank",
+        "bn_design": "text_column",
+        "text_align": "text-center",
+        "text_horizontal_position": "left",
+        "text_position": "center",
+        "content_bg_color": "",
+        "content_width": 100,
+        "banner_height": "depend-image",
+        "height_dk": 800,
+        "height_tb": 600,
+        "height_mb": 360,
+        "height_full": false,
+        "content_box": "content_in_container",
+        "bg_opacity": 100,
+        "text_bellow_mobile": false,
+        "img_position": "left",
+        "banner_width": "col-md-6",
+        "column_gap": 50,
+        "hover_effect": "zoom",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "c3ebe82c-835b-4f82-b2f6-b38befcf6797": {
+      "type": "banner-with-text",
+      "blocks": {
+        "53472d49-ff77-4644-b112-81f458396685": {
+          "type": "text",
+          "settings": {
+            "txt_content": "<p>OUR QUALITY<\/p>",
+            "txt_fs": 12,
+            "txt_fw": "600",
+            "txt_tf": "unset",
+            "txt_mt": 1,
+            "txt_mb": 5
+          }
+        },
+        "template--16584037925111__c3ebe82c-835b-4f82-b2f6-b38befcf6797-16655668072faff6b4-0": {
+          "type": "heading",
+          "settings": {
+            "title": "Timeless Products",
+            "heading_fs": 40,
+            "heading_fw": "default",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 15
+          }
+        },
+        "template--16584037925111__c3ebe82c-835b-4f82-b2f6-b38befcf6797-16655668072faff6b4-1": {
+          "type": "text",
+          "settings": {
+            "txt_content": "<p>At Umino, we’re not big on trends. We want you to wear our pieces for years, even decades, to come. That’s why we source the finest materials and factories for our timeless products— like our Grade-A cashmere sweaters, Italian shoes, and Peruvian Pima tees.<\/p>",
+            "txt_fs": 16,
+            "txt_fw": "default",
+            "txt_tf": "unset",
+            "txt_mt": 1,
+            "txt_mb": 35
+          }
+        },
+        "template--16584037925111__c3ebe82c-835b-4f82-b2f6-b38befcf6797-16655668072faff6b4-2": {
+          "type": "buttons",
+          "settings": {
+            "btn_content": "Learn More",
+            "button_type": "primary",
+            "button_link": "",
+            "button_target": false,
+            "b_mt": 0,
+            "b_mb": 15
+          }
+        }
+      },
+      "block_order": [
+        "53472d49-ff77-4644-b112-81f458396685",
+        "template--16584037925111__c3ebe82c-835b-4f82-b2f6-b38befcf6797-16655668072faff6b4-0",
+        "template--16584037925111__c3ebe82c-835b-4f82-b2f6-b38befcf6797-16655668072faff6b4-1",
+        "template--16584037925111__c3ebe82c-835b-4f82-b2f6-b38befcf6797-16655668072faff6b4-2"
+      ],
+      "settings": {
+        "container": "container",
+        "color_scheme": "",
+        "image_behavior": "none",
+        "banner_type": "image",
+        "image": "shopify:\/\/shop_images\/about-2.png",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "link": "shopify:\/\/pages\/about-us",
+        "open_link": "_blank",
+        "bn_design": "text_column",
+        "text_align": "text-center",
+        "text_horizontal_position": "left",
+        "text_position": "center",
+        "content_bg_color": "",
+        "content_width": 100,
+        "banner_height": "depend-image",
+        "height_dk": 800,
+        "height_tb": 600,
+        "height_mb": 360,
+        "height_full": false,
+        "content_box": "content_in_container",
+        "bg_opacity": 100,
+        "text_bellow_mobile": false,
+        "img_position": "right",
+        "banner_width": "col-md-6",
+        "column_gap": 50,
+        "hover_effect": "zoom",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "95d79fa1-7731-438b-9904-b1f771187a9e": {
+      "type": "divider",
+      "settings": {
+        "container": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "b22a2023-fa5f-4a8e-b136-09a7d17cf092": {
+      "type": "custom-text",
+      "blocks": {
+        "d65af5ce-a91b-417d-a804-fb9b15019b29": {
+          "type": "desc",
+          "settings": {
+            "desc": "<p>How We Work<\/p>",
+            "desc_fs": 12,
+            "desc_fw": "600",
+            "content_width": 100,
+            "desc_tf": "uppercase",
+            "desc_mt": 0,
+            "desc_mb": 0
+          }
+        },
+        "template--21763387359529__b22a2023-fa5f-4a8e-b136-09a7d17cf092-heading-1": {
+          "type": "heading",
+          "settings": {
+            "heading": "More to Explore",
+            "heading_fs": 40,
+            "heading_fw": "default",
+            "heading_tf": "unset",
+            "heading_mt": 0,
+            "heading_mb": 10
+          }
+        },
+        "template--21763387359529__b22a2023-fa5f-4a8e-b136-09a7d17cf092-desc-1": {
+          "type": "desc",
+          "settings": {
+            "desc": "<p>At Umino, our work culture is deeply rooted in collaboration, innovation and passion. We believe that a positive and inclusive work environment is the foundation for creativity and success.<\/p>",
+            "desc_fs": 16,
+            "desc_fw": "default",
+            "content_width": 60,
+            "desc_tf": "unset",
+            "desc_mt": 0,
+            "desc_mb": 0
+          }
+        }
+      },
+      "block_order": [
+        "d65af5ce-a91b-417d-a804-fb9b15019b29",
+        "template--21763387359529__b22a2023-fa5f-4a8e-b136-09a7d17cf092-heading-1",
+        "template--21763387359529__b22a2023-fa5f-4a8e-b136-09a7d17cf092-desc-1"
+      ],
+      "settings": {
+        "container": "container",
+        "text_align": "text-center",
+        "color_scheme": "",
+        "custom_class": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "9395d545-fb75-45d2-8b34-0d5e3af71b31": {
+      "type": "banner-image",
+      "blocks": {
+        "template--21763387359529__9395d545-fb75-45d2-8b34-0d5e3af71b31-image_banner-1": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "4",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/about-3.png",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "subtext": "Who We Are",
+            "title": "",
+            "content": "<p>Adipisicing elit sed do eiusmod tempor labore et dolore dignissimos cumque. Excepteur sint occaecat cupidatat proident.<\/p>",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        },
+        "template--21763387359529__9395d545-fb75-45d2-8b34-0d5e3af71b31-image_banner-2": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "4",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/about-4.png",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "subtext": "Our Products",
+            "title": "",
+            "content": "<p>Adipisicing elit sed do eiusmod tempor labore et dolore dignissimos cumque. Excepteur sint occaecat cupidatat proident.<\/p>",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        },
+        "a375aaa3-5d82-4ed8-850e-4c2151ba74a1": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "4",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/about-5.png",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "",
+            "open_link": "_blank",
+            "subtext": "Our Careers",
+            "title": "",
+            "content": "<p>Adipisicing elit sed do eiusmod tempor labore et dolore dignissimos cumque. Excepteur sint occaecat cupidatat proident.<\/p>",
+            "btn_content": "",
+            "button_type": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "template--21763387359529__9395d545-fb75-45d2-8b34-0d5e3af71b31-image_banner-1",
+        "template--21763387359529__9395d545-fb75-45d2-8b34-0d5e3af71b31-image_banner-2",
+        "a375aaa3-5d82-4ed8-850e-4c2151ba74a1"
+      ],
+      "custom_css": [
+        "@media (min-width: 768px) {.bls__banner-item {margin-bottom: 0; }}"
+      ],
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "",
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container",
+        "color_scheme": "",
+        "column_gap": 30,
+        "layout_on_mobile": false,
+        "design_banner": "text-below-image",
+        "design_content": "default",
+        "text_align": "text-center",
+        "hover_effect": "zoom",
+        "h_font_size": 36,
+        "h_font_weight": "default",
+        "h_spacing": 10,
+        "sub_font_size": 18,
+        "sub_font_weight": "default",
+        "sub_spacing": 5,
+        "des_font_size": 16,
+        "des_font_weight": "default",
+        "des_spacing": 0,
+        "image_behavior": "none",
+        "text_position": "top",
+        "content_on_mobile": false,
+        "reset_color_mb": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "d5c751ad-2b85-4c9d-b68f-d9a66d5e9199",
+    "174faa98-7109-44fa-bcb2-0fb5dbeea6c3",
+    "d2b8393e-8792-40a7-a4c8-5c192feb9e83",
+    "4205dfc1-7103-45d0-8f15-320364f52bf1",
+    "de27bbae-8b57-4758-bfe7-5ac9b1179505",
+    "75a2bab7-280b-45ab-bb79-213765e91dbc",
+    "2dc0f1df-4f5b-4b3c-869a-2e69745ae766",
+    "26c21a87-4e2f-4f70-a443-ad63d4341ac2",
+    "c3ebe82c-835b-4f82-b2f6-b38befcf6797",
+    "95d79fa1-7731-438b-9904-b1f771187a9e",
+    "b22a2023-fa5f-4a8e-b136-09a7d17cf092",
+    "9395d545-fb75-45d2-8b34-0d5e3af71b31"
+  ]
+}

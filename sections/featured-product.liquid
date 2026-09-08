@@ -733,7 +733,7 @@ t4option0_0 | alt text
                       {%- when 'countdown' %}{% unless bk_stts.source == '1' or pr_tags contains 'has_stock_countdown' %}{% continue %}{% endunless -%}
                           {{ 'countdown.css' | asset_url | stylesheet_tag }}
                           {%- liquid 
-                              assign meta = meta_theme.countdown
+                              assign meta = meta_theme.countdown.value | default: meta_theme.countdown
                               assign isCountdownMeta = false
                               assign isShowCountdownt = false 
                               if meta != blank 

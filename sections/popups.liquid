@@ -486,6 +486,16 @@ assign page_style  = true
 				        	{%- render 'pr-grid-item7',
             				product: product, isGrowaveWishlist: isGrowaveWishlist, show_img: show_img, show_vendor: show_vendor, use_link_vendor: use_link_vendor, rating_pos: rating_pos, list_color_pos: list_color_pos, list_size_pos: list_size_pos, enable_pr_color: enable_pr_color, show_cl_type: show_cl_type, get_color: get_color, enable_pr_size: enable_pr_size, pr_size_pos: pr_size_pos, get_size: get_size, show_size_type: show_size_type, price_varies_style: price_varies_style, app_review: app_review, enable_rating: enable_rating, use_countdown: use_countdown, imgatt: imgatt, show_list_btns: false, placeholder_img: placeholder_img -%}
 			            {%- endfor -%}
+			        {%-  when '8' -%} 
+				        {%- for product in product_list -%}
+				        	{%- render 'pr-grid-item8',
+            				product: product, isGrowaveWishlist: isGrowaveWishlist, show_img: show_img, show_vendor: show_vendor, use_link_vendor: use_link_vendor, rating_pos: rating_pos, list_color_pos: list_color_pos, list_size_pos: list_size_pos, enable_pr_color: enable_pr_color, show_cl_type: show_cl_type, get_color: get_color, enable_pr_size: enable_pr_size, pr_size_pos: pr_size_pos, get_size: get_size, show_size_type: show_size_type, price_varies_style: price_varies_style, app_review: app_review, enable_rating: enable_rating, use_countdown: use_countdown, imgatt: imgatt, show_list_btns: false, placeholder_img: placeholder_img -%}
+			            {%- endfor -%}
+			        {%-  when '9' -%} 
+				        {%- for product in product_list -%}
+				        	{%- render 'pr-grid-item9',
+            				product: product, isGrowaveWishlist: isGrowaveWishlist, show_img: show_img, show_vendor: show_vendor, use_link_vendor: use_link_vendor, rating_pos: rating_pos, list_color_pos: list_color_pos, list_size_pos: list_size_pos, enable_pr_color: enable_pr_color, show_cl_type: show_cl_type, get_color: get_color, enable_pr_size: enable_pr_size, pr_size_pos: pr_size_pos, get_size: get_size, show_size_type: show_size_type, price_varies_style: price_varies_style, app_review: app_review, enable_rating: enable_rating, use_countdown: use_countdown, imgatt: imgatt, show_list_btns: false, placeholder_img: placeholder_img -%}
+			            {%- endfor -%}
 				{%- endcase -%}
 				</div>
 		   </div>
@@ -2034,6 +2044,14 @@ assign page_style  = true
 		          {
 		            "value": "7",
 		            "label": "Design 7"
+		          },
+		          {
+		            "value": "8",
+		            "label": "Design 8 (Umino Style 3)"
+		          },
+		          {
+		            "value": "9",
+		            "label": "Design 9 (Umino Style 1)"
 		          }
 		        ],
 		        "label": "Product item design",

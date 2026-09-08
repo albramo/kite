@@ -1,0 +1,38 @@
+{
+  "sections": {
+    "page-heading": {
+      "type": "page-heading",
+      "blocks": {
+        "title": {
+          "type": "1",
+          "settings": {
+            "page_title": "Create account",
+            "text_fs": 36
+          }
+        }
+      },
+      "block_order": [
+        "title"
+      ],
+      "settings": {
+        "layout": "container",
+        "show_banner": false,
+        "min_height": 200,
+        "parallax": false,
+        "show_overlay": false,
+        "overlay": 54,
+        "design": "text-overlay-image",
+        "text_postion": "text-center"
+      }
+    },
+    "main": {
+      "type": "main-register",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "page-heading",
+    "main"
+  ]
+}

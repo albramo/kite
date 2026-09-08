@@ -1,0 +1,9 @@
+{
+  "name": "t:settings_schema.Overlay_group.name",
+  "type": "custom.overlay",
+  "sections": {
+  },
+  "order": [
+
+  ]
+}

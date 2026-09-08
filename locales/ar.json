@@ -25,7 +25,28 @@
       "off": "خصم"
     }
   },
+  "sections": {
+    "bundle_products": {
+      "countdown_label": "ينتهي العرض خلال"
+    }
+  },
   "products": {
+    "product_card": {
+      "countdown_text": {
+        "day": "يوم",
+        "day_short": "ي",
+        "day_plural": "أيام",
+        "hr": "ساعة",
+        "hr_short": "س",
+        "hr_plural": "ساعات",
+        "min": "دقيقة",
+        "min_short": "د",
+        "min_plural": "دقائق",
+        "sec": "ثانية",
+        "sec_short": "ث",
+        "sec_plural": "ثواني"
+      }
+    },
     "product": {
       "viewing_suffix": "شخص يشاهد هذا المنتج الآن",
       "order_in_next": "اطلب خلال",

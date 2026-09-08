@@ -1,0 +1,32 @@
+{
+  "sections": {
+    "6444a863-5ece-4b46-87e7-cfa83ed28286": {
+      "type": "custom-html",
+      "settings": {
+        "heading": "",
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "container",
+        "content_html": "",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "main": {
+      "type": "page-404",
+      "settings": {
+        "container": "container",
+        "custom_width": "440",
+        "heading": "Oops...That link is broken.",
+        "sub_heading": "Sorry for the inconvenience. Go to our homepage or check out our latest collections.",
+        "label": "Back to homepage",
+        "link": ""
+      }
+    }
+  },
+  "order": [
+    "6444a863-5ece-4b46-87e7-cfa83ed28286",
+    "main"
+  ]
+}

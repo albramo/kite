@@ -1,0 +1,602 @@
+{
+  "sections": {
+    "0c521c75-5d82-4dd6-aecc-f519d8907411": {
+      "type": "slideshow",
+      "blocks": {
+        "4d89f9ff-8153-4b4a-a089-ccb19f702450": {
+          "type": "slider_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/h1-slide-show-1_1_1.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/main_ms_1.jpg",
+            "content_box": "content_in_container_fluid",
+            "content_custom_width": true,
+            "content_width": 50,
+            "content_background_color": "",
+            "content_opacity": 100,
+            "horizontal_position": "left_position",
+            "vertical_position": "middle_position",
+            "slider_effect": "effect_fadeinup",
+            "text_alignment": "center",
+            "text_alignment_on_mobile": "left",
+            "subheading": "",
+            "title": "Stylish<br>\nTop Trending",
+            "description": "<p>So soft, you don't want to take it off.<\/p>",
+            "image_link": "shopify:\/\/collections\/shop",
+            "button_text": "Shop now",
+            "button_type": "primary"
+          }
+        },
+        "template--16567751082231__0c521c75-5d82-4dd6-aecc-f519d8907411-1666406556d8612fa9-0": {
+          "type": "slider_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/h1-slide-show-2.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/main_ms_2.jpg",
+            "content_box": "content_in_container_fluid",
+            "content_custom_width": true,
+            "content_width": 50,
+            "content_background_color": "",
+            "content_opacity": 100,
+            "horizontal_position": "left_position",
+            "vertical_position": "middle_position",
+            "slider_effect": "effect_fadeinleft",
+            "text_alignment": "center",
+            "text_alignment_on_mobile": "left",
+            "subheading": "",
+            "title": "Hulton<br>\nPerfect Simple",
+            "description": "<p>So soft, you don't want to take it off.<\/p>",
+            "image_link": "shopify:\/\/collections\/blazers",
+            "button_text": "Shop now",
+            "button_type": "primary"
+          }
+        },
+        "1ab55a7c-dc50-4b8b-91fb-925f12f5ea7b": {
+          "type": "slider_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/h1-slide-show-3.jpg",
+            "image_mobile": "shopify:\/\/shop_images\/main_ms_3.jpg",
+            "content_box": "content_in_container",
+            "content_custom_width": true,
+            "content_width": 50,
+            "content_background_color": "",
+            "content_opacity": 100,
+            "horizontal_position": "left_position",
+            "vertical_position": "middle_position",
+            "slider_effect": "effect_fadein",
+            "text_alignment": "center",
+            "text_alignment_on_mobile": "left",
+            "subheading": "",
+            "title": "Online<br>\nLimited Edition",
+            "description": "<p>So soft, you don't want to take it off.<\/p>",
+            "image_link": "shopify:\/\/collections\/top-dresses",
+            "button_text": "Shop now",
+            "button_type": "primary"
+          }
+        }
+      },
+      "block_order": [
+        "4d89f9ff-8153-4b4a-a089-ccb19f702450",
+        "template--16567751082231__0c521c75-5d82-4dd6-aecc-f519d8907411-1666406556d8612fa9-0",
+        "1ab55a7c-dc50-4b8b-91fb-925f12f5ea7b"
+      ],
+      "settings": {
+        "container": "full-width",
+        "slide_height": "full_screen",
+        "color_scheme": "scheme-6d0c1040-eaae-4e7a-a495-a95c5f728848",
+        "image_behavior": "none",
+        "eb_vertical_menu": false,
+        "height_dk": 850,
+        "height_tb": 650,
+        "height_mb": 550,
+        "heading_font_size": "80",
+        "heading_font_weight": "400",
+        "subheading_font_size": "12",
+        "subheading_font_weight": "500",
+        "description_font_size": "16",
+        "description_font_weight": "default",
+        "design": "s-text-overlay-image",
+        "reset_color_mb": false,
+        "show_arrow_desktop": true,
+        "show_arrow_mobile": false,
+        "show_bullet_desktop": true,
+        "show_bullet_mobile": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "enable_effect": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "d22b349b-1e5c-4e9d-86c3-1f962770d193": {
+      "type": "collection-packery",
+      "blocks": {
+        "template--16652384076023__d22b349b-1e5c-4e9d-86c3-1f962770d193-167057601917b746bf-0": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Clothing",
+            "collection": "denim-shirt",
+            "image": "shopify:\/\/shop_images\/main-cate-1.jpg"
+          }
+        },
+        "template--16652384076023__d22b349b-1e5c-4e9d-86c3-1f962770d193-167057601917b746bf-2": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Sunglasses",
+            "collection": "sportswear",
+            "image": "shopify:\/\/shop_images\/main-cate-2.jpg"
+          }
+        },
+        "template--16652384076023__d22b349b-1e5c-4e9d-86c3-1f962770d193-167057601917b746bf-3": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Bags",
+            "collection": "handbag",
+            "image": "shopify:\/\/shop_images\/main-cate-3.jpg"
+          }
+        },
+        "template--16652384076023__d22b349b-1e5c-4e9d-86c3-1f962770d193-167057601917b746bf-4": {
+          "type": "collection_item",
+          "settings": {
+            "title_collection": "Sneaker",
+            "collection": "shop",
+            "image": "shopify:\/\/shop_images\/collection-main-demo-shoes.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "template--16652384076023__d22b349b-1e5c-4e9d-86c3-1f962770d193-167057601917b746bf-0",
+        "template--16652384076023__d22b349b-1e5c-4e9d-86c3-1f962770d193-167057601917b746bf-2",
+        "template--16652384076023__d22b349b-1e5c-4e9d-86c3-1f962770d193-167057601917b746bf-3",
+        "template--16652384076023__d22b349b-1e5c-4e9d-86c3-1f962770d193-167057601917b746bf-4"
+      ],
+      "custom_css": [
+
+      ],
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "Featured Collections",
+        "description": "<p>Upgrade your style with our curated sets. Choose confidence, embrace your unique look.<\/p>",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "hover_effect": "zoom",
+        "show_count_product": false,
+        "image_ratio": "original",
+        "custom_ratio": "21:9",
+        "column_gap": 30,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "c6efc7af-e102-44d6-b23f-b3df7fd84aa6": {
+      "type": "products-carousel",
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "Trending this Week",
+        "description": "<p>Here’s some of our most popular products people are in love with.<\/p>",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "collection": "womens-new-arrivals",
+        "limit_products": 6,
+        "item_desktop": 4,
+        "column_gap": 30,
+        "item_mobile": false,
+        "carousel_autoplay": false,
+        "carousel_loop": false,
+        "carousel_arrows": true,
+        "carousel_pagination": "carousel_none",
+        "reveal_on_scroll": false,
+        "view_all_enable": false,
+        "text_view_all": "View All",
+        "enable_banner": false,
+        "banner_type": "image",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "banner_position": "position-left",
+        "banner_link": "",
+        "banner_width": 30,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "ef37a47e-d9db-4855-ac05-e04279ad1ca7": {
+      "type": "banner-image",
+      "blocks": {
+        "template--16567751082231__ef37a47e-d9db-4855-ac05-e04279ad1ca7-166642262220af4a50-0": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "4",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/main-banner-1.jpg",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "shopify:\/\/collections\/shop",
+            "open_link": "_blank",
+            "subtext": "ONLINE EXCLUSIVE",
+            "title": "Oversized Shirt",
+            "content": "",
+            "btn_content": "SHOP THE LOOK",
+            "button_type": "link"
+          }
+        },
+        "template--16567751082231__ef37a47e-d9db-4855-ac05-e04279ad1ca7-166642262220af4a50-1": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "4",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/main-banner-2.jpg",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "shopify:\/\/collections\/handbag",
+            "open_link": "_blank",
+            "subtext": "BEST-SELLERS",
+            "title": "Unique SS’23",
+            "content": "",
+            "btn_content": "SHOP THE LOOK",
+            "button_type": "link"
+          }
+        },
+        "5f27996b-209b-49cc-b397-c92fde676fec": {
+          "type": "image_banner",
+          "settings": {
+            "banner_width": "4",
+            "banner_type": "image",
+            "image": "shopify:\/\/shop_images\/main-banner-3_1.jpg",
+            "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+            "link": "shopify:\/\/collections\/top-t-shirt",
+            "open_link": "_blank",
+            "subtext": "LIMITED EDITION",
+            "title": "Autumn Trending",
+            "content": "",
+            "btn_content": "SHOP THE LOOK",
+            "button_type": "link"
+          }
+        }
+      },
+      "block_order": [
+        "template--16567751082231__ef37a47e-d9db-4855-ac05-e04279ad1ca7-166642262220af4a50-0",
+        "template--16567751082231__ef37a47e-d9db-4855-ac05-e04279ad1ca7-166642262220af4a50-1",
+        "5f27996b-209b-49cc-b397-c92fde676fec"
+      ],
+      "custom_css": [
+        ".bls__banner-button {padding-top: 5px;}",
+        ".bls__banner-button .btn-link {font-size: 12px; padding-bottom: 0;}",
+        ".pl-80 {padding-left: clamp(30px, 10%, 50px);}",
+        ".pb-80 {padding-bottom: clamp(30px, 10%, 50px);}"
+      ],
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "",
+        "description": "",
+        "text_alignment": "text-center",
+        "container": "strecth-width",
+        "color_scheme": "",
+        "column_gap": 30,
+        "layout_on_mobile": true,
+        "design_banner": "text-overlay-image",
+        "design_content": "default",
+        "text_align": "text-left",
+        "hover_effect": "zoom",
+        "h_font_size": 36,
+        "h_font_weight": "default",
+        "h_spacing": 0,
+        "sub_font_size": 12,
+        "sub_font_weight": "default",
+        "sub_spacing": 2,
+        "des_font_size": 16,
+        "des_font_weight": "default",
+        "des_spacing": 30,
+        "image_behavior": "none",
+        "text_position": "bottom",
+        "content_on_mobile": false,
+        "reset_color_mb": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "bf8c8378-d980-4080-aaa3-02e0b1af6969": {
+      "type": "products-carousel",
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "New Arrivals",
+        "description": "<p>Find the top most popular items in Umino best sellers.<\/p>",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "collection": "winter-coat",
+        "limit_products": 6,
+        "item_desktop": 4,
+        "column_gap": 30,
+        "item_mobile": false,
+        "carousel_autoplay": false,
+        "carousel_loop": false,
+        "carousel_arrows": true,
+        "carousel_pagination": "carousel_none",
+        "reveal_on_scroll": false,
+        "view_all_enable": false,
+        "text_view_all": "View All",
+        "enable_banner": false,
+        "banner_type": "image",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "banner_position": "position-left",
+        "banner_link": "",
+        "banner_width": 30,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "d26d322e-32a3-4756-bbe9-907d92d061dd": {
+      "type": "testimonial",
+      "blocks": {
+        "template--21390855831849__d26d322e-32a3-4756-bbe9-907d92d061dd-testimonials-1": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>A perfect product, it keeps you very warm without over heating. True to size, I couldn't be happier with the purchase... Thank you! 🤗<\/p>",
+            "author": "Algistino Lionel - Verified Buyer",
+            "job": "",
+            "image": "shopify:\/\/shop_images\/h-main-test1.png",
+            "testimonial_width": 70
+          }
+        },
+        "template--21390855831849__d26d322e-32a3-4756-bbe9-907d92d061dd-testimonials-2": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>Great to be able to order everything I needed from the comfort of my home and the delivery was extremely quick. Recommend... 🥰<\/p>",
+            "author": "Siarhei Dzenisenka - Verified Buyer",
+            "job": "",
+            "image": "shopify:\/\/shop_images\/h-main-test2.png",
+            "testimonial_width": 70
+          }
+        },
+        "template--21390855831849__d26d322e-32a3-4756-bbe9-907d92d061dd-testimonials-3": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>These are sooo pretty and very comfy. Perfect color as well. I love wearing these with a neutral top and Chelsea boots. Wicked cute...😍<\/p>",
+            "author": "Sarah Bond - Verified Buyer",
+            "job": "",
+            "image": "shopify:\/\/shop_images\/h-main-test3.png",
+            "testimonial_width": 70
+          }
+        },
+        "b9316005-be3d-4c6c-a228-084419da00b5": {
+          "type": "testimonials",
+          "settings": {
+            "title_text": "",
+            "description": "<p>A perfect product, it keeps you very warm without over heating. True to size, I couldn't be happier with the purchase... Thank you! 🤗<\/p>",
+            "author": "Algistino Lionel - Verified Buyer",
+            "job": "",
+            "image": "shopify:\/\/shop_images\/h-main-test1.png",
+            "testimonial_width": 70
+          }
+        }
+      },
+      "block_order": [
+        "template--21390855831849__d26d322e-32a3-4756-bbe9-907d92d061dd-testimonials-1",
+        "template--21390855831849__d26d322e-32a3-4756-bbe9-907d92d061dd-testimonials-2",
+        "template--21390855831849__d26d322e-32a3-4756-bbe9-907d92d061dd-testimonials-3",
+        "b9316005-be3d-4c6c-a228-084419da00b5"
+      ],
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "Customer Say!",
+        "description": "<p>Customers love our products and we always strive to please them all.<\/p>",
+        "text_align": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "content_width": 100,
+        "design": "design_1",
+        "testi_text_size": "small",
+        "show_rating": true,
+        "img_view": "framed",
+        "img_position": "position-top",
+        "car_gap": 30,
+        "carousel_item_desktop": 3,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": true,
+        "reveal_on_scroll": false,
+        "pagination_style": "none",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "d39e76c8-b778-45ee-946b-ffe978f7ed46": {
+      "type": "instagram-shop",
+      "blocks": {
+        "template--16652384076023__d39e76c8-b778-45ee-946b-ffe978f7ed46-16768823683bccb82f-0": {
+          "type": "lookbook",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bg_13_1c3f17e6-797b-4720-9167-61cae1930376.png",
+            "ig_caption": "V-neck dress with wide straps. Featuring an adjustable waist with side drawstrings, matching embroidered appliqués and side zip fastening hidden in the seam.",
+            "photographer": "",
+            "ig_text": "Embroidered Dress \/ Instagram \/ 04 february 2023",
+            "ig_link": "https:\/\/www.instagram.com\/p\/CkFSW0bLdXm\/",
+            "position_top_1": 67,
+            "position_left_1": 63,
+            "product_1": "colorful-long-sleeve-dress",
+            "position_top_2": 26,
+            "position_left_2": 50,
+            "product_2": "",
+            "position_top_3": 61,
+            "position_left_3": 48,
+            "product_3": "",
+            "position_top_4": 0,
+            "position_left_4": 0,
+            "product_4": "",
+            "position_top_5": 20,
+            "position_left_5": 0,
+            "product_5": ""
+          }
+        },
+        "template--16652384076023__d39e76c8-b778-45ee-946b-ffe978f7ed46-16768823683bccb82f-1": {
+          "type": "lookbook",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bg.jpg",
+            "ig_caption": "Zara maxi yellow plaid summer dress\nNWT. Zara Yellow Plaid Stretch Tube Halter Maxi Dress. Size M. Ref. 6050\/332. Pit to pit 13,5\" flat, length 50\". 1013.",
+            "photographer": "",
+            "ig_text": "Maxi Plaid Summer Dress \/ Instagram \/ 04 february 2023",
+            "ig_link": "https:\/\/www.instagram.com\/uminexshopify1\/",
+            "position_top_1": 33,
+            "position_left_1": 40,
+            "product_1": "wrapover-shirt-dress",
+            "position_top_2": 26,
+            "position_left_2": 50,
+            "product_2": "",
+            "position_top_3": 61,
+            "position_left_3": 48,
+            "product_3": "",
+            "position_top_4": 0,
+            "position_left_4": 0,
+            "product_4": "",
+            "position_top_5": 20,
+            "position_left_5": 0,
+            "product_5": ""
+          }
+        },
+        "template--16652384076023__d39e76c8-b778-45ee-946b-ffe978f7ed46-16768823683bccb82f-2": {
+          "type": "lookbook",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bg_15_870dde28-a681-4bae-b27c-23d0c548cf2a.png",
+            "ig_caption": "Cool girls will love the Novalynn Plaid Button Down Top in indigo multi that features front button closures.  \n\nStyled with: Chic Bag, Volt Skinny, and Brycen Boot.",
+            "photographer": "",
+            "ig_text": "Morden Shirt \/ Instagram \/ 04 february 2023",
+            "ig_link": "https:\/\/www.instagram.com\/p\/CkFSSasL6A0\/",
+            "position_top_1": 34,
+            "position_left_1": 44,
+            "product_1": "long-sleeve-shirts",
+            "position_top_2": 88,
+            "position_left_2": 63,
+            "product_2": "colorful-wind-coats",
+            "position_top_3": 94,
+            "position_left_3": 48,
+            "product_3": "",
+            "position_top_4": 0,
+            "position_left_4": 0,
+            "product_4": "",
+            "position_top_5": 20,
+            "position_left_5": 0,
+            "product_5": ""
+          }
+        },
+        "2aaf2399-bf47-4fe7-bf2d-938b291d6073": {
+          "type": "lookbook",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bg_16_6040dbe7-ca8b-401a-bf57-f6c8d44d25ef.png",
+            "ig_caption": "This is one of the most popular beach cover ups you can own, especially if you’re the type who loves to dress up a little at the beach. A sun dress is any woman’s throw-on-and-go summer piece, and it can be short, long, strapless, or any other way you want!",
+            "photographer": "",
+            "ig_text": "Love yourselft \/ Instagram \/ 04 february 2023",
+            "ig_link": "https:\/\/www.instagram.com\/p\/CkFSQDFLhzQ\/",
+            "position_top_1": 54,
+            "position_left_1": 63,
+            "product_1": "oversized-women-shirt",
+            "position_top_2": 26,
+            "position_left_2": 50,
+            "product_2": "",
+            "position_top_3": 61,
+            "position_left_3": 48,
+            "product_3": "",
+            "position_top_4": 0,
+            "position_left_4": 0,
+            "product_4": "",
+            "position_top_5": 20,
+            "position_left_5": 0,
+            "product_5": ""
+          }
+        },
+        "328ed62c-a1e8-4a86-9486-2a7edad78bcc": {
+          "type": "lookbook",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bg_17_a53e386b-81c7-4fe9-95b8-aad12bf0867a_3_1.png",
+            "ig_caption": "Unique sari inspired prints, as well as plain rayon (wood pulp) jump suits with a drop crotch, low back and front, easily adjusted to fit different body types, 8 - 16, silky feel (poly rayon)",
+            "photographer": "",
+            "ig_text": "KALI PLAYSUIT \/ Instagram \/ 04 february 2023",
+            "ig_link": "https:\/\/www.instagram.com\/p\/CkFSNvwLytE\/",
+            "position_top_1": 33,
+            "position_left_1": 24,
+            "product_1": "printed-long-sleeve-shirt",
+            "position_top_2": 66,
+            "position_left_2": 68,
+            "product_2": "polo-neck-body-dress",
+            "position_top_3": 61,
+            "position_left_3": 48,
+            "product_3": "",
+            "position_top_4": 0,
+            "position_left_4": 0,
+            "product_4": "",
+            "position_top_5": 20,
+            "position_left_5": 0,
+            "product_5": ""
+          }
+        },
+        "cfb8f0dd-84e7-4a7d-bc3f-0592f2fe4d82": {
+          "type": "lookbook",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/bg_18_d2f5d8f0-7acb-4348-ae8a-88634e4d56f4_3_1.png",
+            "ig_caption": "Talking Jeans With One Of The World’s Biggest Denim Designers\nEven if you're not a \"jeans person,\" everyone has that one pair they could live in; the pair that's worn in just right, hits at the perfect length, fits in all the right places..",
+            "photographer": "",
+            "ig_text": "Black Shirt - Umino",
+            "ig_link": "https:\/\/www.instagram.com\/p\/CkFSKuvLP5H\/",
+            "position_top_1": 31,
+            "position_left_1": 48,
+            "product_1": "balloon-sleeved-shirt",
+            "position_top_2": 77,
+            "position_left_2": 28,
+            "product_2": "short-sleeve-sweater",
+            "position_top_3": 61,
+            "position_left_3": 48,
+            "product_3": "",
+            "position_top_4": 0,
+            "position_left_4": 0,
+            "product_4": "",
+            "position_top_5": 20,
+            "position_left_5": 0,
+            "product_5": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16652384076023__d39e76c8-b778-45ee-946b-ffe978f7ed46-16768823683bccb82f-0",
+        "template--16652384076023__d39e76c8-b778-45ee-946b-ffe978f7ed46-16768823683bccb82f-1",
+        "template--16652384076023__d39e76c8-b778-45ee-946b-ffe978f7ed46-16768823683bccb82f-2",
+        "2aaf2399-bf47-4fe7-bf2d-938b291d6073",
+        "328ed62c-a1e8-4a86-9486-2a7edad78bcc",
+        "cfb8f0dd-84e7-4a7d-bc3f-0592f2fe4d82"
+      ],
+      "settings": {
+        "heading_logo_svg": "",
+        "heading": "Shop by Gram",
+        "description": "<p>Inspire and let yourself be inspired, from one unique fashion to another.<\/p>",
+        "text_alignment": "text-center",
+        "container": "container-fluid",
+        "color_scheme": "",
+        "design_layout": "slider",
+        "aspect_ratio": "1\/1",
+        "custom_ratio": "21:9",
+        "column_gap": 5,
+        "slider_lookbook_items": 6,
+        "autoplay": false,
+        "loop": false,
+        "show_arrow": false,
+        "carousel_pagination": "carousel_none",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "0c521c75-5d82-4dd6-aecc-f519d8907411",
+    "d22b349b-1e5c-4e9d-86c3-1f962770d193",
+    "c6efc7af-e102-44d6-b23f-b3df7fd84aa6",
+    "ef37a47e-d9db-4855-ac05-e04279ad1ca7",
+    "bf8c8378-d980-4080-aaa3-02e0b1af6969",
+    "d26d322e-32a3-4756-bbe9-907d92d061dd",
+    "d39e76c8-b778-45ee-946b-ffe978f7ed46"
+  ]
+}

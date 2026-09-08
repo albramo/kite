@@ -1,0 +1,11 @@
+{%- liquid
+  assign footer_layout = settings.footer_layout
+-%}
+
+{%- case footer_layout -%}
+  {%- when 'footer-1' -%}
+    {%- section 'footer-1' -%}
+  {%- when 'footer-2' -%}
+    {%- section 'footer-2' -%}
+  {%- else -%}
+{%- endcase -%}

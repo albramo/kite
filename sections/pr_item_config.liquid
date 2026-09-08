@@ -63,6 +63,10 @@ assign collection = collections['all']
 				          render 'pr-grid-item6' for collections.all.products as product, product: product, isGrowaveWishlist: isGrowaveWishlist, show_img: show_img, placeholder_img: placeholder_img, show_vendor: false, enable_pr_color: enable_pr_color, show_cl_type: show_cl_type, get_color: get_color, enable_pr_size: enable_pr_size, pr_size_pos: pr_size_pos, get_size: get_size, show_size_type: show_size_type, price_varies_style: price_varies_style, app_review: app_review, enable_rating: enable_rating, imgatt: imgatt, show_list_btns: false
 				        when '7'
 				          render 'pr-grid-item7' for collections.all.products as product, product: product, isGrowaveWishlist: isGrowaveWishlist, show_img: show_img, placeholder_img: placeholder_img, show_vendor: false, enable_pr_color: enable_pr_color, show_cl_type: show_cl_type, get_color: get_color, enable_pr_size: enable_pr_size, pr_size_pos: pr_size_pos, get_size: get_size, show_size_type: show_size_type, price_varies_style: price_varies_style, app_review: app_review, enable_rating: enable_rating, imgatt: imgatt, show_list_btns: false
+				        when '8'
+				          render 'pr-grid-item8' for collections.all.products as product, product: product, isGrowaveWishlist: isGrowaveWishlist, show_img: show_img, placeholder_img: placeholder_img, show_vendor: false, enable_pr_color: enable_pr_color, show_cl_type: show_cl_type, get_color: get_color, enable_pr_size: enable_pr_size, pr_size_pos: pr_size_pos, get_size: get_size, show_size_type: show_size_type, price_varies_style: price_varies_style, app_review: app_review, enable_rating: enable_rating, imgatt: imgatt, show_list_btns: false
+				        when '9'
+				          render 'pr-grid-item9' for collections.all.products as product, product: product, isGrowaveWishlist: isGrowaveWishlist, show_img: show_img, placeholder_img: placeholder_img, show_vendor: false, enable_pr_color: enable_pr_color, show_cl_type: show_cl_type, get_color: get_color, enable_pr_size: enable_pr_size, pr_size_pos: pr_size_pos, get_size: get_size, show_size_type: show_size_type, price_varies_style: price_varies_style, app_review: app_review, enable_rating: enable_rating, imgatt: imgatt, show_list_btns: false
 				        when 'list'
 				          render 'pr-grid-item1' for collections.all.products as product, product: product, isGrowaveWishlist: isGrowaveWishlist, show_img: show_img, show_vendor: false, placeholder_img: placeholder_img, enable_pr_color: enable_pr_color, show_cl_type: show_cl_type, get_color: get_color, enable_pr_size: enable_pr_size, pr_size_pos: pr_size_pos, get_size: get_size, show_size_type: show_size_type, price_varies_style: price_varies_style, app_review: app_review, enable_rating: enable_rating, imgatt: imgatt, show_list_btns: true
 				        when 'packery'
@@ -97,6 +101,13 @@ assign collection = collections['all']
 		border-radius: {{ se_stts.pr_btn_round }}px; 
 	}
 	{%- assign countdown_color_lightness       = se_stts.countdown_color | color_extract: 'lightness' -%}
+	{%- if se_stts.countdown_text != blank -%}
+		{%- assign countdown_txt = se_stts.countdown_text -%}
+	{%- elsif countdown_color_lightness < 85 -%}
+		{%- assign countdown_txt = '#fff' -%}
+	{%- else -%}
+		{%- assign countdown_txt = '#000' -%}
+	{%- endif -%}
 	.t4s-widget__pr {
 		--pr-wishlist-color-active              : {{ se_stts.wishlist_color_active }};
 	}
@@ -116,9 +127,37 @@ assign collection = collections['all']
 		--product-space-img-txt    : {{ se_stts.space_img_content }}px;
 		--product-space-elements   : {{ se_stts.space_elements }}px;
 
-		--pr-countdown-color       : {% if countdown_color_lightness < 85 %}#fff{% else %}#000{% endif %};
+		--pr-countdown-color       : {{ countdown_txt }};
 		--pr-countdown-bg-color    : {{ se_stts.countdown_color | color_modify: 'alpha', countdown_overlay }};
+		--pr-countdown-fs          : {{ se_stts.countdown_fs | default: 14 }}px;
+		--pr-countdown-fw          : {{ se_stts.countdown_fw | default: 400 }};
+		--pr-countdown-radius      : {{ se_stts.countdown_radius | default: 20 }}px;
+		--pr-countdown-bottom      : {{ se_stts.countdown_bottom | default: 10 }}px;
+		--pr-countdown-sides       : {{ se_stts.countdown_sides | default: 10 }}px;
 	}
+	.t4s-product .t4s-product-countdown {
+		font-size: var(--pr-countdown-fs);
+		font-weight: var(--pr-countdown-fw);
+		border-radius: var(--pr-countdown-radius);
+		bottom: var(--pr-countdown-bottom);
+		left: var(--pr-countdown-sides);
+		right: var(--pr-countdown-sides);
+	}
+	{%- if se_stts.countdown_layout == 'marquee' -%}
+	.t4s-product .t4s-product-countdown {
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	.t4s-product .t4s-product-countdown > * {
+		display: inline-block;
+		vertical-align: middle;
+		animation: t4sCountdownMarquee {{ se_stts.countdown_speed | default: 8 }}s linear infinite;
+	}
+	@keyframes t4sCountdownMarquee {
+		0% { transform: translateX(0); }
+		100% { transform: translateX(-100%); }
+	}
+	{%- endif -%}
 	.t4s-product,
 	.t4s-container .t4s-row-cols-lg-5 > .t4s-product,
 	.t4s-container .t4s-row-cols-lg-6 > .t4s-product {
@@ -704,6 +743,183 @@ assign collection = collections['all']
 				        --size-list-color-info2       : {% if size_list_color_info_lightness < 85 %}#fff{% else %}#000{% endif %};
 	            } 
         	{%- endstyle -%}
+      	{%- when '8' -%}
+          	{%- assign pr_overlay  = bk_stts.pr_overlay | divided_by: 100.0 -%}
+          	{%- style -%}
+          		@media (max-width: 1024px){
+	          		{%- liquid 
+		          		assign hidden_atc_mb = bk_stts.hidden_atc_mb
+		          		assign hidden_qv_mb = bk_stts.hidden_qv_mb
+		          		assign hidden_wishlist_mb = bk_stts.hidden_wishlist_mb
+		          		assign hidden_compare_mb = bk_stts.hidden_compare_mb
+		          		assign hidden_pr_colors = bk_stts.hidden_pr_colors
+		          		assign hidden_pr_sizes = bk_stts.hidden_pr_sizes
+		          		assign hidden_pr_countdown = bk_stts.hidden_pr_countdown -%}
+		          	{%- if hidden_atc_mb -%}
+		          		.t4s-pr-style8 .t4s-pr-addtocart,
+		    			.t4s-pr-style8 .t4s-product-atc-qty,
+		          	{%- endif -%}
+		          	{%- if hidden_qv_mb -%}
+		          		.t4s-pr-style8 .t4s-pr-quickview,
+		          	{%- endif -%}
+		          	{%- if hidden_wishlist_mb -%}
+		          		.t4s-pr-style8 .t4s-pr-wishlist,
+		          	{%- endif -%}
+		          	{%- if hidden_compare_mb -%}
+		          		.t4s-pr-style8 .t4s-pr-compare,
+		          	{%- endif -%}
+		          	{%- if hidden_pr_colors -%}
+		          		.t4s-pr-style8 .t4s-product-colors,
+		          	{%- endif -%}
+		          	{%- if hidden_pr_sizes -%}
+		          		.t4s-pr-style8 .t4s-product-sizes,
+		          	{%- endif -%}
+		          	{%- if hidden_pr_colors and hidden_pr_sizes -%}
+		          		.t4s-pr-style8 .t4s-pr-group-variable,
+		          	{%- endif -%}
+		          	{%- if hidden_pr_countdown -%}
+		          		.t4s-pr-style8 .t4s-product-countdown,
+		          	{%- endif -%}
+		    			.t4s-abc-xyz {
+		    				display: none !important;
+		    			}
+		          	{%- if hidden_wishlist_mb and hidden_qv_mb and hidden_compare_mb -%}
+		          		.t4s-pr-style8 .t4s-product-btns2 {
+		          			display: none !important;
+		          		}
+		          	{%- endif -%}
+		          	{%- if hidden_atc_mb -%}
+		          		.t4s-pr-style8 .t4s-product-btns {
+		          			display: none !important;
+		          		}
+		          	{%- endif -%}
+	          	}
+	            .t4s-pr-style8 {
+			       {%- assign addtocart_color_lightness       = bk_stts.addtocart_color | color_extract: 'lightness' -%}
+				       {%- assign addtocart_color_hover_lightness = bk_stts.addtocart_color_hover | color_extract: 'lightness' -%}
+				       {%- assign quickview_color_lightness       = bk_stts.quickview_color | color_extract: 'lightness' -%}
+				       {%- assign quickview_color_hover_lightness = bk_stts.quickview_color_hover | color_extract: 'lightness' -%}
+				       {%- assign wishlist_color_lightness        = bk_stts.wishlist_color | color_extract: 'lightness' -%}
+				       {%- assign wishlist_color_hover_lightness  = bk_stts.wishlist_color_hover | color_extract: 'lightness' -%}
+				       {%- assign wishlist_color_active_lightness = bk_stts.wishlist_color_active | color_extract: 'lightness' -%}
+				       {%- assign compare_color_lightness         = bk_stts.compare_color | color_extract: 'lightness' -%}
+				       {%- assign compare_color_hover_lightness   = bk_stts.compare_color_hover | color_extract: 'lightness' %}
+				       {%- assign size_list_color_lightness   	  = bk_stts.size_list_color | color_extract: 'lightness' %}
+				       {%- assign size_list_color_info_lightness  = bk_stts.size_list_color_info | color_extract: 'lightness' %}
+
+				        --pr-addtocart-color             : {{ bk_stts.addtocart_color }};
+				        --pr-addtocart-color2            : {% if addtocart_color_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-addtocart-color-hover       : {{ bk_stts.addtocart_color_hover }};
+				        --pr-addtocart-color2-hover      : {% if addtocart_color_hover_lightness < 85 %}#fff{% else %}#870626{% endif %};
+
+				        --pr-quickview-color             : {{ bk_stts.quickview_color }};
+				        --pr-quickview-color2            : {% if quickview_color_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-quickview-color-hover       : {{ bk_stts.quickview_color_hover }};
+				        --pr-quickview-color2-hover      : {% if quickview_color_hover_lightness < 85 %}#fff{% else %}#000{% endif %};
+
+				        --pr-wishlist-color              : {{ bk_stts.wishlist_color }};
+				        --pr-wishlist-color2             : {% if wishlist_color_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-wishlist-color-hover        : {{ bk_stts.wishlist_color_hover }};
+				        --pr-wishlist-color2-hover       : {% if wishlist_color_hover_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-wishlist-color-active        : {{ bk_stts.wishlist_color_active }};
+				        --pr-wishlist-color2-active       : {% if wishlist_color_active_lightness < 85 %}#fff{% else %}#000{% endif %};
+
+				        --pr-compare-color               : {{ bk_stts.compare_color }};
+				        --pr-compare-color2              : {% if compare_color_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-compare-color-hover         : {{ bk_stts.compare_color_hover }};
+				        --pr-compare-color2-hover        : {% if compare_color_hover_lightness < 85 %}#fff{% else %}#000{% endif %};
+
+						--size-list-color             : {{ bk_stts.size_list_color }};
+				        --size-list-color-info        : {{ bk_stts.size_list_color_info }};
+				        --size-list-color-info2       : {% if size_list_color_info_lightness < 85 %}#fff{% else %}#000{% endif %};
+	            } 
+        	{%- endstyle -%}
+      	{%- when '9' -%}
+          	{%- assign pr_overlay  = bk_stts.pr_overlay | divided_by: 100.0 -%}
+          	{%- style -%}
+          		@media (max-width: 1024px){
+	          		{%- liquid 
+		          		assign hidden_atc_mb = bk_stts.hidden_atc_mb
+		          		assign hidden_qv_mb = bk_stts.hidden_qv_mb
+		          		assign hidden_wishlist_mb = bk_stts.hidden_wishlist_mb
+		          		assign hidden_compare_mb = bk_stts.hidden_compare_mb
+		          		assign hidden_pr_colors = bk_stts.hidden_pr_colors
+		          		assign hidden_pr_sizes = bk_stts.hidden_pr_sizes
+		          		assign hidden_pr_countdown = bk_stts.hidden_pr_countdown -%}
+		          	{%- if hidden_atc_mb -%}
+		          		.t4s-pr-style9 .t4s-pr-addtocart,
+		    			.t4s-pr-style9 .t4s-product-atc-qty,
+		          	{%- endif -%}
+		          	{%- if hidden_qv_mb -%}
+		          		.t4s-pr-style9 .t4s-pr-quickview,
+		          	{%- endif -%}
+		          	{%- if hidden_wishlist_mb -%}
+		          		.t4s-pr-style9 .t4s-pr-wishlist,
+		          	{%- endif -%}
+		          	{%- if hidden_compare_mb -%}
+		          		.t4s-pr-style9 .t4s-pr-compare,
+		          	{%- endif -%}
+		          	{%- if hidden_pr_colors -%}
+		          		.t4s-pr-style9 .t4s-product-colors,
+		          	{%- endif -%}
+		          	{%- if hidden_pr_sizes -%}
+		          		.t4s-pr-style9 .t4s-product-sizes,
+		          	{%- endif -%}
+		          	{%- if hidden_pr_colors and hidden_pr_sizes -%}
+		          		.t4s-pr-style9 .t4s-pr-group-variable,
+		          	{%- endif -%}
+		          	{%- if hidden_pr_countdown -%}
+		          		.t4s-pr-style9 .t4s-product-countdown,
+		          	{%- endif -%}
+		    			.t4s-abc-xyz {
+		    				display: none !important;
+		    			}
+		          	{%- if hidden_atc_mb and hidden_qv_mb and hidden_wishlist_mb and hidden_compare_mb -%}
+		          		.t4s-pr-style9 .t4s-product-btns {
+		          			display: none !important;
+		          		}
+		          	{%- endif -%}
+	          	}
+	            .t4s-pr-style9 {
+			       {%- assign addtocart_color_lightness       = bk_stts.addtocart_color | color_extract: 'lightness' -%}
+				       {%- assign addtocart_color_hover_lightness = bk_stts.addtocart_color_hover | color_extract: 'lightness' -%}
+				       {%- assign quickview_color_lightness       = bk_stts.quickview_color | color_extract: 'lightness' -%}
+				       {%- assign quickview_color_hover_lightness = bk_stts.quickview_color_hover | color_extract: 'lightness' -%}
+				       {%- assign wishlist_color_lightness        = bk_stts.wishlist_color | color_extract: 'lightness' -%}
+				       {%- assign wishlist_color_hover_lightness  = bk_stts.wishlist_color_hover | color_extract: 'lightness' -%}
+				       {%- assign wishlist_color_active_lightness = bk_stts.wishlist_color_active | color_extract: 'lightness' -%}
+				       {%- assign compare_color_lightness         = bk_stts.compare_color | color_extract: 'lightness' -%}
+				       {%- assign compare_color_hover_lightness   = bk_stts.compare_color_hover | color_extract: 'lightness' %}
+				       {%- assign size_list_color_lightness   	  = bk_stts.size_list_color | color_extract: 'lightness' %}
+				       {%- assign size_list_color_info_lightness  = bk_stts.size_list_color_info | color_extract: 'lightness' %}
+
+				        --pr-addtocart-color             : {{ bk_stts.addtocart_color }};
+				        --pr-addtocart-color2            : {% if addtocart_color_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-addtocart-color-hover       : {{ bk_stts.addtocart_color_hover }};
+				        --pr-addtocart-color2-hover      : {% if addtocart_color_hover_lightness < 85 %}#fff{% else %}#870626{% endif %};
+
+				        --pr-quickview-color             : {{ bk_stts.quickview_color }};
+				        --pr-quickview-color2            : {% if quickview_color_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-quickview-color-hover       : {{ bk_stts.quickview_color_hover }};
+				        --pr-quickview-color2-hover      : {% if quickview_color_hover_lightness < 85 %}#fff{% else %}#000{% endif %};
+
+				        --pr-wishlist-color              : {{ bk_stts.wishlist_color }};
+				        --pr-wishlist-color2             : {% if wishlist_color_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-wishlist-color-hover        : {{ bk_stts.wishlist_color_hover }};
+				        --pr-wishlist-color2-hover       : {% if wishlist_color_hover_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-wishlist-color-active        : {{ bk_stts.wishlist_color_active }};
+				        --pr-wishlist-color2-active       : {% if wishlist_color_active_lightness < 85 %}#fff{% else %}#000{% endif %};
+
+				        --pr-compare-color               : {{ bk_stts.compare_color }};
+				        --pr-compare-color2              : {% if compare_color_lightness < 85 %}#fff{% else %}#000{% endif %};
+				        --pr-compare-color-hover         : {{ bk_stts.compare_color_hover }};
+				        --pr-compare-color2-hover        : {% if compare_color_hover_lightness < 85 %}#fff{% else %}#000{% endif %};
+
+						--size-list-color             : {{ bk_stts.size_list_color }};
+				        --size-list-color-info        : {{ bk_stts.size_list_color_info }};
+				        --size-list-color-info2       : {% if size_list_color_info_lightness < 85 %}#fff{% else %}#000{% endif %};
+	            } 
+        	{%- endstyle -%}
       	{%- when 'list' -%}
           	{%- assign pr_overlay  = bk_stts.pr_overlay | divided_by: 100.0 -%}
           	{%- style -%}
@@ -1229,6 +1445,87 @@ assign collection = collections['all']
         "max": 100,
         "step": 1,
         "unit": "%"
+      },
+      {
+        "type": "header",
+        "content": "+ Countdown design"
+      },
+      {
+        "type": "color",
+        "id": "countdown_text",
+        "label": "Countdown text color",
+        "info": "Leave blank for auto (white/black)"
+      },
+      {
+        "type": "range",
+        "id": "countdown_fs",
+        "label": "Countdown font size",
+        "min": 10,
+        "max": 24,
+        "step": 1,
+        "unit": "px",
+        "default": 14
+      },
+      {
+        "type": "range",
+        "id": "countdown_fw",
+        "label": "Countdown font weight",
+        "min": 100,
+        "max": 900,
+        "step": 100,
+        "default": 400
+      },
+      {
+        "type": "range",
+        "id": "countdown_radius",
+        "label": "Countdown round corners",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "countdown_bottom",
+        "label": "Countdown distance from bottom (move up/down)",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "countdown_sides",
+        "label": "Countdown side spaces (width)",
+        "info": "0 = full width, bigger = narrower",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 10
+      },
+      {
+        "type": "select",
+        "id": "countdown_layout",
+        "label": "Countdown layout",
+        "default": "stacked",
+        "options": [
+          { "value": "stacked", "label": "Normal (static)" },
+          { "value": "marquee", "label": "Moving bar (marquee)" }
+        ]
+      },
+      {
+        "type": "range",
+        "id": "countdown_speed",
+        "label": "Marquee speed",
+        "info": "Only works with moving bar layout",
+        "min": 3,
+        "max": 20,
+        "step": 1,
+        "unit": "s",
+        "default": 8
       },
       {
         "type": "color",
@@ -2094,6 +2391,272 @@ assign collection = collections['all']
 			      }
             ]
         },
+        {
+            "type": "8",
+            "name": "Product design 8",
+            "limit": 1,
+            "settings": [
+				{
+			        "type": "text",
+			        "id": "heading",
+			        "label": "Heading",
+			        "default": "Product design 08 (Umino Style 3)"
+			    },
+			       {
+			        "type": "header",
+			        "content": "+ Product buttons"
+			      },
+			       {
+			        "type": "color",
+			        "id": "addtocart_color",
+			        "label": "Button add to cart",
+			        "default": "#fff"
+			      },
+			      {
+			        "type": "color",
+			        "id": "addtocart_color_hover",
+			        "label": "Button add to cart hover",
+			        "default": "#111111"
+			      },
+			      {
+			        "type": "color",
+			        "id": "quickview_color",
+			        "label": "Button quickview",
+			        "default": "#fff"
+			      },
+			      {
+			        "type": "color",
+			        "id": "quickview_color_hover",
+			        "label": "Button quickview hover",
+			        "default": "#111111"
+			      },
+			      {
+			        "type": "color",
+			        "id": "wishlist_color",
+			        "label": "Button wishlist",
+			        "default": "#fff"
+			    },
+			    {
+			        "type": "color",
+			        "id": "wishlist_color_hover",
+			        "label": "Button wishlist hover",
+			        "default": "#111111"
+			    },
+			    {
+			        "type": "color",
+			        "id": "wishlist_color_active",
+			        "label": "Button wishlist active",
+			        "default": "#e33131"
+			    },
+			    {
+			        "type": "color",
+			        "id": "compare_color",
+			        "label": "Button compare",
+			        "default": "#fff"
+			    },
+			    {
+			        "type": "color",
+			        "id": "compare_color_hover",
+			        "label": "Button compare hover",
+			        "default": "#111111"
+			    },
+		        {
+			        "type": "header",
+			        "content": "+ Product size list"
+		        },
+			      {
+			        "type": "color",
+			        "id": "size_list_color",
+			        "label": "Size list on image product",
+			        "default": "#fff"
+			      },
+			      {
+			        "type": "color",
+			        "id": "size_list_color_info",
+			        "label": "Size list in product info ",
+			        "default": "#000"
+			      },
+			      {
+			        "type": "header",
+			        "content": "+ Options products infomation on Tablet & Mobile"
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_atc_mb",
+			        "label": "Hidden 'Add to cart' button",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_qv_mb",
+			        "label": "Hidden 'Quick view' button",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_wishlist_mb",
+			        "label": "Hidden 'Add to wishlist' button",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_compare_mb",
+			        "label": "Hidden 'Compare' button",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_pr_colors",
+			        "label": "Hidden product colors swatches",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_pr_sizes",
+			        "label": "Hidden product sizes list",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_pr_countdown",
+			        "label": "Hidden product countdown",
+			        "default": false
+			      }
+            ]
+        },
+        {
+            "type": "9",
+            "name": "Product design 9",
+            "limit": 1,
+            "settings": [
+				{
+			        "type": "text",
+			        "id": "heading",
+			        "label": "Heading",
+			        "default": "Product design 09 (Umino Style 1)"
+			    },
+			       {
+			        "type": "header",
+			        "content": "+ Product buttons"
+			      },
+			       {
+			        "type": "color",
+			        "id": "addtocart_color",
+			        "label": "Button add to cart",
+			        "default": "#fff"
+			      },
+			      {
+			        "type": "color",
+			        "id": "addtocart_color_hover",
+			        "label": "Button add to cart hover",
+			        "default": "#111111"
+			      },
+			      {
+			        "type": "color",
+			        "id": "quickview_color",
+			        "label": "Button quickview",
+			        "default": "#fff"
+			      },
+			      {
+			        "type": "color",
+			        "id": "quickview_color_hover",
+			        "label": "Button quickview hover",
+			        "default": "#111111"
+			      },
+			      {
+			        "type": "color",
+			        "id": "wishlist_color",
+			        "label": "Button wishlist",
+			        "default": "#fff"
+			    },
+			    {
+			        "type": "color",
+			        "id": "wishlist_color_hover",
+			        "label": "Button wishlist hover",
+			        "default": "#111111"
+			    },
+			    {
+			        "type": "color",
+			        "id": "wishlist_color_active",
+			        "label": "Button wishlist active",
+			        "default": "#e33131"
+			    },
+			    {
+			        "type": "color",
+			        "id": "compare_color",
+			        "label": "Button compare",
+			        "default": "#fff"
+			    },
+			    {
+			        "type": "color",
+			        "id": "compare_color_hover",
+			        "label": "Button compare hover",
+			        "default": "#111111"
+			    },
+		        {
+			        "type": "header",
+			        "content": "+ Product size list"
+		        },
+			      {
+			        "type": "color",
+			        "id": "size_list_color",
+			        "label": "Size list on image product",
+			        "default": "#fff"
+			      },
+			      {
+			        "type": "color",
+			        "id": "size_list_color_info",
+			        "label": "Size list in product info ",
+			        "default": "#000"
+			      },
+			      {
+			        "type": "header",
+			        "content": "+ Options products infomation on Tablet & Mobile"
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_atc_mb",
+			        "label": "Hidden 'Add to cart' button",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_qv_mb",
+			        "label": "Hidden 'Quick view' button",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_wishlist_mb",
+			        "label": "Hidden 'Add to wishlist' button",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_compare_mb",
+			        "label": "Hidden 'Compare' button",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_pr_colors",
+			        "label": "Hidden product colors swatches",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_pr_sizes",
+			        "label": "Hidden product sizes list",
+			        "default": false
+			      },
+			      {
+			        "type": "checkbox",
+			        "id": "hidden_pr_countdown",
+			        "label": "Hidden product countdown",
+			        "default": false
+			      }
+            ]
+        },
        	{
             "type": "list",
             "name": "Product list",
@@ -2572,6 +3135,12 @@ assign collection = collections['all']
         },
         {
           "type": "6"
+        },
+        {
+          "type": "8"
+        },
+        {
+          "type": "9"
         },
         {
           "type": "list"

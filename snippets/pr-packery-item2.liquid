@@ -41,7 +41,14 @@ else
    endif
 endif
 
-assign countdown = time_meta | default: meta_theme.countdown | date: '%Y/%m/%d %H:%M:%S'
+assign countdown_raw = time_meta | default: meta_theme.countdown.value | default: meta_theme.countdown
+assign countdown = ''
+if countdown_raw != blank
+ assign countdown_ck = countdown_raw | date: '%Y'
+ if countdown_ck.size == 4
+  assign countdown = countdown_raw | date: '%Y/%m/%d %H:%M:%S'
+ endif
+endif
 if use_countdown and countdown != blank
   assign use_pr_countdown = true
 endif

@@ -498,6 +498,9 @@
       "sec": "sec",
       "sec_plural": "secs"
     },
+    "bundle_products": {
+      "countdown_label": "Offer ends in"
+    },
     "newsletter_form": {
       "email_placeholder": "Your email address",
       "submit": "Subscribe",

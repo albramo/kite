@@ -1,0 +1,92 @@
+{
+  "sections": {
+    "main-blog-heading": {
+      "type": "main-blog-heading",
+      "blocks": {
+        "ccc2de65-aceb-482e-b1d4-66f1f4992283": {
+          "type": "1",
+          "settings": {
+            "text_fs": 45
+          }
+        }
+      },
+      "block_order": [
+        "ccc2de65-aceb-482e-b1d4-66f1f4992283"
+      ],
+      "settings": {
+        "layout": "full-width",
+        "color_scheme": "scheme-b808185a-cae7-47ba-9fe9-7d81ddf7e485",
+        "show_banner": true,
+        "image": "shopify:\/\/shop_images\/blog-banner_4f9fcd1e-b46b-48f2-9c99-c56e3bbc73bb.jpg",
+        "min_height": 200,
+        "parallax": false,
+        "show_overlay": false,
+        "overlay": 54,
+        "design": "text-overlay-image",
+        "text_postion": "text-center"
+      }
+    },
+    "main": {
+      "type": "main-blog",
+      "blocks": {
+        "b392fde8-b681-4a99-8215-784c0ec20dc5": {
+          "type": "recent_post",
+          "settings": {
+            "title": "Popular posts",
+            "maximum": 5,
+            "aspect_ratio": "1\/1",
+            "custom_ratio": "21:9"
+          }
+        },
+        "7365bfb9-81e8-42fd-9c4d-c9c071279a7d": {
+          "type": "categories",
+          "settings": {
+            "title": "Category",
+            "menu": "blog-categories"
+          }
+        },
+        "0da5b0e7-e62c-46ee-b1b6-ae109dbf68ae": {
+          "type": "tags",
+          "settings": {
+            "title": "Tags"
+          }
+        },
+        "afbeb768-1663-4898-a8f8-392e0694c68f": {
+          "type": "image_banner",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/banner.png",
+            "url": "",
+            "open_link": false
+          }
+        }
+      },
+      "block_order": [
+        "b392fde8-b681-4a99-8215-784c0ec20dc5",
+        "7365bfb9-81e8-42fd-9c4d-c9c071279a7d",
+        "0da5b0e7-e62c-46ee-b1b6-ae109dbf68ae",
+        "afbeb768-1663-4898-a8f8-392e0694c68f"
+      ],
+      "settings": {
+        "container": "container-fluid",
+        "layout": "grid",
+        "max_articles": 12,
+        "items_per_row": 3,
+        "column_gap": 30,
+        "pagination": "default",
+        "sidebar_position": "left_sidebar",
+        "aspect_ratio": "original",
+        "custom_ratio": "21:9",
+        "hover_effect": "zoom",
+        "post_show_author": true,
+        "post_show_category": true,
+        "post_show_date": true,
+        "post_show_excerpt": true,
+        "post_show_button": false
+      }
+    }
+  },
+  "order": [
+    "main-blog-heading",
+    "main"
+  ]
+}
